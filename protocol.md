@@ -2,9 +2,9 @@
 
 The Block Chain peer to peer system consists of two types of members - 
 
-* 1. Tracker - The server which maintain the updated list which conatin the details of IP address,Port Number,Id of the individual nodes.Also the tracker will send this infomation to nodes when the demands comes.Moreover,the tracker will monitor the communication status of each nodes in the connected network.
+*  Tracker - The server which maintain the updated list which conatin the details of IP address,Port Number,Id of the individual nodes.Also the tracker will send this infomation to nodes when the demands comes.Moreover,the tracker will monitor the communication status of each nodes in the connected network.
 
-* 2. Nodes - In a Block Chain, all the nodes are synchronized with each other for sending and receiving information.Make money   transactions with the indvidual nodes,Sending the transaction details to all other nodes,validation of transaction , creating the blocks etc are the certain features of each nodes.
+*  Nodes - In a Block Chain, all the nodes are synchronized with each other for sending and receiving information.Make money   transactions with the indvidual nodes,Sending the transaction details to all other nodes,validation of transaction , creating the blocks etc are the certain features of each nodes.
 
 ## Protocol Specification ##
 
