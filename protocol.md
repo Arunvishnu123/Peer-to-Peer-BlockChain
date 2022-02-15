@@ -2,9 +2,9 @@
 
 The Block Chain peer to peer system consists of two types of members - 
 
-*  Tracker - The server which maintain the updated list which conatin the details of IP address,Port Number,Id of the individual nodes.Also the tracker will send this infomation to nodes when the demands comes.Moreover,the tracker will monitor the communication status of each nodes in the connected network.
+*  Tracker - The server which maintains the updated list which contains the details of IP address, Port Number, Id of the individual nodes. Also, the tracker will send this information to nodes when the demands come. Moreover, the tracker will monitor the communication status of each node in the connected network.
 
-*  Nodes - In a Block Chain, all the nodes are synchronized with each other for sending and receiving information.Make money   transactions with the indvidual nodes,Sending the transaction details to all other nodes,validation of transaction , creating the blocks etc are the certain features of each nodes.
+*  Nodes - In a BlockChain, all the nodes are synchronized with each other for sending and receiving information. Making money transactions with the individual nodes, Sending the transaction details to all other nodes, validation of transaction, creating the blocks etc. are the certain features of each node.
 
 ## Protocol Specification ##
 
@@ -22,7 +22,7 @@ The Block Chain peer to peer system consists of two types of members -
   1. Get method  - To receive data from the nodes 
   2. Post method  - To send data to the nodes
 
-# 2. DataTypes  - Here Mainly 8 datatypes are defined which will be discussed more in details in the comming explanantion  - Here pascalcase format is used in defining the datatypes.
+# 2. DataTypes  - Here Mainly 8 datatypes are defined which will be discussed more in details in the coming explanation  - Here pascalcase format is used in defining the datatypes.
 
 *  Transaction - Details the transactions or message send by the individul nodes
 *  Join - When a node is added to the network
@@ -32,7 +32,7 @@ The Block Chain peer to peer system consists of two types of members -
 *  LastHash - get the hash of last created blocks
 *  FetchConnected - send nodeid to the tracker to get the port number and ip address to make the transaction
 
-# 3. [Data/Arguments] - The data/argument is the content which need to be send or receive by the nodes.Here the message is of simple json format.Here Data or argument which deppends on the type of request method([get or post]).
+# 3. [Data/Arguments] - The data/argument is the content which need to be send or receive by the nodes.Here the message is in simple json format. Here Data or argument which deppends on the type of request method([get or post]).
 
     Example of a  json data - 
        {
@@ -44,7 +44,7 @@ The Block Chain peer to peer system consists of two types of members -
 
 ## Repsonse -
 
-## Response message fomat  - [StatusCode][Data]
+## Response message format  - [StatusCode][Data]
 
 1. StatusCode - Here the http standard codes are used.
    For Example  - 
@@ -57,7 +57,7 @@ The Block Chain peer to peer system consists of two types of members -
 2. Data  - Here data is same as the request type and is of json format.This optional in every messages
 
 
-## Explanations and Examples of differnent types requests and correpsonding reponses - 
+## Explanations and Examples of different types requests and corresponding responses - 
 
 # 1. [Post][Transaction][Data] - 
                Here the transaction information is send to the receiver node.
@@ -74,10 +74,10 @@ The Block Chain peer to peer system consists of two types of members -
 
 # Reponse for this request  - 
 # [StatusCode] -  
-*  Here the sender get the code meesage deppends of the situations.For example if the reciever succesfully recived the message then the  sender get the status  - 200
+*  Here the sender gets the code message depending on the situations. For example, if the receiver successfully received the message then the  sender get the status  - 200
 
 # 2. [Post][Join][Data] - 
-            Here when a node was added to the existing network ,then the new node will send it ip address and port number to the tracker server.Tracker will add the node details to the network list.
+            Here when a node was added to the existing network, then the new node will send its IP address and port number to the tracker server. Tracker will add the node details to the network list.
             sample message - 
             {
                 "ipaddress" - "192.168.1.2",
@@ -85,7 +85,7 @@ The Block Chain peer to peer system consists of two types of members -
             }
 # Response for this request  - 
 # [StatusCode][Data] - 
-     Here the node will get the status and some data as response.Here,most probably the status code will 201, which is "Created" or 408,  which is request timed out. here the data contain the nodeid of the new node in the network
+     Here the node will get the status and some data as response. Here, most probably the status code will be 201, which is "Created" or 408,  which is a request timed out. here the data contain the nodeid of the new node in the network
      sample message - 
      {
          "nodeid":7,
