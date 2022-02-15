@@ -14,18 +14,18 @@ Peers can:
   - To (potentially) perform currency transactions.
   - To ask for an updated version of the cheesechain.
 - **Communicate with the tracker**.
-  - When a new peer joins the network, it has to first notify the tracker of its existence for the tracker to record his information (ID, IP address, port) and allow it to give it to other peers afterward.
-  - After a peer has notified the tracker of its joining, it has to ask for other existing peers to actually be able to join the P2P network by connecting them.
-  - A peer shall respond to keep-alive messages sent periodically (every 30 or 60 seconds) by the tracker for being able to maintain up-to-date information about the online peers.
+  - When a new peer joins the network, it has to first notify the tracker of its existence by sending its information (ID, IP address, port) to the tracker that will first save it and afterward share it with other peers.
+  - After a peer has notified the tracker of its joining, it must ask for other existing peers information to actually connect to them and thus join the P2P network.
+  - A peer shall respond to keep-alive messages sent periodically (every 30 or 60 seconds) by the tracker for being able to maintain up-to-date information about the online (connected) peers.
 - **Mine**.
   - This would be the main task of the peers.
   - The goal of a peer is to find the new valid cheese.
     * A cheese is valid when its smell starts by D number of zeros. 
     * D is called the difficulty and it is **fixed**.
-  - The first transaction of every cheese is an special transaction, and it is a reward for mining it. The amount of this reward will be fixed. To make sure that the amount of this reward has not changed, other peers will verify it when verifying the whole block.
+  - The first transaction of every cheese is a special transaction as it is a reward for the mining work. The amount of this reward is fixed. To make sure that it has not changed, other peers will verify it when verifying the whole block.
   - When a peer finds a new valid cheese, it will broadcast it to all other peers.
 
-The different tasks a peer can do (explained above) shall be contained within different threads and should be run concurrently, and to handle mutual exclusion blocking queues (or a similar tool) will be used.
+The different tasks a peer can do (explained above) shall be contained within different threads and should be run concurrently. To handle mutual exclusion blocking queues (or a similar tool) will be used.
 
 ## TRACKER
 There is only one tracker in the whole network and it will be a TCP Server that will work as a Peer-Index Network Database. The tracker might not record any information regarding the cheesechain nor take part in the mining process.
@@ -77,27 +77,27 @@ This is a special kind of cheese that does not follow all of the mentioned const
 
 
 ## CHEESECHAIN
-Every peer must maintain a local copy of the full cheesechain. This copy is constantly updated by receiving new cheeses from other peers, that obviously have to be validated before being added to the chain.
+Every peer could maintain a local copy of the full cheesechain. This copy is constantly updated by receiving new cheeses from other peers who are responsible for validating them before adding them to the chain.
 
-For a new cheese to be valid, it has to:
+For a new cheese to be valid, it has to satisfy that:
 -  The cheese structure is valid.
 -  The cheese header hash is less than the difficulty.
 -  The first transaction (and only the first) is a reward transaction.
 -  All transactions within the cheese are valid.
 
 ## MESSAGES
-The format for the protocol messages will be simple: messages will consist of a message type identifier, encoded within 4 bytes (2^4 > 9) and the message payload, of variable size.
+The format for the protocol messages will be simple: messages will consist of a message type identifier, encoded in 4 bytes (2^4 > 9), and the message payload of variable size.
 
 | Message type | Message name  | Description | Payload |
 | ------------- | ------------- | ------------- | ------------- |
 0 | ping | Sent from one peer to another to make sure that it is online before trying to establish a TCP connection | Random nonce | 
 1 | pong | Response to the ping message | Random nonce received |
-2 | keepalive | The tracker will send periodically this messages to the peers to check their status | Random nonce | 
+2 | keepalive | The tracker will send periodically this message to the peers to check their status | Random nonce | 
 3 | imalive | A peer's response to a keepalive message from the tracker | Random nonce received | 
 4 | newcheese | A peer will broadcast this message when discovering a new cheese | JSON representation of the cheese | 
-5 | transaction | A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain | JSON representation of the transaction |
+5 | transaction | A peer will broadcast this message when performing a transaction for the other peers to validate it and include it in the cheesechain | JSON representation of the transaction |
 6 | getdata | A peer may query other peers or the tracker | The query: a peer may ask other peers about known cheeses or the tracker for a list of online peers |
-7 | cheese | A peer's response to a query from a peer about cheeses | JSON representation of the cheeses |
+7 | cheese | A peer's response to a query from another peer asking for known cheeses | JSON representation of the cheeses |
 8 | peers | The tracker's response to a query about online peers | JSON object with information about the online peers |
 
 ## TRANSACTION
