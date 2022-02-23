@@ -13,10 +13,10 @@ class Transactions:
         transaction ={
         }
         transactionIDCreation = str(self.senderName) + str(self.recieverName) + str(self.message)
-        transaction["transactionID"] = hashlib.sha1(transactionIDCreation.encode()).hexdigest()
-        transaction["sendername"] = self.senderName
-        transaction["receivername"] = self.recieverName
-        transaction["message"] = self.message
-        transaction["dateandtime"] = str(datetime.datetime.now())
+        transaction["TransactionID"] = hashlib.sha1(transactionIDCreation.encode()).hexdigest()
+        transaction["Sendername"] = self.senderName
+        transaction["Receivername"] = self.recieverName
+        transaction["Dateandtime"] = str(datetime.datetime.now())
+        transaction["Data"] = self.message
         return transaction
 
