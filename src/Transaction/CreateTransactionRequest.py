@@ -10,7 +10,6 @@ class Transactions:
 
     def createTransaction(self):
         transaction ={
-
         }
         transactionIDCreation = str(self.senderName) + str(self.recieverName) + str(self.amount)
         transaction["transactionID"] = hashlib.sha1(transactionIDCreation.encode()).hexdigest()

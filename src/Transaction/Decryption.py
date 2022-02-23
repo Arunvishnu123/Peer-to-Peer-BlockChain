@@ -7,7 +7,7 @@ class decryption:
         self.senderpublicKey = senderpublicKey
         self.encryptedData = encryptedData
 
-    ## for authentication of the sender
+    ## decryption procedure of data in the reciever 
     def decryptMessage1(self):
         data =  rsa.decrypt(self.encryptedData,self.resprivateKey)
         data2 = rsa.decrypt(data,self.senderpublicKey)
