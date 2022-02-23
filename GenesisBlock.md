@@ -1,4 +1,6 @@
-## Elements in the blocks
+## Genesis Block ##
+
+## Elements
 
 Every Blocks has three parts  - 
 
@@ -19,6 +21,9 @@ Every Blocks has three parts  -
 * Nonce
 
 # Total Number of transactions done -
-
+* In genesis block contain exactly one transaction that is reward transaction
 
 # Transactions  - number of transactions done 
+
+*  only one transaction that is reward transaction
+

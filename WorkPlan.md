@@ -2,7 +2,7 @@
 
 * First phase of the excecution is to make full working blockchain
 
-For a start first we work for the below things
+For a start, first we work for the below things and try to develop a module for that
 
 * Block Structure
 * Transaction Message Structure
@@ -14,7 +14,7 @@ For a start first we work for the below things
 | ------------- | ------------- | ------------- | ------------- |
 | Transaction Message Structure program | Sushanta Saha | Not Completed | Completed by Arun |
 | Transaction List structure program | Nurien Samia | Not Completed | Completed By Arun |
-| Block structure program | Shivaratnam Pachava | partially Completed| Completed By Arun |
+| Block structure program | Shivaratnam Pachava | partially Done| Completed By Arun |
 
 # Tasks for implementing working Blockchain
 
