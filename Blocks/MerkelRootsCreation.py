@@ -24,7 +24,7 @@ class merkelroots:
         
         if(len(hasedTransactionList%2 != 0)):
            for j in range(0,len(hasedTransactionList) - 1,2):
-             data = hasedTransactionList[j] + hasedTransactionList[j+1]
+             data = str(hasedTransactionList[j]) + str(hasedTransactionList[j+1])
              hashData = hashlib.sha1(data.encode()).hexdigest()
              list.append(hashData)
             
