@@ -10,11 +10,11 @@ For a start first we work for the below things
 
 ## Work Assignement 
 
-| Task | Assignee |Status|Remarks|
+| Task | Assignee | Status | Remarks |
 | ------------- | ------------- |
-| Transaction Message Structure program  | Sushanta Saha  |Not Completed | Completed by Arun|
-| Transaction List structure programm  | Nurien Samia | Not Completed| Completed By Arun|
-| Block structure programm  | Shivaratnam Pachava | partially Completed| Completed By Arun|
+| Transaction Message Structure program | Sushanta Saha | Not Completed | Completed by Arun |
+| Transaction List structure programm | Nurien Samia | Not Completed | Completed By Arun |
+| Block structure programm | Shivaratnam Pachava | partially Completed| Completed By Arun |
 
 # Tasks for implementing working BLockchain
 
