@@ -1,6 +1,6 @@
 ## Plan of Action ##
 
-* first phase of the excecution is to make full working blockchain
+* First phase of the excecution is to make full working blockchain
 
 For a start first we work for the below things
 
@@ -13,17 +13,17 @@ For a start first we work for the below things
 | Task | Assignee | Status | Remarks |
 | ------------- | ------------- | ------------- | ------------- |
 | Transaction Message Structure program | Sushanta Saha | Not Completed | Completed by Arun |
-| Transaction List structure programm | Nurien Samia | Not Completed | Completed By Arun |
-| Block structure programm | Shivaratnam Pachava | partially Completed| Completed By Arun |
+| Transaction List structure program | Nurien Samia | Not Completed | Completed By Arun |
+| Block structure program | Shivaratnam Pachava | partially Completed| Completed By Arun |
 
-# Tasks for implementing working BLockchain
+# Tasks for implementing working Blockchain
 
 * Making Transactions
 * Assymmetric Cryptography - which include authentication and confidentiality - Encryption and Decryption
 * Merkel Root calcualtion
 * Block Creation
 * Finding hash of the block 
-* Block Mining Proof of work
+* Block Mining - Proof of work
 * Add the mined block to the blockchain
 * Genesis Block
 
