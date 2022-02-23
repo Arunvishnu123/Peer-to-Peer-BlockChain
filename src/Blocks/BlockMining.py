@@ -20,6 +20,7 @@ class Mining:
          if hashBlock[0] == '0' and hashBlock[1] == '0' and hashBlock[2] == '0' and hashBlock[3] == '0':
            break
        
+       fullBlock["index"] = ""
        fullBlock["hash"] = hashBlock
        fullBlock["Block"] = self.createdBlock
        return fullBlock

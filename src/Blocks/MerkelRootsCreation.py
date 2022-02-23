@@ -29,7 +29,7 @@ class merkelroots:
              list.append(hashData)
             
            mes = hasedTransactionList[len(hasedTransactionList)] + hasedTransactionList[len(hasedTransactionList)]
-           hasfMes = hashlib.sha1(data.encode()).hexdigest()
+           hasfMes = hashlib.sha1(mes.encode()).hexdigest()
            list.append(hasfMes)
 
         return list

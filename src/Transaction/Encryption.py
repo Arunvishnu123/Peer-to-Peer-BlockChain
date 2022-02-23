@@ -2,19 +2,21 @@ import json
 import rsa
 
 class encryption:
-    def __init__(self,sprivateKey,respublicKey,data):
+    def __init__(self,sprivateKey,respublicKey,data,name):
         self.sprivateKey = sprivateKey
         self.respublicKey = respublicKey
         self.data = data
+        self.name = name
 
     ## for authentication of the sender
-    def encryptedMessage1(self):                    
+    def digitalSignature(self):                    
         message = json.dumps(self.data)
         encodedMessage = message.encode('utf8')
-        digitalSign = rsa.encrypt(encodedMessage,self.respublicKey)
+        digitalSign = rsa.encrypt(encodedMessage,self.sprivateKey)
         return digitalSign
 
    ## maintain confidentiality for sender and receiver
-    def encryptedMessage2(self):
-        encriptedMessage = rsa.encrypt(self.encryptedMessage1,self.respublicKey)
+    def encryptedMessage(self):
+        encodedMessage = str(self.name).encode('utf8')
+        encriptedMessage = rsa.encrypt(encodedMessage,self.respublicKey)
         return encriptedMessage

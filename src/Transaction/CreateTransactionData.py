@@ -7,11 +7,12 @@ class Transactions:
         self.senderName = senderName
         self.recieverName =recieverName
         self.message=message
+       
 
     def createTransaction(self):
         transaction ={
         }
-        transactionIDCreation = str(self.senderName) + str(self.recieverName) + str(self.amount)
+        transactionIDCreation = str(self.senderName) + str(self.recieverName) + str(self.message)
         transaction["transactionID"] = hashlib.sha1(transactionIDCreation.encode()).hexdigest()
         transaction["sendername"] = self.senderName
         transaction["receivername"] = self.recieverName
