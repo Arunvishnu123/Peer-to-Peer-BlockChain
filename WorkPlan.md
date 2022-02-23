@@ -27,3 +27,4 @@ For a start first we work for the below things
 * Add the mined block to the blockchain
 * Genesis Block
 
+* Now we know what exactly in the block chain. So now we need to complete the above modules .Informed the team about this topic and select the interested topic amoung them and individually work on each and complete the modules.Also need to do the testing.
