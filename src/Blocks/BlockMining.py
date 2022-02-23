@@ -11,10 +11,15 @@ class Mining:
        return hashBlock
 
     def mining(self):
+       fullBlock ={
+       }
        for i in range(0,1000000):
          self.createdBlock["nonce"] = i
          hashBlock = hashlib.sha256(str(input).encode()).hexdigest()
          print(hashBlock)
          if hashBlock[0] == '0' and hashBlock[1] == '0' and hashBlock[2] == '0' and hashBlock[3] == '0':
            break
-       return i,hashBlock,self.createdBlock
+       
+       fullBlock["hash"] = hashBlock
+       fullBlock["Block"] = self.createdBlock
+       return fullBlock
