@@ -7,6 +7,8 @@ from Transaction.GeneratePublicPrivateKey import generatePublicPrivateKey
 from Transaction.Encryption import encryption
 from Transaction.CreateTransactionLedger import TransactionsLedger
 from Blocks.MerkelRootsCreation import merkelroots
+from Blocks.CreateBlock import Block
+from Blocks.BlockMining import Mining
 import threading
 
 if __name__ == "__main__":
@@ -65,5 +67,21 @@ if __name__ == "__main__":
           omerkelroot = merkelroots(transactionLedger)
           createdMerkelRoot =omerkelroot.createMerkelRoot()
           print("Created Merkel Root",createdMerkelRoot)
+      ##################################################################################
+      # Block Creation
+          version = ""
+          previousHash = ""
+          merkleroot = createdMerkelRoot
+          difficultyTarget =""
+          nonce = 0
+          transact = transactionLedger
+          oblock = Block(version,previousHash,merkleroot,difficultyTarget,nonce,transact)
+          createdBlock = oblock.createBlocks()
+          print(createdBlock)
+      ####################################################################################
+      # Mining Logic
+          omining = Mining(createdBlock)
+          minedBlock = omining.mining()
+          print("Final Created Block",minedBlock)
            
         

@@ -14,8 +14,9 @@ class Mining:
        fullBlock ={
        }
        for i in range(0,1000000):
-         self.createdBlock["nonce"] = i
-         hashBlock = hashlib.sha256(str(input).encode()).hexdigest()
+         self.createdBlock['Header']['Nonce'] = i
+         print("noncesjas",self.createdBlock['Header']['Nonce'])
+         hashBlock = hashlib.sha256(str(self.createdBlock).encode()).hexdigest()
          print(hashBlock)
          if hashBlock[0] == '0' and hashBlock[1] == '0' and hashBlock[2] == '0' and hashBlock[3] == '0':
            break

@@ -1,6 +1,6 @@
 import datetime
 
-class block:
+class Block:
     def __init__(self,version,previousHash,merkleRoot,difficultyTarget,nonce,transactionList):
        self.version  = version
        self.previousHash = previousHash
