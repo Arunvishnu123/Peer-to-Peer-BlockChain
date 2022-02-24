@@ -69,10 +69,10 @@ if __name__ == "__main__":
           print("Created Merkel Root",createdMerkelRoot)
       ##################################################################################
       # Block Creation
-          version = ""
+          version = "V1"
           previousHash = ""
           merkleroot = createdMerkelRoot
-          difficultyTarget =""
+          difficultyTarget ="4"
           nonce = 0
           transact = transactionLedger
           oblock = Block(version,previousHash,merkleroot,difficultyTarget,nonce,transact)
