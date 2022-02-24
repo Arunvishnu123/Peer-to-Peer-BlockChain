@@ -14,7 +14,7 @@ from BlockChain.GenesisBlock import genesisBlock
 import threading
 
 if __name__ == "__main__":
-    ###################################################################
+    #########################################################################
     # Private key and Public key generation
     senderGenerate = generatePublicPrivateKey
     receiverGenerate = generatePublicPrivateKey
