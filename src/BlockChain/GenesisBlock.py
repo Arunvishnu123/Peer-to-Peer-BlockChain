@@ -23,18 +23,18 @@ class genesisBlock:
         header["PreviousHash"] = "000000000000000000000000000000000000000000000"
         hashRewardTransaction = json.dumps(self.transaction())
         header["MerkleRoot"] =  hashlib.sha1(str(hashRewardTransaction).encode()).hexdigest()
-        header["Timestamp"] = self.timestamp
+        header["Timestamp"] = str(datetime.datetime.now())
         header["DifficultyTarget"] = "4"
-        header["nonce"]  = ""
+        header["nonce"]  = 0
         return header
     
     def genesisBlockCreation(self):
         block = {
         }
         block["Size"] =""
-        block["Header"] = self.createHeader
+        block["Header"] = self.createHeader()
         block["TransactionCounter"] = "1"
-        block["Transaction"] = self.transaction
+        block["Transaction"] = self.transaction()
         return block
     
     def createHash(self):
@@ -47,7 +47,7 @@ class genesisBlock:
        GenesisBlock ={
        }
        for i in range(0,1000000):
-         self.createdBlock['Header']['Nonce'] = i
+         createdBlock['Header']['Nonce'] = i
          print("noncesjas",createdBlock['Header']['Nonce'])
          hashBlock = hashlib.sha256(str(createdBlock).encode()).hexdigest()
          print(hashBlock)
@@ -58,8 +58,6 @@ class genesisBlock:
        GenesisBlock["hash"] = hashBlock
        GenesisBlock["Block"] = self.genesisBlockCreation()
        return GenesisBlock
-    
-
 
 
 

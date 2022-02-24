@@ -9,6 +9,8 @@ from Transaction.CreateTransactionLedger import TransactionsLedger
 from Blocks.MerkelRootsCreation import merkelroots
 from Blocks.CreateBlock import Block
 from Blocks.BlockMining import Mining
+from BlockChain.BlockChain import BlockChain 
+from BlockChain.GenesisBlock import genesisBlock
 import threading
 
 if __name__ == "__main__":
@@ -23,6 +25,13 @@ if __name__ == "__main__":
     receiverPublicKey = recieverPublicPrivateKey[0]
     receiverPrivateKey = recieverPublicPrivateKey[1]
     #########################################################################
+    # Add genesis block 
+    GeneratedBlockChain = []
+    createBlockChain = BlockChain()
+    ocreateGenesisBlock = genesisBlock("Arun")
+    createdGenesisBlock = ocreateGenesisBlock.mining()
+    B = createBlockChain.addBlock(createdGenesisBlock)
+    print(B)
     while True:
       operation = input("Enter the operation you need to do\n Enter t or T for doing transaction \n Enter m or M to do mining : ")
       if(operation=="T" or operation=='t'):
@@ -83,5 +92,10 @@ if __name__ == "__main__":
           omining = Mining(createdBlock)
           minedBlock = omining.mining()
           print("Final Created Block",minedBlock)
+      #####################################################################################
+      # Add block to the chain
+          tee = createBlockChain.addBlock(minedBlock)
+          print(tee)
+           
            
         
