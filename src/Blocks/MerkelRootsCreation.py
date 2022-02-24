@@ -8,7 +8,7 @@ class merkelroots:
     def createTransactionListHash(self):
       hashTransactionList = []
       for i in range(0,len(self.transactionList)):
-          message = json.dumps(self.transactionList[i])
+          message = str(self.transactionList[i])
           messageHash = hashlib.sha1(message.encode()).hexdigest()
           hashTransactionList.append(messageHash)
 
@@ -16,13 +16,13 @@ class merkelroots:
 
     def createMerkeltree(self,hasedTransactionList):
         list = []
-        if(len(hasedTransactionList%2 == 0)):
+        if(len(hasedTransactionList) % 2 == 0):
           for j in range(0,len(hasedTransactionList),2):
             data = str(hasedTransactionList[j]) + str(hasedTransactionList[j+1])
             hashData = hashlib.sha1(data.encode()).hexdigest()
             list.append(hashData)
         
-        if(len(hasedTransactionList%2 != 0)):
+        if(len(hasedTransactionList)%2 != 0):
            for j in range(0,len(hasedTransactionList) - 1,2):
              data = str(hasedTransactionList[j]) + str(hasedTransactionList[j+1])
              hashData = hashlib.sha1(data.encode()).hexdigest()
@@ -35,7 +35,7 @@ class merkelroots:
         return list
 
     def createMerkelRoot(self):
-       merkelRoot  = self.createTransactionListHash
+       merkelRoot  = self.createTransactionListHash()
        for j in range(len(self.createTransactionListHash())):
           merkeltree = self.createMerkeltree(merkelRoot)
           merkelRoot = merkeltree

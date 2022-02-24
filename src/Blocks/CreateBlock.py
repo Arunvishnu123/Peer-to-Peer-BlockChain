@@ -1,9 +1,10 @@
+import datetime
+
 class block:
-    def __init__(self,version,previousHash,merkleRoot,timestamp,difficultyTarget,nonce,transactionList):
+    def __init__(self,version,previousHash,merkleRoot,difficultyTarget,nonce,transactionList):
        self.version  = version
        self.previousHash = previousHash
        self.merkleRoot = merkleRoot
-       self.timestamp = timestamp
        self.difficultyTarget = difficultyTarget
        self.nonce = nonce 
        self.transactionList = transactionList
@@ -14,7 +15,7 @@ class block:
        header["Version"] = self.version
        header["PreviousHash"] = self.previousHash
        header["MerkleRoot"] =self.merkleRoot
-       header["Timestamp"] = self.timestamp
+       header["Timestamp"] = str(datetime.datetime.now())
        header["DifficultyTarget"] = self.difficultyTarget
        header["Nonce"] =self.nonce
        return header

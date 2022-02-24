@@ -1,11 +1,12 @@
 ######################################################################################
-# Blockchain working without networking Purpose of this to test the logic make sure it is working or not 
+# Blockchain working without networking Purpose of this is to test the logic and  make sure the blockchain is working fine 
 
 from Transaction.TransactionData import TransactionData
 from Transaction.CreateTransactionData import Transactions
 from Transaction.GeneratePublicPrivateKey import generatePublicPrivateKey
 from Transaction.Encryption import encryption
 from Transaction.CreateTransactionLedger import TransactionsLedger
+from Blocks.MerkelRootsCreation import merkelroots
 import threading
 
 if __name__ == "__main__":
@@ -21,6 +22,8 @@ if __name__ == "__main__":
     receiverPrivateKey = recieverPublicPrivateKey[1]
     #########################################################################
     while True:
+      operation = input("Enter the operation you need to do\n Enter t or T for doing transaction \n Enter m or M to do mining : ")
+      if(operation=="T" or operation=='t'):
         ######################################################################
         # Enter the sender and reciver details 
         senderName = input("Enter the Sender Name:")
@@ -46,10 +49,21 @@ if __name__ == "__main__":
         # Creating the transaction details 
         transactureStructure = Transactions(senderName,receiverName,finalMessage)
         transactionFullMessage = transactureStructure.createTransaction()
-        print("dsfsfdfs",transactionFullMessage)
+        print("TransactionMessage",transactionFullMessage)
         #######################################################################
         #Creating the transaction list
-        otransactionLedgerCreation = TransactionsLedger(transactionFullMessage,"0")
-        test = otransactionLedgerCreation.createtransactionlist()
-        print("dfdsfdsfdfdf",test)
+        otransactionLedgerCreation = TransactionsLedger(transactionFullMessage)
+        transactionList = otransactionLedgerCreation.createtransactionlist()
+        print("TransactionList",transactionList )
+      ################################################################################
+      # Processing of Mining
+      if(operation == "M" or operation == "m"):
+          transactionLedger = transactionList 
+          print(transactionLedger)
+      #################################################################################
+      # Merkel Root Calculation
+          omerkelroot = merkelroots(transactionLedger)
+          createdMerkelRoot =omerkelroot.createMerkelRoot()
+          print("Created Merkel Root",createdMerkelRoot)
+           
         
