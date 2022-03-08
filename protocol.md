@@ -161,4 +161,3 @@ S | SendNodeData | Broadcast the new node details to the peers  | JSON string re
     This contain mainly 200 - success or 400 - bad request
 
 
-
