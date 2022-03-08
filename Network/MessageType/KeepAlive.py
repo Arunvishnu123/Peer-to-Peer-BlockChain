@@ -7,12 +7,12 @@ class RequestCreation:
 
     def requestType(self):
         str = "[]"
-        rType = str[:1] + "G" + str[1:]
+        rType = str[:1] + "P" + str[1:]
         return rType
 
     def messageType(self):
         str = "[]"
-        mType = str[:1] + "T" + str[1:]
+        mType = str[:1] + "K" + str[1:]
         return mType
 
     def data(self):

@@ -31,12 +31,20 @@ class ResponseCreation:
     def __init__(self, message):
         self.message = message
 
-    def requestType(self):
+    def requestCode(self):
         pass
 
-    def messageType(self):
+    def data(self):
         pass
 
     def final(self):
+        pass
+
+# Extracted data from the response
+class ResponseExtraction:
+    def __init__(self):
+        pass
+
+    def extractedData(self):
         pass
 

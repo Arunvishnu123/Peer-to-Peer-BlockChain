@@ -1,5 +1,6 @@
 ######################################################################################
-# Blockchain working without networking Purpose of this is to test the logic and  make sure the blockchain is working fine
+# Blockchain working without networking Purpose of this program  is to test the logic and
+# make sure the blockchain is working fine without networking
 
 from Transaction.TransactionData import TransactionData
 from Transaction.CreateTransactionData import Transactions
