@@ -1,10 +1,39 @@
-## Implementation a blockchain peer-to-peer system inspired by Bitcoin ##
+# CHEESECOIN PROTOCOL
+## PEERS
+Every peer is identified by:
+- **Network identifier**.
+  - An integer (no encryption), or
+  - A public key (if encryption added).
+- **IP address and Port Number**.
 
-The Block Chain peer to peer system consists of two types of members - 
+Every peer in the network is equal. A peer acts both as a TCP server - as it accepts other peers' connections - and as a client since it connects to the tracker for peer discovery and to other peers for broadcasting newly found cheeses.
 
-*  Tracker - The server which maintain the updated list which conatin the details of IP address,Port Number,Id of the individual nodes.Also the tracker will send this infomation to nodes when the demands comes.Moreover,the tracker will monitor the communication status of each nodes in the connected network.
+Peers can:
+- **Interact with other peers**.
+  - By broadcasting new cheeses.
+  - To (potentially) perform currency transactions.
+  - To ask for an updated version of the cheesechain.
+- **Communicate with the tracker**.
+  - When a new peer joins the network, it has to first notify the tracker of its existence for the tracker to record his information (ID, IP address, port) and allow it to give it to other peers afterward.
+  - After a peer has notified the tracker of its joining, it has to ask for other existing peers to actually be able to join the P2P network by connecting them.
+  - A peer shall respond to keep-alive messages sent periodically (every 30 or 60 seconds) by the tracker for being able to maintain up-to-date information about the online peers.
+- **Mine**.
+  - This would be the main task of the peers.
+  - The goal of a peer is to find the new valid cheese.
+    * A cheese is valid when its smell starts by D number of zeros. 
+    * D is called the difficulty and it is **fixed**.
+  - The first transaction of every cheese is an special transaction, and it is a reward for mining it. The amount of this reward will be fixed. To make sure that the amount of this reward has not changed, other peers will verify it when verifying the whole block.
+  - When a peer finds a new valid cheese, it will broadcast it to all other peers.
 
-*  Nodes - In a Block Chain, all the nodes are synchronized with each other for sending and receiving information.Make money   transactions with the indvidual nodes,Sending the transaction details to all other nodes,validation of transaction , creating the blocks etc are the certain features of each nodes.
+The different tasks a peer can do (explained above) shall be contained within different threads and should be run concurrently, and to handle mutual exclusion blocking queues (or a similar tool) will be used.
+
+## TRACKER
+There is only one tracker in the whole network and it will be a TCP Server that will work as a Peer-Index Network Database. The tracker might not record any information regarding the cheesechain nor take part in the mining process.
+
+Its task is simply to maintain updated information of the online peers and help peers discover each other in the network by resolving their requests.
+
+## CHEESE
+The basic unit of information, encoded as a JSON String.
 
 ## Protocol Specification ##
 
@@ -15,22 +44,31 @@ The Block Chain peer to peer system consists of two types of members -
 
 ## Request -  
 
-## Message format  - [RequestMethod][DataType][Data/Arguments]
+## Message format  - [RequestMethod][MessageTypes][Data/Arguments]
 
 # 1. Request Method  - Two type request methods are here 
 
-  1. Get method  - To receive data from the nodes 
-  2. Post method  - To send data to the nodes
+  |Request Keyword|Request Method|Description|
+  |---------------|--------------|------------|
+  |G|Get|To receive data from the nodes|
+  |P|Post|To Send data to the nodes|
 
-# 2. DataTypes  - Here Mainly 8 datatypes are defined which will be discussed more in details in the comming explanantion  - Here pascalcase format is used in defining the datatypes.
+    * here mostly "Post request" are used and rarely the get request is been used
 
-*  Transaction - Details the transactions or message send by the individul nodes
-*  Join - When a node is added to the network
-*  KeepAlive - Check the communication status of each nodes in the network
-*  Win - Broadcast a block to all the nodes
-*  History - get the history of blocks in the individual nodes
-*  LastHash - get the hash of last created blocks
-*  FetchConnected - send nodeid to the tracker to get the port number and ip address to make the transaction
+# 2. MessageTypes  - Here Mainly 8 messagetypes are defined which will be discussed more in details in the comming explanation  - Here firt letter of each message type is used in the Full Message Format.
+
+| Message Type | Message Name  | Description | Payload |
+| ------------- | ------------- | ------------- | ------------- |
+P | Ping | Sent from one peer to another to make sure that it is online before trying to establish a TCP connection | Random nonce | 
+K | KeepAlive | The tracker will send periodically this messages to the peers to check their status | Random nonce recived as response |  
+N | NewBlock | A peer will broadcast this message when discovering a new valid cheese | JSON String representation of the cheese | 
+T | Transaction | A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain | JSON string representation of the transaction |
+H | History | Get the history of blocks in the individual nodes | JSON string representation |
+L | LastHash | Get the hash of last created blocks  | JSON string representation |
+J | Join | Broadcast the new node details to the tracker from the new node  | JSON string representation|
+S | SendNodeData | Broadcast the new node details to the peers  | JSON string representation |
+
+* payload information and  explaination of  all types of  request and corresponding response will discussed in details in the coming section.
 
 # 3. [Data/Arguments] - The data/argument is the content which need to be send or receive by the nodes.Here the message is of simple json format.Here Data or argument which deppends on the type of request method([get or post]).
 
