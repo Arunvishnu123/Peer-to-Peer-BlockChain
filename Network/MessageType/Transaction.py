@@ -1,22 +1,40 @@
 # This is always a post request type
 # sender side
+import json
 class RequestCreation:
     def __init__(self,message):
         self.message = message
 
     def requestType(self):
-        pass
+        str = "[]"
+        rType = str[:1] + "G" + str[1:]
+        return rType
+
     def messageType(self):
-        pass
+        str = "[]"
+        mType = str[:1] + "T" + str[1:]
+        return mType
+
     def data(self):
-        pass
+        str = "[]"
+        data = json.dumps(self.message)
+        dType = str[:1] + data + str[1:]
+        return dType
+
     def final(self):
-        pass
+        final = self.requestType() + self.messageType() + self.data()
+        finalMessage = final.encode('utf-8')
+        return finalMessage
 
 # receiver side
 class DataExtraction:
-    def __init__(self):
-        pass
+    def __init__(self,receivedMessage):
+        self.receivedMessage = receivedMessage
 
     def finalDataExtraction(self):
-        pass
+        decodedMessage  = self.receivedMessage.decode('utf-8')
+        data = decodedMessage[7:-1]
+        return data
+
+
+

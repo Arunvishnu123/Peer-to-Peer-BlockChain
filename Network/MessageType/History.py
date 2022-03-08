@@ -6,11 +6,13 @@ class RequestCreation:
 
     def requestType(self):
         str = "[]"
-        str[:1] + "G" + str[1:]
-        
+        rType = str[:1] + "G" + str[1:]
+        return rType
 
     def messageType(self):
-        pass
+        str = "[]"
+        mType = str[:1] + "T" + str[1:]
+        return mType
 
     def final(self):
         pass
