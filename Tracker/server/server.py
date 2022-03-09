@@ -40,3 +40,7 @@ class Tracker:
             except:
                 print(node[1]," is desconnected from the network")
                 continue
+
+
+
+
