@@ -55,18 +55,20 @@ The basic unit of information, encoded as a JSON String.
 
     * here mostly "Post request" are used and rarely the get request is been used
 
-# 2. MessageTypes  - Here Mainly 8 messagetypes are defined which will be discussed more in details in the comming explanation  - Here firt letter of each message type is used in the Full Message Format.
+# 2. MessageTypes  - Here Mainly 10 message types are defined which will be discussed more in details in the comming explanation  - Here firt letter of each message type is used in the Full Message Format.
 
-| Message Type | Message Name  | Description | Payload |
-| ------------- | ------------- | ------------- | ------------- |
-P | Ping | Sent from one peer to another to make sure that it is online before trying to establish a TCP connection | Random nonce | 
-K | KeepAlive | The tracker will send periodically this messages to the peers to check their status | Random nonce recived as response |  
-N | NewBlock | A peer will broadcast this message when discovering a new valid cheese | JSON String representation of the cheese | 
-T | Transaction | A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain | JSON string representation of the transaction |
-H | History | Get the history of blocks in the individual nodes | JSON string representation |
-L | LastHash | Get the hash of last created blocks  | JSON string representation |
-J | Join | Broadcast the new node details to the tracker from the new node  | JSON string representation|
-S | SendNodeData | Broadcast the new node details to the peers  | JSON string representation |
+| Message Type | Message Name |Request Type | Description | Payload |
+| ------------- | ------------- |------------- |------------- | ------------- |
+P | Ping | Post |Sent from one peer to another to make sure that it is online before trying to establish a TCP connection | Random nonce | 
+K | KeepAlive | Post |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |  
+N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation | 
+T | Transaction | Post |A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain | JSON string representation|
+H | History | Get|Get the history of blocks in the individual nodes | JSON string representation |
+L | LastHash | Post |Get the hash of last created blocks  | JSON string representation |
+J | Join | Post |Broadcast the new node details to the tracker from the new node  | JSON string representation|
+S | SendNodeData | Post|Broadcast the new node details to the peers  | JSON string representation |
+L | TransactionLedger | Post | Full transaction message to adding it in the transaction ledger | JSON string representation |
+M | MineComplete |Post |Send the Mining complete status to the other peers | JSON string representation |
 
 * payload information and  explaination of  all types of  request and corresponding response will discussed in details in the coming section.
 
