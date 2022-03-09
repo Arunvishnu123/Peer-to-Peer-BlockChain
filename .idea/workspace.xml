@@ -2,31 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BlockChain/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tracker/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tracker/server/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Trackermain.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/History.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/History.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/Join.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/Join.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/KeepAlive.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/KeepAlive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/LastHash.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/LastHash.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/MineComplete.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/MineComplete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/NewBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/NewBlock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/Ping.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/Ping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/SendNodeData.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/SendNodeData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/Transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/Transaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/TransactionLedger.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/TransactionLedger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/MessageType/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/RequestType/BroadcastMultiple.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/BroadcastMultiple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/RequestType/BroadcastSelected.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/BroadcastSelected.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/RequestType/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/Client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/RequestType/ReceiveMessage.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/ReceiveMessage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/RequestType/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/Server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/RequestType/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/TrackerClient/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/TrackerClient/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Network/TrackerClient/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/TrackerClient/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracker/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracker/server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/server/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

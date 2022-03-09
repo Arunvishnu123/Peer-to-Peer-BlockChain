@@ -21,17 +21,22 @@ class Tracker:
         self.totalNodesSocket.append(tuple)
         print("recieved message" , recievedMessage)
         client.send("Succeed".encode('utf-8'))
+        return recievedMessage
 
-    def sendNewNode(self):
+    def sendNewNode(self,receivedMessage):
         for node in self.totalNodesSocket:
           try:
-              pass
+              node[0].sendall(receivedMessage)
+              receive = node[0].recv(1024).decode('utf-8')
+              print("New Node Successfully add is ",receive)
           except:
               continue
 
     def liveness(self):
         for node in self.totalNodesSocket:
             try:
-                pass
+                node[0].sendall("200".encode('utf-8'))
+                node[0].recv(1024).decode('utf-8')
             except:
+                print(node[1]," is desconnected from the network")
                 continue
