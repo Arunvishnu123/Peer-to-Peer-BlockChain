@@ -12,7 +12,6 @@ from Blocks.CreateBlock import Block
 from Blocks.BlockMining import Mining
 from BlockChain.BlockChain import BlockChain
 from BlockChain.GenesisBlock import genesisBlock
-import threading
 
 if __name__ == "__main__":
     #########################################################################

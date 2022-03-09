@@ -11,7 +11,7 @@ class Tracker:
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.bind(self.connectionDetails)
         server.listen()
-        print("peer listening at the IP:",self.connectionDetails[0],"and Port Number:",self.connectionDetails[1])
+        print("Tracker server listening at the IP:",self.connectionDetails[0],"and Port Number:",self.connectionDetails[1])
         return server
 
     def receiveNewNode(self):
@@ -19,7 +19,7 @@ class Tracker:
         recievedMessage = client.recv(1024).decode('utf-8')
         tuple = (self.totalNodesSocket, recievedMessage)
         self.totalNodesSocket.append(tuple)
-        print("recieved message" , recievedMessage)
+        print("recieved message is " , recievedMessage)
         client.send("Succeed".encode('utf-8'))
         return recievedMessage
 
