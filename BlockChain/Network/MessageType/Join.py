@@ -32,9 +32,9 @@ class DataExtraction:
         self.receivedMessage = receivedMessage
 
     def finalDataExtraction(self):
-        decodedMessage  = self.receivedMessage.decode('utf-8')
-        data = decodedMessage[7:-1]
-        return data
+        data = self.receivedMessage[7:-1]
+        final = json.loads(data)
+        return final
 
 
 
