@@ -1,8 +1,9 @@
 import socket
 class TrackerClient:
     # connectDetails is a tuple which contain ipaddress and port number
-    def __init__(self, connectDetails):
+    def __init__(self, connectDetails,message):
         self.connectDetails = connectDetails
+        self.message = message
 
     def trackerClient(self):
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

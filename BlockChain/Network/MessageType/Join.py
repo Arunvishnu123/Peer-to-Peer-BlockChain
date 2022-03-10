@@ -1,7 +1,7 @@
 # This is always a post request type
 # sender side
 import json
-class RequestCreation:
+class PeerNewData:
     def __init__(self,message):
         self.message = message
 
