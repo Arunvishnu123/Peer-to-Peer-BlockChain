@@ -1,9 +1,7 @@
 from BlockChain.Network.TrackerClient.client import TrackerClient
-from BlockChain.Network.MessageType.Join import PeerNewData
 from BlockChain.Network.TrackerClient.MessageCreationToTracker import PeerDetails
 from BlockChain.CheeseCoin.Transaction.GeneratePublicPrivateKey import generatePublicPrivateKey
 from BlockChain.Network.MessageType.Join import PeerNewData
-import os
 import threading
 import socket
 
@@ -27,6 +25,11 @@ if __name__ == "__main__":
         print("################################################################################################################################################")
         print("Enter C or c to connect to the peer at the first time(means connect to the tracker)")
         operation = input("Select the operation need to do:")
+
+
+        def test1():
+            print("succes")
+            # return trackerClient
         if operation == "C" or operation == "c":
             # new peer details
             ipAddress = socket.gethostbyname(socket.gethostname())
@@ -42,4 +45,6 @@ if __name__ == "__main__":
             #send the final message to the tracker
             trackerClient = TrackerClient(trackerTriple,finalMessageStructure)
             trackerClient.trackerClient()
+
+
 

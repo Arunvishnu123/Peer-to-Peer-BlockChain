@@ -1,36 +1,43 @@
-#server program to receive data from other peers
+# server program to receive data from other peers
 
 import socket
 
+
 class Tracker:
-    def __init__(self,connectionDetails,totalNodesSocket):
+    def __init__(self, connectionDetails, totalNodesSocket):
         self.connectionDetails = connectionDetails
         self.totalNodesSocket = totalNodesSocket
-
+        self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     def serverCreation(self):
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server.bind(self.connectionDetails)
-        server.listen()
-        print("Tracker server listening at the IP:",self.connectionDetails[0],"and Port Number:",self.connectionDetails[1])
-        return server
+
+        self.server.bind(self.connectionDetails)
+        self. server.listen(5)
+        print("Tracker server listening at the IP:", self.connectionDetails[0], "and Port Number:",
+              self.connectionDetails[1])
+
 
     def receiveNewNode(self):
-        client, address = self.serverCreation().accept()
+        client, address = self.server.accept()
         recievedMessage = client.recv(1024).decode('utf-8')
-        tuple = (self.totalNodesSocket, recievedMessage)
-        self.totalNodesSocket.append(tuple)
-        print("recieved message is " , recievedMessage)
-        client.send("Succeed".encode('utf-8'))
-        return recievedMessage
+        print(recievedMessage)
+        if (recievedMessage[1] == "P"):
+            print(recievedMessage[1])
+            tuple = (client, recievedMessage)
+            print("##########", tuple)
+            self.totalNodesSocket.append(tuple)
+            print("recieved message is ", recievedMessage)
+            client.send("Succeed".encode('utf-8'))
+            for node in self.totalNodesSocket:
+                try:
+                    node[0].sendall(recievedMessage)
+                    receive = node[0].recv(1024).decode('utf-8')
+                    print("New Node Successfully add is ", receive)
+                except:
+                    continue
 
-    def sendNewNode(self,receivedMessage):
-        for node in self.totalNodesSocket:
-          try:
-              node[0].sendall(receivedMessage)
-              receive = node[0].recv(1024).decode('utf-8')
-              print("New Node Successfully add is ",receive)
-          except:
-              continue
+
+    def sendNewNode(self, receivedMessage):
+      pass
 
     def liveness(self):
         for node in self.totalNodesSocket:
@@ -38,9 +45,5 @@ class Tracker:
                 node[0].sendall("200".encode('utf-8'))
                 node[0].recv(1024).decode('utf-8')
             except:
-                print(node[1]," is desconnected from the network")
+                print(node[1], " is desconnected from the network")
                 continue
-
-
-
-
