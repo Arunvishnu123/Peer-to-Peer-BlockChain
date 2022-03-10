@@ -15,7 +15,7 @@ class Receiver:
         client, address = self.server.accept()
         recievedMessage = client.recv(1024).decode('utf-8')
         print(recievedMessage)
-        print("recieverrrrd message" , recievedMessage)
+        print("recieved message:" , recievedMessage)
         client.send("Succeed".encode('utf-8'))
         return recievedMessage
 

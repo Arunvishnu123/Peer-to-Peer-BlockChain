@@ -24,8 +24,6 @@ class Tracker:
             print("recieved message is ", self.recievedMessage)
             client.send("Succeed".encode('utf-8'))
         self.extractIP()
-        ##self.sendNewNode(receivedMessage=)
-        self.sendNewNode()
 
     def extractIP(self):
       extracted =  json.loads(self.recievedMessage[7:-1])
