@@ -11,11 +11,12 @@ class Receiver:
         print("peer listening at the IP:", self.connection[0], "and Port Number:", self.connection[1])
 
 
-    def receiveMessagePost(self):
+    def receiveMessagePost(self,queue):
         client, address = self.server.accept()
         recievedMessage = client.recv(1024).decode('utf-8')
-        print(recievedMessage)
         print("recieved message:" , recievedMessage)
+        queue.enque(recievedMessage)
+        print("######################################################################################################################################")
         client.send("Succeed".encode('utf-8'))
         return recievedMessage
 

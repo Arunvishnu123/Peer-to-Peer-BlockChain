@@ -2,7 +2,6 @@ from BlockChain.Network.TrackerClient.client import TrackerClient
 from BlockChain.Network.TrackerClient.MessageCreationToTracker import PeerDetails
 from BlockChain.CheeseCoin.Transaction.GeneratePublicPrivateKey import generatePublicPrivateKey
 from BlockChain.Network.MessageType.Join import PeerNewData
-import threading
 import socket
 
 ####################################################################################################
