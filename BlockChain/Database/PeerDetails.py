@@ -26,7 +26,7 @@ class PeerDetailsTable:
             cur = db.cursor()
             cur.execute(qry, data)
             db.commit()
-            print("one record added successfully")
+            print("new peer details added to the database successfully")
         except:
             print("error in operation")
             db.rollback()
@@ -44,6 +44,19 @@ class PeerDetailsTable:
             return result
         except:
             print("error in operation")
+
+    def retreievePeerName(self):
+        db = sqlite3.connect('./Database/BlockChain.db')
+        qry = """select peerName FROM peerData """
+        try:
+            cur = db.cursor()
+            cur.execute(qry)
+            result = cur.fetchall()
+            cur.close()
+            return result
+        except:
+            print("error in operation")
+
 
     def retrieveAllSelected(self,name):
         db = sqlite3.connect('./Database/BlockChain.db')

@@ -39,11 +39,8 @@ class DataExtraction:
         ipaddress = final['ipaddress']
         name = final['name']
         publickey = final['publickey']
-        connectiontuple = (ipaddress,int(port))
-        peerdata = (name,publickey)
-        finalTuple = (peerdata,connectiontuple)
-        self.peerList.append(finalTuple)
-        return self.peerList
+        finalTuple = (name, publickey,ipaddress,int(port))
+        return finalTuple
 
 
 

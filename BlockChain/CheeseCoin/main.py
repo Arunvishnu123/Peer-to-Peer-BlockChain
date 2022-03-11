@@ -1,6 +1,6 @@
 ######################################################################################
 # Blockchain working without networking Purpose of this program  is to test the logic and
-# make sure the blockchain is working fine without networking
+# make sure the blockchain part is working as per the requirement fine without networking
 
 from Transaction.TransactionData import TransactionData
 from Transaction.CreateTransactionData import Transactions
@@ -95,7 +95,7 @@ if __name__ == "__main__":
             print("Final Created Block", minedBlock)
             #####################################################################################
             # Add block to the chain
-            tee = createBlockChain.addBlock(minedBlock)
-            print(tee)
+            fullBlockChain  = createBlockChain.addBlock(minedBlock)
+            print(fullBlockChain)
 
 
