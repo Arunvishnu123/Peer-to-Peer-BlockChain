@@ -28,13 +28,22 @@ class PeerNewData:
 
 # receiver side
 class DataExtraction:
-    def __init__(self,receivedMessage):
+    def __init__(self,receivedMessage,peerList):
         self.receivedMessage = receivedMessage
+        self.peerList = peerList
 
     def finalDataExtraction(self):
         data = self.receivedMessage[7:-1]
         final = json.loads(data)
-        return final
+        port = final['port']
+        ipaddress = final['ipaddress']
+        name = final['name']
+        publickey = final['publickey']
+        connectiontuple = (ipaddress,int(port))
+        peerdata = (name,publickey)
+        finalTuple = (peerdata,connectiontuple)
+        self.peerList.append(finalTuple)
+        return self.peerList
 
 
 

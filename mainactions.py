@@ -3,16 +3,16 @@ from BlockChain.Network.TrackerClient.MessageCreationToTracker import PeerDetail
 from BlockChain.CheeseCoin.Transaction.GeneratePublicPrivateKey import generatePublicPrivateKey
 from BlockChain.Network.MessageType.Join import PeerNewData
 import socket
-
-####################################################################################################
+peerList = []
+################################################################################################################
 if __name__ == "__main__":
-    ################################################################################################
+    ############################################################################################################
     # Private key and Public key generation
     hostGeneratePublicPrivateKey = generatePublicPrivateKey
     hostPublicPrivateKey = hostGeneratePublicPrivateKey.generatePubPriKeyPair()
     hostPublicKey = hostPublicPrivateKey[0]
     hostPrivateKey = hostPublicPrivateKey[1]
-    #################################################################################################
+    ############################################################################################################
     # create tracker client object and message creation to send the connection details to the tracker
     # Tracker network details
     trackerIP = "192.168.0.13"
@@ -21,8 +21,9 @@ if __name__ == "__main__":
     # new peer details
     ipAddress = socket.gethostbyname(socket.gethostname())
     port = input("Enter the port to run the peer:")
+    name = input("Enter your Name:")
     # peer data converted to dictionary for sending
-    peerDetails = PeerDetails(ipAddress, port, hostPublicKey)
+    peerDetails = PeerDetails(ipAddress, port, hostPublicKey,name)
     while True:
         # select the operation need to do by the system
         print("################################################################################################################################################")
@@ -38,6 +39,7 @@ if __name__ == "__main__":
             #send the final message to the tracker
             trackerClient = TrackerClient(trackerTriple,finalMessageStructure)
             trackerClient.trackerClient()
+            print("peerList",peerList)
 
 
 

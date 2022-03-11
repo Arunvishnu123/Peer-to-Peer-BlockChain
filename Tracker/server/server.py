@@ -1,6 +1,7 @@
 # server program to receive data from other peers
 import json
 import socket
+
 class Tracker:
     def __init__(self, connectionDetails, totalNodesSocket):
         self.connectionDetails = connectionDetails
@@ -10,7 +11,7 @@ class Tracker:
         self.server.listen(5)
         print("Tracker server listening at the IP:", self.connectionDetails[0], "and Port Number:",
               self.connectionDetails[1])
-        self.recievedMessage = 'ee'
+        self.recievedMessage = ''
 
     def receiveNewNode(self):
         client, address = self.server.accept()
@@ -19,28 +20,27 @@ class Tracker:
         if (self.recievedMessage[1] == "P"):
             print(self.recievedMessage[1])
             tuple = (client, self.recievedMessage)
-            print("##########", tuple)
             self.totalNodesSocket.append(tuple)
             print("recieved message is ", self.recievedMessage)
             client.send("Succeed".encode('utf-8'))
         self.extractIP()
 
     def extractIP(self):
-      extracted =  json.loads(self.recievedMessage[7:-1])
-      print("Port is ",extracted['port'])
-      print("IP address is ",extracted['ipaddress'])
-      connectionDetails = (extracted['ipaddress'],int(extracted['port']))
-      print(connectionDetails)
-      print(self.recievedMessage)
-      self.sendNewNode(connectionDetails,self.recievedMessage)
-      return connectionDetails
+        extracted = json.loads(self.recievedMessage[7:-1])
+        print("Port is ", extracted['port'])
+        print("IP address is ", extracted['ipaddress'])
+        connectionDetails = (extracted['ipaddress'], int(extracted['port']))
+        print(connectionDetails)
+        print(self.recievedMessage)
+        self.sendNewNode(connectionDetails, self.recievedMessage)
+        return connectionDetails
 
-    def sendNewNode(self,connectionDetails,message):
+    def sendNewNode(self, connectionDetails, message):
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client.connect(connectionDetails)
         client.send(message.encode())
-        u  = client.recv(1024).decode('utf-8')
-        print(u)
+        response = client.recv(1024).decode('utf-8')
+        print(response)
 
     def liveness(self):
         for node in self.totalNodesSocket:
