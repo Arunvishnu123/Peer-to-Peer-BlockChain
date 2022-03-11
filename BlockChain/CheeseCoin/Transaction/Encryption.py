@@ -13,12 +13,20 @@ class encryption:
         message = json.dumps(self.data)
         encodedMessage = message.encode('utf8')
         digitalSign = rsa.encrypt(encodedMessage,self.sprivateKey)
-        digitalSign1=  str(digitalSign)
+        digitalSign1 =  str(digitalSign)
         return digitalSign1
 
    ## maintain confidentiality for sender and receiver
     def encryptedMessage(self):
         encodedMessage = str(self.name).encode('utf8')
         encriptedMessage = rsa.encrypt(encodedMessage,self.respublicKey)
+        print(type(encriptedMessage))
         encriptedMessage1 = str(encriptedMessage)
         return encriptedMessage1
+
+
+
+
+
+
+

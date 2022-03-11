@@ -70,6 +70,7 @@ if __name__ == "__main__":
             print("vcfg", digtalSignature)
             encryptedData = oencryption.encryptedMessage()
             print(encryptedData)
+            print("type of " , type(encryptedData))
             finalMessage = {"Message": encryptedData, "DigitalSignature": digtalSignature}
             print("EncryptedData", finalMessage)
             ####################################################################################################

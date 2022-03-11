@@ -32,9 +32,13 @@ class DataExtraction:
         self.receivedMessage = receivedMessage
 
     def finalDataExtraction(self):
-        decodedMessage  = self.receivedMessage.decode('utf-8')
+        decodedMessage  = self.receivedMessage
         data = decodedMessage[7:-1]
-        return data
+        dataDict  = json.loads(data)
+        print("data:::",dataDict)
+        finalTuple = (dataDict["Dateandtime"],dataDict["TransactionID"],dataDict["Sendername"],dataDict["Data"]["Message"],dataDict["Data"]["DigitalSignature"])
+        print("final tuple",finalTuple)
+        return finalTuple
 
 
 
