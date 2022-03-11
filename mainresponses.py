@@ -17,7 +17,7 @@ while True:
     extractedData = DataExtraction(receivedMessage,peerList)
     print(extractedData.finalDataExtraction())
     mainactions.peerList = extractedData.finalDataExtraction()
-    print("peerlsit",mainactions.peerList )
+    print("peerlist",mainactions.peerList )
 
 
 

@@ -1,14 +1,14 @@
 import sqlite3
 
-class PeerDetailsDB:
+class PeerDetailsTable:
     def __init__(self):
         pass
 
     def createTable(self):
-        db = sqlite3.connect('./Blockchain/Database/BlockChain.db')
+        db = sqlite3.connect('./Database/BlockChain.db')
         try:
             cur = db.cursor()
-            cur.execute('''CREATE TABLE if not exist peerData (
+            cur.execute('''CREATE TABLE peerData (
             peerName TEXT (20) NOT NULL,
             peerPublicKey TEXT (20) NOT NULL,
             peerIPAddress TEXT (20) NOT NULL,
@@ -20,7 +20,7 @@ class PeerDetailsDB:
         db.close()
 
     def addElements(self,data):
-        db = sqlite3.connect('./Blockchain/Database/BlockChain.db')
+        db = sqlite3.connect('./Database/BlockChain.db')
         qry = "insert into peerData (peerName, peerPublicKey,peerIPAddress,peerPort) values(?,?,?,?);"
         try:
             cur = db.cursor()
@@ -34,7 +34,7 @@ class PeerDetailsDB:
 
     #retrive all ipaddress and port number
     def retrieveElements(self):
-        db = sqlite3.connect('./Blockchain/Database/BlockChain.db')
+        db = sqlite3.connect('./Database/BlockChain.db')
         qry = """select peerIPAddress , peerPort FROM peerData """
         try:
             cur = db.cursor()
@@ -46,7 +46,7 @@ class PeerDetailsDB:
             print("error in operation")
 
     def retrieveAllSelected(self,name):
-        db = sqlite3.connect('./Blockchain/Database/BlockChain.db')
+        db = sqlite3.connect('./Database/BlockChain.db')
         qry = """select * FROM peerData where peerName = ? """
         try:
             cur = db.cursor()
@@ -58,7 +58,7 @@ class PeerDetailsDB:
             print("error in operation")
 
     def deletePeerData(self,name):
-        db = sqlite3.connect('./Blockchain/Database/BlockChain.db')
+        db = sqlite3.connect('./Database/BlockChain.db')
         qry = """select * FROM peerData where peerName = ? """
         try:
             cur = db.cursor()
