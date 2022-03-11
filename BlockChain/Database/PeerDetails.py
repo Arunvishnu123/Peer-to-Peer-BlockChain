@@ -8,7 +8,7 @@ class PeerDetailsDB:
         db = sqlite3.connect('./Blockchain/Database/BlockChain.db')
         try:
             cur = db.cursor()
-            cur.execute('''CREATE TABLE peerData (
+            cur.execute('''CREATE TABLE if not exist peerData (
             peerName TEXT (20) NOT NULL,
             peerPublicKey TEXT (20) NOT NULL,
             peerIPAddress TEXT (20) NOT NULL,
