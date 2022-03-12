@@ -95,18 +95,13 @@ M | MineComplete |Post |Send the Mining complete status to the other peers | JSO
 
 ## Explanations and Examples of all types requests and corresponding responses in the cheese coin system(block-chain)- 
 
-# 1. [P][T][Data] - 
-             Message format for sending the transaction amount and message between peers.
-               sample data message  - 
-               {
-                   "sendername":"Arun",
-                   "transactionnumber":1,
-                   "amount":"10",
-                   "receivername":"vishnu",
-                   "publickey":"SDOJDUB"
-                   "timestamp":"12323209203"
-                   
-                }
+# 1. [P][T][Data] -
+Message format for sending the transaction amount and message between peers.
+sample data message  - 
+[P][T][{"TransactionID": "2b209aa242755815b187bd049d9d9be18cb598e4", "Sendername": "Arun", "Receivername": "Arun", "Dateandtime": "2022-03-12 20:19:11.254937", 
+"Data": {"Message": "b'r\\x13\\xc1^\\xf9\\r\\x83Qj\\\\\\xbb9\\x01\\xe3\\x00+\\xcdC\\xbf\\xc1+\\xba\\x1e\\x1e\\xaa\\x17j\\xa5@\\x8f\\xf7_\\x05xKrlf\\xac\\x02\\xbf\\xb4~\\xd2\\x8e\\x1d\\x8e*r\\x16[\\x8f\\xef\\xd4\\xe8\\xa8sz\\x1b\\x93\\xa9\\x8b\\xc2L'", 
+"DigitalSignature": "b'M\\xa0*Q\\xc4\\t\\xd8\\xbe0\\xa3|=R\\x8c\\xbd\\xcc<\\xb4\\x0c\\xcdHL\\xb3sv\\x9e\\xf0<\\xa8\\xc9\\x9c\\xffq$x\\x02\\xe9\\x07\\xfc\"\\xa4-\\xb7\\xb0\\x00\\x95)\\xb2\\x8c\\xb9\\xcag\\xfa\\xba\\xeb}h\\xa8\\xffR/\\x14\\xd9\\xb6'"}}]
+      
 
 # Reponse for this request  - 
 # [StatusCode] -  
