@@ -41,18 +41,19 @@ class TransactionsLedgerDT:
             cur = db.cursor()
             cur.execute(qry)
             result = cur.fetchall()
-            cur.close()
+            db.close()
             return result
         except:
             print("error in operation")
 
     def deleteLedgerElement(self):
         db = sqlite3.connect('./Database/BlockChain.db')
-        qry = """DELETE FROM TransactionLedger """
+        qry = """ delete FROM TransactionLedger """
         try:
             cur = db.cursor()
             cur.execute(qry)
-            cur.close()
-            print("Data Successfully created")
+            db.commit()
+            db.close()
+            print("Data Successfully deleted")
         except:
             print("error in operation")

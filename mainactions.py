@@ -10,12 +10,14 @@ from BlockChain.Network.RequestType.BroadcastSelected import BroadCastSelected
 from BlockChain.Network.MessageType.TransactionLedger import LedgerRequestCreation
 from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
 from BlockChain.Database.PeerDetails import PeerDetailsTable
+from BlockChain.Database.Ledger import TransactionsLedgerDT
 import time
 import socket
 
 ################################################################################################################
 #database for the connected peer details
 connectedPeers  = PeerDetailsTable()
+ledgerDataTable  = TransactionsLedgerDT()
 ################################################################################################################
 if __name__ == "__main__":
     ############################################################################################################
@@ -102,5 +104,5 @@ if __name__ == "__main__":
             broadCastTransactions.mPeer()
 
         if operation == "M" or operation == "m":
-            pass
+            ledgerDataTable.deleteLedgerElement()
 
