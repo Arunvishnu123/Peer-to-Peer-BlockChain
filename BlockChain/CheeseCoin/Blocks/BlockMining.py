@@ -12,6 +12,7 @@ class Mining:
         return hashBlock
 
     def mining(self):
+        mineComplete = 0
         fullBlock = {
         }
         for i in range(0, 1000000):
@@ -20,9 +21,10 @@ class Mining:
             hashBlock = hashlib.sha256(str(self.createdBlock).encode()).hexdigest()
             print(hashBlock)
             if hashBlock[0] == '0' and hashBlock[1] == '0' and hashBlock[2] == '0' and hashBlock[3] == '0':
+                mineComplete  =  1
                 break
 
         fullBlock["index"] = ""
         fullBlock["hash"] = hashBlock
         fullBlock["Block"] = self.createdBlock
-        return fullBlock
+        return fullBlock,mineComplete

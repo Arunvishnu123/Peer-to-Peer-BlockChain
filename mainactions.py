@@ -15,6 +15,7 @@ from BlockChain.CheeseCoin.Transaction.CreateTransactionDictionaryLedger import 
 from BlockChain.CheeseCoin.Blocks.MerkelRootsCreation import merkelroots
 from BlockChain.CheeseCoin.Blocks.CreateBlock import Block
 from BlockChain.CheeseCoin.Blocks.BlockMining import Mining
+from BlockChain.Network.MessageType.MineComplete import RequestCreation
 import time
 import socket
 
@@ -123,12 +124,19 @@ if __name__ == "__main__":
             difficultyTarget = "4"
             nonce = 0
             blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData)
-            b = blockCreation.createBlocks()
-            print(b)
+            createdBloc = blockCreation.createBlocks()
+            print(createdBloc)
             #mining logic
-            mineCreatedBlock = Mining(b)
+            mineCreatedBlock = Mining(createdBloc)
             minedBlock = mineCreatedBlock.mining()
-            print("Final Created Block", minedBlock)
+            print("Final Created Block", minedBlock[0])
+            if minedBlock[1]  == 1:
+                mineCompleteRequestCreation = RequestCreation(("MineCompleted  " +  name))
+                mineCompleteMessage = mineCompleteRequestCreation.final()
+                print("Mine Complete Message Format :", mineCompleteMessage)
+                connectedPeersList1 = connectedPeers.retrieveElements()
+                broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList1,mineCompleteMessage)
+                broadCastMineCompleteMessage.mPeer()
             ledgerDataTable.deleteLedgerElement()
 
 

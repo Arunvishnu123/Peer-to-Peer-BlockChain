@@ -1,38 +1,40 @@
-# CHEESECOIN PROTOCOL
+# CHEESECOIN(BlockChain) PROTOCOL
+
 ## PEERS
 Every peer is identified by:
-- **Network identifier**.
-  - An integer (no encryption), or
+- **Unique Name**.
+  - An String  (no encryption), also a 
   - A public key (if encryption added).
 - **IP address and Port Number**.
 
-Every peer in the network is equal. A peer acts both as a TCP server - as it accepts other peers' connections - and as a client since it connects to the tracker for peer discovery and to other peers for broadcasting newly found cheeses.
+Every peer in the network is equal. A peer acts both as a TCP server - as it accepts other peers' connections - and as a client since it connects to the tracker for peer discovery and to other peers for broadcasting the data.
 
 Peers can:
 - **Interact with other peers**.
-  - By broadcasting new cheeses.
-  - To (potentially) perform currency transactions.
-  - To ask for an updated version of the cheesechain.
+  - By broadcasting new cheeses(Blocks).
+  - To perform transactions between peers.
+  - To ask for an updated version of the cheese chain (BlockChain).
 - **Communicate with the tracker**.
-  - When a new peer joins the network, it has to first notify the tracker of its existence for the tracker to record his information (ID, IP address, port) and allow it to give it to other peers afterward.
-  - After a peer has notified the tracker of its joining, it has to ask for other existing peers to actually be able to join the P2P network by connecting them.
+  - When a new peer joins the network, it has to first notify the tracker of its existence for the tracker to record his information (Name, IP address, port) and allow it to give it to other peers afterward.
+  - When the peer sent the information send to the tracker then tracker receives the data and send to all connected peers,At this If sending failed, then data with respect to the connection details of failed peers to the message queue system,constantly check that the failed peer is come online, when it come online the new peer details send to that peer
   - A peer shall respond to keep-alive messages sent periodically (every 30 or 60 seconds) by the tracker for being able to maintain up-to-date information about the online peers.
 - **Mine**.
   - This would be the main task of the peers.
-  - The goal of a peer is to find the new valid cheese.
-    * A cheese is valid when its smell starts by D number of zeros. 
+  - The goal of a peer is to find the new valid cheese (Valid Block).
+    * A cheese(Block) is valid when its smell(hash) starts by D(Here the difficulty number is 4) number of zeros. 
     * D is called the difficulty and it is **fixed**.
-  - The first transaction of every cheese is an special transaction, and it is a reward for mining it. The amount of this reward will be fixed. To make sure that the amount of this reward has not changed, other peers will verify it when verifying the whole block.
+  - The first transaction of every cheese is an special transaction, and there is a reward for mining it. The amount of this reward will be fixed. To make sure that the amount of this reward has not changed, other peers will verify it when verifying the whole block.
   - When a peer finds a new valid cheese, it will broadcast it to all other peers.
+  - First cheese(Block) of a cheese chain (Block Chain) is called Raclette Cheese(also Called Genesis Block)
 
 The different tasks a peer can do (explained above) shall be contained within different threads and should be run concurrently, and to handle mutual exclusion blocking queues (or a similar tool) will be used.
 
 ## TRACKER
 There is only one tracker in the whole network and it will be a TCP Server that will work as a Peer-Index Network Database. The tracker might not record any information regarding the cheesechain nor take part in the mining process.
-
+Tracker only contain the information such as (Name,IP Address,Port Number) of every peer connected to the network
 Its task is simply to maintain updated information of the online peers and help peers discover each other in the network by resolving their requests.
 
-## CHEESE
+## CHEESE(Block)
 The basic unit of information, encoded as a JSON String.
 
 ## Protocol Specification ##
@@ -61,16 +63,16 @@ The basic unit of information, encoded as a JSON String.
 | ------------- | ------------- |------------- |------------- | ------------- |
 P | Ping | Post |Sent from one peer to another to make sure that it is online before trying to establish a TCP connection | Random nonce | 
 K | KeepAlive | Post |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |  
-N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation | 
-T | Transaction | Post |A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain | JSON string representation|
-H | History | Get|Get the history of blocks in the individual nodes | JSON string representation |
-L | LastHash | Post |Get the hash of last created blocks  | JSON string representation |
-J | Join | Post |Broadcast the new node details to the tracker from the new node  | JSON string representation|
-S | SendNodeData | Post|Broadcast the new node details to the peers  | JSON string representation |
-L | TransactionLedger | Post | Full transaction message to adding it in the transaction ledger | JSON string representation |
-M | MineComplete |Post |Send the Mining complete status to the other peers | JSON string representation |
+N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation which is encode to bytes| 
+T | Transaction | Post |A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain(BlockChain) | JSON String representation which is encode to bytes|
+H | History | Get|Get the history of blocks in the individual nodes | JSON String representation which is encode to bytes |
+L | LastHash | Post |Get the hash of last created blocks  | JSON String representation which is encode to bytes |
+J | Join | Post |Broadcast the new node details to the tracker from the new node  | JSON String representation which is encode to bytes |
+S | SendNodeData | Post|Broadcast the new node details to the peers  | JSON String representation which is encode to bytes |
+L | TransactionLedger | Post | Full transaction message to adding it in the transaction ledger | JSON String representation which is encode to bytes |
+M | MineComplete |Post |Send the Mining complete status to the other peers | JSON String representation which is encode to bytes |
 
-* payload information and  explaination of  all types of  request and corresponding response will discussed in details in the coming section.
+* payload information and  explanation of  all types of  request and corresponding response will discussed in details in the coming section.
 
 # 3. [Data/Arguments] - The data/argument is the content which need to be send or receive by the nodes.Here the message is of simple json format.Here Data or argument which deppends on the type of request method([get or post]).
 
@@ -84,24 +86,18 @@ M | MineComplete |Post |Send the Mining complete status to the other peers | JSO
 
 ## Repsonse -
 
-## Response message fomat  - [StatusCode][Data]
+## Response message format  - [StatusCode][Data]
 
-1. StatusCode - Here the http standard codes are used.
-   For Example  - 
-           1. 200 - Ok
-           2. 201 - Created
-           3. 400 - Bad Request
-           4. 404 - Not Found
+1. Status - Here the status received for every successful send the message is "SUCCEED" - for every post request.
+
+2. Data  - Here data is same as the request type and is of json String format.This optional in every messages
 
 
-2. Data  - Here data is same as the request type and is of json format.This optional in every messages
+## Explanations and Examples of all types requests and corresponding responses in the cheese coin system(block-chain)- 
 
-
-## Explanations and Examples of differnent types requests and correpsonding reponses - 
-
-# 1. [Post][Transaction][Data] - 
-               Here the transaction information is send to the receiver node.
-               sample message  - 
+# 1. [P][T][Data] - 
+             Message format for sending the transaction amount and message between peers.
+               sample data message  - 
                {
                    "sendername":"Arun",
                    "transactionnumber":1,
