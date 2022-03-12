@@ -32,9 +32,14 @@ class LedgerDataExtraction:
         self.receivedMessage = receivedMessage
 
     def finalDataExtraction(self):
-        decodedMessage  = self.receivedMessage.decode('utf-8')
+        decodedMessage  = self.receivedMessage
         data = decodedMessage[7:-1]
-        return data
+        dataDict = json.loads(data)
+        ledgerTuple = (
+        dataDict["Dateandtime"], dataDict["TransactionID"], dataDict["Sendername"], dataDict["Receivername"],
+        dataDict["Data"]["Message"], dataDict["Data"]["DigitalSignature"])
+        print(ledgerTuple)
+        return ledgerTuple
 
 
 

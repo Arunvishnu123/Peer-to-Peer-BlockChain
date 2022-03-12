@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BlockChain/Database/Ledger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/CheeseCoin/Blocks/CreateBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/CheeseCoin/Blocks/CreateBlock.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlockChain/Network/MessageType/Transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/Transaction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlockChain/Network/MessageType/TransactionLedger.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/TransactionLedger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/Network/RequestType/BroadcastMultiple.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/BroadcastMultiple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CreateDB-Tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/CreateDB-Tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/BlockChain.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BlockChain.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainactions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainresponses.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainresponses.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

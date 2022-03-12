@@ -6,6 +6,7 @@ from BlockChain.Network.MessageType.Transaction import DataExtraction as Transac
 from BlockChain.Database.PeerDetails import PeerDetailsTable
 from BlockChain.Database.Transactions import TransactionsDT
 from BlockChain.Database.Ledger import TransactionsLedgerDT
+from BlockChain.Network.MessageType.TransactionLedger import LedgerDataExtraction
 ###################################################################################################
 #create datables object
 peerDataTable = PeerDetailsTable()
@@ -31,11 +32,13 @@ while True:
 
     if(receivedMessage[4] == "T"):
         extractedTransactionData = TransactionMessageExtraction(receivedMessage)
-        print("Tranasacted Message:",extractedTransactionData.finalDataExtraction())
-        transactionDataTable.addElements(extractedTransactionData.finalDataExtraction()[0])
+        print("Extracted Message of Transaction:",extractedTransactionData.finalDataExtraction())
+        transactionDataTable.addElements(extractedTransactionData.finalDataExtraction())
 
         #send the received transaction message to the all other peers
         #ledgerDataTable.addLedgerElements(extractedTransactionData.finalDataExtraction()[1])
 
     if(receivedMessage[4] == "L"):
-        print("test")
+        extractedLedgerData = LedgerDataExtraction(receivedMessage)
+        print("Extracted Message of Transactions(for ledger creation:",extractedLedgerData.finalDataExtraction())
+        ledgerDataTable.addLedgerElements(extractedLedgerData.finalDataExtraction())
