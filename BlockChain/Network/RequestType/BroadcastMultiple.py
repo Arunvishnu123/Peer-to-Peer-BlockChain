@@ -1,7 +1,7 @@
 # post request to the multiple peers
 import socket
 
-class BroadCastSelected:
+class BroadCastMulitple:
     def __init__(self,connectedList,message):
         #connectedList is list of all connected nodes in the network and
         # also each index in the list is a tuple which contain IP address and port number

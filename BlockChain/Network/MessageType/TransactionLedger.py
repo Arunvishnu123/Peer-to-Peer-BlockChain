@@ -1,7 +1,7 @@
 # This is always a post request type
 # sender side
 import json
-class RequestCreation:
+class LedgerRequestCreation:
     def __init__(self,message):
         self.message = message
 
@@ -27,7 +27,7 @@ class RequestCreation:
         return finalMessage
 
 # receiver side
-class DataExtraction:
+class LedgerDataExtraction:
     def __init__(self,receivedMessage):
         self.receivedMessage = receivedMessage
 

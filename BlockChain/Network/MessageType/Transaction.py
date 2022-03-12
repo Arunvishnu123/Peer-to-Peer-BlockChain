@@ -38,7 +38,9 @@ class DataExtraction:
         print("data:::",dataDict)
         finalTuple = (dataDict["Dateandtime"],dataDict["TransactionID"],dataDict["Sendername"],dataDict["Data"]["Message"],dataDict["Data"]["DigitalSignature"])
         print("final tuple",finalTuple)
-        return finalTuple
+        ledgerTuple = (dataDict["Dateandtime"],dataDict["TransactionID"],dataDict["Sendername"],dataDict["Receivername"],dataDict["Data"]["Message"],dataDict["Data"]["DigitalSignature"])
+        print(ledgerTuple)
+        return finalTuple,ledgerTuple
 
 
 

@@ -11,6 +11,7 @@ class Block:
 
     def createHeader(self):
        header = {
+
        }
        header["Version"] = self.version
        header["PreviousHash"] = self.previousHash

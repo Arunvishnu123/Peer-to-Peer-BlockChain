@@ -2,12 +2,15 @@ from BlockChain.Network.TrackerClient.client import TrackerClient
 from BlockChain.Network.TrackerClient.MessageCreationToTracker import PeerDetails
 from BlockChain.CheeseCoin.Transaction.GeneratePublicPrivateKey import generatePublicPrivateKey
 from BlockChain.Network.MessageType.Join import PeerNewData
-from BlockChain.Database.PeerDetails import PeerDetailsTable
 from BlockChain.CheeseCoin.Transaction.TransactionData import TransactionData
 from BlockChain.CheeseCoin.Transaction.Encryption import encryption
 from BlockChain.CheeseCoin.Transaction.CreateTransactionData import Transactions
 from BlockChain.Network.MessageType.Transaction import RequestCreation as TransactionRequestCreation
 from BlockChain.Network.RequestType.BroadcastSelected import BroadCastSelected
+from BlockChain.Network.MessageType.TransactionLedger import LedgerRequestCreation
+from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
+from BlockChain.Database.PeerDetails import PeerDetailsTable
+import time
 import socket
 
 ################################################################################################################
@@ -38,8 +41,10 @@ if __name__ == "__main__":
     while True:
         # select the operation need to do by the system
         print("################################################################################################################################################")
-        print("Enter C or c to connect to the peer at the first time(means connect to the tracker)\nEnter T or t to send message and make transaction to the peers")
+        print("Enter C or c to connect to the peer at the first time(means connect to the tracker)\nEnter T or t to send message and make transaction to the peers\nEnter M or m for mining the current transaction and create Block")
         operation = input("Select the operation need to do:")
+#####################################################################################################################################################
+        #Select C or c to connect the new peer to the newtwork
         if operation == "C" or operation == "c":
             peerJsonData = peerDetails.createMessage()
             print("Dictionary Converted Peer Data : ",peerJsonData)
@@ -50,7 +55,8 @@ if __name__ == "__main__":
             #send the final message to the tracker
             trackerClient = TrackerClient(trackerTriple,finalMessageStructure)
             trackerClient.trackerClient()
-
+#############################################################################################################################################
+        #Select t or T to do individual transactions
         if operation == "T" or operation == "t":
             print("Connected Peers Name",connectedPeers.retreievePeerName())
             receiverName = input("Select the receiver name from the list:")
@@ -59,7 +65,7 @@ if __name__ == "__main__":
             receiverPeerDetails = connectedPeers.retrieveAllSelected(receiverName)
             print("selected peer details:", receiverPeerDetails)
             #####################################################################################################
-            #convert the transamitted message to a json string
+            #convert the transmitted message to a json string
             transactionMessage = TransactionData(amount, message)
             data = transactionMessage.createMessage()
             print("message and amount to be send", data)
@@ -86,6 +92,15 @@ if __name__ == "__main__":
             #send the message to the selected peer
             sendMessage  = BroadCastSelected((receiverPeerDetails[2],receiverPeerDetails[3]),finalEncodeMessage)
             sendMessage.sPeer()
+            time.sleep(2)
+            #######################################################################################################
+            ledgerRequestCreation = LedgerRequestCreation(transactionFullMessage)
+            ledgerMessage = ledgerRequestCreation.final()
+            print("Converted Transaction Message to send to other peers format:", ledgerMessage)
+            connectedPeersList = connectedPeers .retrieveElements()
+            broadCastTransactions = BroadCastMulitple (connectedPeersList, ledgerMessage)
+            broadCastTransactions.mPeer()
 
-
+        if operation == "M" or operation == "m":
+            pass
 
