@@ -25,20 +25,22 @@ while True:
     recieveNewNode.join()
     receivedMessage = recieveNewNodeQueue.dequeue()
     print(type(receivedMessage))
+
+    #peer deatils recives
     if(receivedMessage[4] == "J"):
          extractedData = joinNewPeerDetails(receivedMessage,peerList)
          print("Data Extracted from the recieved message:",extractedData.finalDataExtraction())
          peerDataTable.addElements(extractedData.finalDataExtraction())
 
+    #transaction message receiving logic
     if(receivedMessage[4] == "T"):
         extractedTransactionData = TransactionMessageExtraction(receivedMessage)
         print("Extracted Message of Transaction:",extractedTransactionData.finalDataExtraction())
         transactionDataTable.addElements(extractedTransactionData.finalDataExtraction())
 
-        #send the received transaction message to the all other peers
-        #ledgerDataTable.addLedgerElements(extractedTransactionData.finalDataExtraction()[1])
-
+    #transaction ledger creation
     if(receivedMessage[4] == "L"):
         extractedLedgerData = LedgerDataExtraction(receivedMessage)
         print("Extracted Message of Transactions(for ledger creation:",extractedLedgerData.finalDataExtraction())
         ledgerDataTable.addLedgerElements(extractedLedgerData.finalDataExtraction())
+

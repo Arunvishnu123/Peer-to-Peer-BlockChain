@@ -11,6 +11,10 @@ from BlockChain.Network.MessageType.TransactionLedger import LedgerRequestCreati
 from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
 from BlockChain.Database.PeerDetails import PeerDetailsTable
 from BlockChain.Database.Ledger import TransactionsLedgerDT
+from BlockChain.CheeseCoin.Transaction.CreateTransactionDictionaryLedger import TransactionsLedger
+from BlockChain.CheeseCoin.Blocks.MerkelRootsCreation import merkelroots
+from BlockChain.CheeseCoin.Blocks.CreateBlock import Block
+from BlockChain.CheeseCoin.Blocks.BlockMining import Mining
 import time
 import socket
 
@@ -104,5 +108,27 @@ if __name__ == "__main__":
             broadCastTransactions.mPeer()
 
         if operation == "M" or operation == "m":
+            transactionLedgerList  = ledgerDataTable.retriveLedgerElement()
+            print("TransactionLedger" , transactionLedgerList)
+            ledger = TransactionsLedger(transactionLedgerList)
+            ledgerData = ledger.createtransactionlist()
+            print(ledgerData)
+            merkalRootCreation = merkelroots(ledgerData)
+            createdMerkalRoot = merkalRootCreation.createMerkelRoot()
+            print(createdMerkalRoot )
+            #Block Creation
+            version = "V1"
+            previousHash = ""
+            merkleRoot = createdMerkalRoot
+            difficultyTarget = "4"
+            nonce = 0
+            blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData)
+            b = blockCreation.createBlocks()
+            print(b)
+            #mining logic
+            mineCreatedBlock = Mining(b)
+            minedBlock = mineCreatedBlock.mining()
+            print("Final Created Block", minedBlock)
             ledgerDataTable.deleteLedgerElement()
+
 

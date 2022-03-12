@@ -1,4 +1,4 @@
-######################################################################################
+#########################################################################################
 # Blockchain working without networking Purpose of this program  is to test the logic and
 # make sure the blockchain part is working as per the requirement fine without networking
 
@@ -14,7 +14,7 @@ from BlockChain.BlockChain import BlockChain
 from BlockChain.GenesisBlock import genesisBlock
 
 if __name__ == "__main__":
-    #########################################################################
+    #######################################################################################
     # Private key and Public key generation
     senderGenerate = generatePublicPrivateKey
     receiverGenerate = generatePublicPrivateKey
