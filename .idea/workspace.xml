@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tracker/Queue/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Database/MessageQueue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/BlockChain.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BlockChain.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracker/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Queue/QueueThreading.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/protocol.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracker/Database/Creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Database/Creation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracker/Database/PeerDetails.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Database/PeerDetails.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracker/Queue/QueueThreading.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Queue/QueueThreading.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracker/server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/server/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trackermain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trackermain.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
