@@ -104,10 +104,12 @@ Message format for sending the transaction amount and message between one peer t
 
 Here the user will select the peer name (receiver) from the given list and enter the amount and meesage.After that the  peer(sender) will encrypt the amount and meesage
 and send to the peers with the selected name(receiver peer).(with respect to the name peer will get the details like IP Address,PortNumber and Public Key the reciever peer from the database)
-
 # Reponse for this request  - 
 # [StatusCode] -  
-*  Here the sender get the code message depends on the situations.For example if the receiver successfully received the message then the  sender get the status  - 200
+* Here the sender get the code message depends on the situations.For example if the receiver successfully received the message then the  sender get the status  - 200
+
+# Sequence Diagram
+![title](Images/TransactionMessage.jpg)
 
 # 2. [Post][Join][Data] - 
             Here when a node was added to the existing network ,then the new node will send it ip address and port number to the tracker server.Tracker will add the node details to the network list.

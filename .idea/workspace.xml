@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Images/TransactionMessage.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracker/Database/Creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Database/Creation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracker/Database/PeerDetails.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Database/PeerDetails.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracker/Queue/QueueThreading.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/Queue/QueueThreading.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracker/server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/server/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trackermain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trackermain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/protocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/protocol.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +30,15 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="267JYaZV3sCstHG8JCDijawnq5C" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -232,5 +232,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
