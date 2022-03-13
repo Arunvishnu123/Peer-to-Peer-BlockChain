@@ -72,7 +72,7 @@ S | SendNodeData | Post|Broadcast the new node details to the peers  | JSON Stri
 L | TransactionLedger | Post | Full transaction message to adding it in the transaction ledger | JSON String representation which is encode to bytes |
 M | MineComplete |Post |Send the Mining complete status to the other peers | JSON String representation which is encode to bytes |
 
-* payload information and  explanation of  all types of  request and corresponding response will discussed in details in the coming section.
+* payload information and  explanation of  all types of  request and corresponding response will discuss in details in the coming section.
 
 # 3. [Data/Arguments] - The data/argument is the content which need to be send or receive by the nodes.Here the message is of simple json format.Here Data or argument which deppends on the type of request method([get or post]).
 
@@ -93,19 +93,21 @@ M | MineComplete |Post |Send the Mining complete status to the other peers | JSO
 2. Data  - Here data is same as the request type and is of json String format.This optional in every messages
 
 
-## Explanations and Examples of all types requests and corresponding responses in the cheese coin system(block-chain)- 
+## Explanations and Examples of all types requests and corresponding responses in the cheese coin system(block-chain).Also, Here explain the sequence of operation with the sequence diagram  for the easiser assessment of  this system- 
 
 # 1. [P][T][Data] -
-Message format for sending the transaction amount and message between peers.
-sample data message  - 
--  [P][T][{"TransactionID": "2b209aa242755815b187bd049d9d9be18cb598e4", "Sendername": "Arun", "Receivername": "Arun", "Dateandtime": "2022-03-12 20:19:11.254937", 
+Message format for sending the transaction amount and message between one peer to another peer.
+###[sample message format]  - 
+-  b'[P][T][{"TransactionID": "2b209aa242755815b187bd049d9d9be18cb598e4", "Sendername": "Arun", "Receivers": "Arun", "Dateandtime": "2022-03-12 20:19:11.254937", 
 "Data": {"Message": "b'r\\x13\\xc1^\\xf9\\r\\x83Qj\\\\\\xbb9\\x01\\xe3\\x00+\\xcdC\\xbf\\xc1+\\xba\\x1e\\x1e\\xaa\\x17j\\xa5@\\x8f\\xf7_\\x05xKrlf\\xac\\x02\\xbf\\xb4~\\xd2\\x8e\\x1d\\x8e*r\\x16[\\x8f\\xef\\xd4\\xe8\\xa8sz\\x1b\\x93\\xa9\\x8b\\xc2L'", 
 "DigitalSignature": "b'M\\xa0*Q\\xc4\\t\\xd8\\xbe0\\xa3|=R\\x8c\\xbd\\xcc<\\xb4\\x0c\\xcdHL\\xb3sv\\x9e\\xf0<\\xa8\\xc9\\x9c\\xffq$x\\x02\\xe9\\x07\\xfc\"\\xa4-\\xb7\\xb0\\x00\\x95)\\xb2\\x8c\\xb9\\xcag\\xfa\\xba\\xeb}h\\xa8\\xffR/\\x14\\xd9\\xb6'"}}]
-      
+
+Here the user will select the peer name (receiver) from the given list and enter the amount and meesage.After that the  peer(sender) will encrypt the amount and meesage
+and send to the peers with the selected name(receiver peer).(with respect to the name peer will get the details like IP Address,PortNumber and Public Key the reciever peer from the database)
 
 # Reponse for this request  - 
 # [StatusCode] -  
-*  Here the sender get the code meesage deppends of the situations.For example if the reciever succesfully recived the message then the  sender get the status  - 200
+*  Here the sender get the code message depends on the situations.For example if the receiver successfully received the message then the  sender get the status  - 200
 
 # 2. [Post][Join][Data] - 
             Here when a node was added to the existing network ,then the new node will send it ip address and port number to the tracker server.Tracker will add the node details to the network list.
