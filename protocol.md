@@ -1,4 +1,4 @@
-# CHEESECOIN(BlockChain) PROTOCOL
+# CheeseCoin (BlockChain) Protocol
 
 ## PEERS
 Every peer is identified by:
@@ -62,13 +62,13 @@ The basic unit of information, encoded as a JSON String.
 | Message Type | Message Name |Request Type | Description | Payload Type |
 | ------------- | ------------- |------------- |------------- | ------------- |
 J | Join | Post |Broadcast the new node details to the tracker from the new node and then tracker to other connected peers| JSON String representation which is encode to bytes | 
-K | KeepAlive | Post |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |
+K | KeepAlive | Get |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |
 U | UnconnectedPeerList |Post | Send the unconnected peers list found during the "KeepAlive" test  and broadcast this data to all other connected peers to remove that details from their database| JSON String representation which is encode to bytes  |
 T | Transaction | Post |A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain(BlockChain) | JSON String representation which is encode to bytes|
 L | TransactionLedger | Post | Full transaction message to adding it in the transaction ledger | JSON String representation which is encode to bytes |
 M | MineComplete |Post |Send the Mining complete status to the other peers | JSON String representation which is encode to bytes  |
 N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation which is encode to bytes|
-P | Ping | Post |Sent from one peer to another Peer to make sure that it is online before trying to establish a TCP connection | Random nonce |
+P | Ping | Get |Sent from one peer to another Peer to make sure that it is online before trying to establish a TCP connection | Random nonce |
 H | History | Get|Get the history of blocks in the individual nodes.This should be useful when new node is connected to the network | JSON String representation which is encode to bytes |
 
 * payload information and  explanation of  all types of  request and corresponding response will discuss in details in the coming section.
@@ -87,7 +87,7 @@ Here moslty the types of all data is JSON String
 
 ## Explanations and Examples of all types requests and corresponding responses in the cheese coin system(block-chain).Also, Here explain the sequence of operation with the sequence diagram  for the easiser assessment of  this system- 
 
-# 1. [P][J][Data] -
+# 1. [P][J][Data] -  Join 
 Here when a node wants to added to the existing network ,then the new node will send it ip address and port number to the tracker server.Tracker will add the node details to the network list(Store it in database) and broadcast this new information to all other connected peer
 # Sample Message format for this request  - 
 - b'[P][J][{"name": "Arun", "port": "4001", "ipaddress": "192.168.0.13", "publickey": "PublicKey(6889655427552200076354428835056690601368344442973712579820372495436699722997255720370353402608729051843347233977967904133958397278532695372033434031389231, 65537)"}]
@@ -96,7 +96,7 @@ Here when a node wants to added to the existing network ,then the new node will 
 - Here when the new peer wants to connect  to the network, Select "C" or "c"(new node terminal output window) then the details of the new node will send to the tracker which contain the 
 IP Address,Port Number and Public Key.Tracker will receive  this information and broadcast the details all connected peer in the network and also add the network to the tracker's local database
 Also,All peer connected to the network get the same message via tracker.Each peer will receive this data, extract it and store it in the database
-# 2. [P][T][Data] -
+# 2. [P][T][Data] - Transaction
 Message format for sending the transaction amount and message between one peer to another peer.
 ###[sample message format]  - 
 -  b'[P][T][{"TransactionID": "2b209aa242755815b187bd049d9d9be18cb598e4", "Sendername": "Arun", "Receivers": "Arun", "Dateandtime": "2022-03-12 20:19:11.254937", 
@@ -112,7 +112,7 @@ and send to the peers with the selected name(receiver peer).(with respect to the
 ### Sequence Diagram of the above request and corresponding process in the peer(Between the sender and the receiver)
 ![title](Images/TransactionMessage.jpg)
 
-# 3. [P][L][Data] -
+# 3. [P][L][Data] - Ledger
 Message format for broadcasting the validated transaction details done between two peers to all other peer in the network.Each peer will receive this information and store it in their local ledger
 ###[sample message format]  - 
 -  b'[P][T][{"TransactionID": "2b209aa242755815b187bd049d9d9be18cb598e4", "Sendername": "Arun", "Receivers": "Arun", "Dateandtime": "2022-03-12 20:19:11.254937", 
@@ -121,7 +121,7 @@ Message format for broadcasting the validated transaction details done between t
 ### Response for this request  -  
 - Succeed - Here the sender get the "Succeed" message depends on the situations.If the message is successfully received he gets to "succeed" reply from the receivers
 
-# 4. [P][M]Message -
+# 4. [P][M]Message - Mine Complete
 This request is to send the mine complete status to all others peers.This request is for the Proof of Work Concept in the Cheese Coin System(BlockChain System).
 ##[Sample message format] - 
 - b'[P][M]MineCompleted
@@ -129,14 +129,14 @@ This request is to send the mine complete status to all others peers.This reques
 ### Response for this request  -  
 - Succeed - Here the sender get the "Succeed" message depends on the situations.If the message is successfully received he gets to "succeed" reply from the receivers
 
-# 5. [P][N][Message] - 
+# 5. [P][N][Message] - NewBlock
 When the mining is complete and then check for the "MiningCompleted" status in the database . if the "MiningComplete" status is not received then the mined block is broadcast to all other peers
 ##[Sample message format]
 - b'[P][N][{"index": "2", "hash": "000008323c645bf9a7dffe8109499ac4dbdb72ded3686ae7d4276c1636394471", "Block": {"Header": {"Version": "V1", "PreviousHash": "00006a374bcc1407441cf3bdd36efc062a81ea247dded90ae6d08b54c5950122", "MerkleRoot": ["d20bea979f0db2fe91a5ce9db4d6d40c271e47c5"], "Timestamp": "2022-03-13 23:47:57.282772", "DifficultyTarget": "4", "Nonce": 82201}, "TransactionCounter": 2, "TransactionList": {"Transactions": [{"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}, {"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}]}}}]'
 ### Response for this request  - 
 - Succeed - Here the sender get the "Succeed" message depends on the situations.If the message is successfully received he gets to "succeed" reply from the receivers
 
-# 6.[G][K][Message] -
+# 6.[G][K][Message] - KeepAlive
 Here the KeepAlive is  used to check the communication status of the connected nodes in the network which done by the tracker.
 ## [ Sample request format]
 - b'[G][K]000000
@@ -146,4 +146,8 @@ When the peers get this message then they will return the response as per the de
 - KeepAlive request is to check the communication status of the connected nodes in the network.The Tracker will periodically(for each 30 seconds) send the request to the peers and the peers will reply back
 if the Tracker doesn't get any reply from any peer which is in the database of the Tracker, and it will be removed the tracker's database also send the unconnected peer list to the all other connected peers ,also then the peers will remove the same from their database too
 
-# 7.[P][U][Message]  - 
+# 7.[P][U][Message]  -  Unconnected Peers List
+
+# 8.[G][H][Message]  -  BlockChain(CheeseCoin)  - History
+
+# 9.[G][P][Message]  - Ping between the peers 
