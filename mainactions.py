@@ -18,6 +18,8 @@ from BlockChain.CheeseCoin.Blocks.BlockMining import Mining
 from BlockChain.Network.MessageType.MineComplete import RequestCreation
 from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
+from BlockChain.Database.BlockChain import BlockChainDT
+from BlockChain.CheeseCoin.BlockChain.GenesisBlock import genesisBlock
 import time
 import socket
 
@@ -26,6 +28,7 @@ import socket
 connectedPeers  = PeerDetailsTable()
 ledgerDataTable  = TransactionsLedgerDT()
 miningCompleteStatusTable = MiningCompleteStatusDT()
+blockchainTable  =  BlockChainDT()
 ################################################################################################################
 if __name__ == "__main__":
     ############################################################################################################
@@ -48,6 +51,21 @@ if __name__ == "__main__":
     name = input("Enter your Name:")
     # peer data converted to dictionary for sending
     peerDetails = PeerDetails(ipAddress, port, hostPublicKey,name)
+    ###############################################################################################################################################
+    #create the genesis block in the blockchain
+    try:
+      print("lasthash",blockchainTable.retriveLastHash()[0])
+    except:
+      genesisBlockCreation = genesisBlock(name)
+      print("Genesis Block",genesisBlockCreation.mining())
+      genesisBlock = genesisBlockCreation.mining()
+      genesisBlockRequestCreation = BlockRequestCreation(genesisBlock)
+      genesisBlockMessageFormat  = genesisBlockRequestCreation.final()
+      print(genesisBlockMessageFormat)
+      connectedPeersList2 = connectedPeers.retrieveElements()
+      broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList2, genesisBlockMessageFormat)
+      broadCastMineCompleteMessage.mPeer()
+
     while True:
         # select the operation need to do by the system
         print("################################################################################################################################################")
@@ -122,7 +140,7 @@ if __name__ == "__main__":
             print(createdMerkalRoot )
             #Block Creation
             version = "V1"
-            previousHash = ""
+            previousHash = blockchainTable.retriveLastHash()[0]
             merkleRoot = createdMerkalRoot
             difficultyTarget = "4"
             nonce = 0
@@ -154,7 +172,6 @@ if __name__ == "__main__":
                 broadCastBlock = BroadCastMulitple(connectedPeersList1,blockRequestCreation.final())
                 broadCastBlock.mPeer()
                 addBlock = 0
-
             miningCompleteStatusTable.deleteMiningStatus()
             ledgerDataTable.deleteLedgerElement()
 

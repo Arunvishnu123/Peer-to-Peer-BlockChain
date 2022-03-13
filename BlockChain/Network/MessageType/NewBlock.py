@@ -24,6 +24,7 @@ class BlockRequestCreation:
     def final(self):
         final = self.requestType() + self.messageType() + self.data()
         finalMessage = final.encode('utf-8')
+        print("finalMessageslksdjfndjdjfjdfjsdfn",finalMessage)
         return finalMessage
 
 # receiver side
@@ -33,9 +34,17 @@ class BlockDataExtraction:
 
     def finalDataExtraction(self):
         decodedMessage  = self.receivedMessage
+        print("decodeMessage", decodedMessage)
         data = decodedMessage[7:-1]
+        print("test",data)
         dict = json.loads(data)
-        extractedData =(dict["index"],dict["hash"],dict["Block"]["Header"]["Version"],dict["Block"]["Header"]["PreviousHash"],dict["Block"]["Header"]["MerkleRoot"],dict["Block"]["Header"]["Timestamp"],dict["Block"]["Header"]["DifficultyTarget"],dict["Block"]["Header"]["Nonce"],dict["Block"]["TransactionCounter"],dict["Block"]["TransactionList"]["Transactions"])
+        try:
+         extractedData =(dict["hash"],dict["Block"]["Header"]["Version"],dict["Block"]["Header"]["PreviousHash"],str(dict["Block"]["Header"]["MerkleRoot"]),dict["Block"]["Header"]["Timestamp"],dict["Block"]["Header"]["DifficultyTarget"],dict["Block"]["Header"]["Nonce"],dict["Block"]["TransactionCounter"],str(dict["Block"]["TransactionList"]["Transactions"]))
+        except:
+         extractedData = (dict["hash"], dict["Block"]["Header"]["Version"], dict["Block"]["Header"]["PreviousHash"],
+                             str(dict["Block"]["Header"]["MerkleRoot"]), dict["Block"]["Header"]["Timestamp"],
+                             dict["Block"]["Header"]["DifficultyTarget"], dict["Block"]["Header"]["Nonce"],
+                             dict["Block"]["TransactionCounter"], str(dict["Block"]["TransactionList"]))
         return extractedData
 
 

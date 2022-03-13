@@ -13,7 +13,7 @@ class Receiver:
 
     def receiveMessagePost(self,queue):
         client, address = self.server.accept()
-        recievedMessage = client.recv(1024).decode('utf-8')
+        recievedMessage = client.recv(4096).decode('utf-8')
         print("recieved message:" , recievedMessage)
         queue.enque(recievedMessage)
         print("######################################################################################################################################")

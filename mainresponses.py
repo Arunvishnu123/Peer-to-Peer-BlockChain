@@ -10,11 +10,13 @@ from BlockChain.Network.MessageType.TransactionLedger import LedgerDataExtractio
 from BlockChain.Network.MessageType.MineComplete import DataExtraction as MineCompleteDataExtraction
 from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Network.MessageType.NewBlock import BlockDataExtraction
+from BlockChain.Database.BlockChain import BlockChainDT
 ###################################################################################################
 #create datables object
 peerDataTable = PeerDetailsTable()
 transactionDataTable  = TransactionsDT()
 ledgerDataTable = TransactionsLedgerDT()
+blockchainTable  =  BlockChainDT()
 
 #ServerIP
 reciever = Receiver(('192.168.0.13',4001))
@@ -59,8 +61,12 @@ while True:
 
     #newBlockCreated
     if(receivedMessage[4] == "N"):
+        print("last hash", blockchainTable.retriveLastHash())
         blockExtraction =  BlockDataExtraction(receivedMessage)
         print(blockExtraction.finalDataExtraction())
+        blockchainTable.addBlocks(blockExtraction.finalDataExtraction())
+
+
 
 
 
