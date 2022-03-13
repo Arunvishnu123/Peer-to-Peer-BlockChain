@@ -61,16 +61,15 @@ The basic unit of information, encoded as a JSON String.
 
 | Message Type | Message Name |Request Type | Description | Payload Type |
 | ------------- | ------------- |------------- |------------- | ------------- |
-P | Ping | Post |Sent from one peer to another to make sure that it is online before trying to establish a TCP connection | Random nonce | 
-K | KeepAlive | Post |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |  
-N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation which is encode to bytes| 
+J | Join | Post |Broadcast the new node details to the tracker from the new node and then tracker to other connected peers| JSON String representation which is encode to bytes | 
+K | KeepAlive | Post |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |
+U | UnconnectedPeerList |Post | Send the unconnected peers list found during the "KeepAlive" test  and broadcast this data to all other connected peers to remove that details from their database| JSON String representation which is encode to bytes  |
 T | Transaction | Post |A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain(BlockChain) | JSON String representation which is encode to bytes|
-H | History | Get|Get the history of blocks in the individual nodes | JSON String representation which is encode to bytes |
-L | LastHash | Post |Get the hash of last created blocks  | JSON String representation which is encode to bytes |
-J | Join | Post |Broadcast the new node details to the tracker from the new node  | JSON String representation which is encode to bytes |
-S | SendNodeData | Post|Broadcast the new node details to the peers  | JSON String representation which is encode to bytes |
 L | TransactionLedger | Post | Full transaction message to adding it in the transaction ledger | JSON String representation which is encode to bytes |
-M | MineComplete |Post |Send the Mining complete status to the other peers | JSON String representation which is encode to bytes |
+M | MineComplete |Post |Send the Mining complete status to the other peers | JSON String representation which is encode to bytes  |
+N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation which is encode to bytes|
+P | Ping | Post |Sent from one peer to another Peer to make sure that it is online before trying to establish a TCP connection | Random nonce |
+H | History | Get|Get the history of blocks in the individual nodes.This should be useful when new node is connected to the network | JSON String representation which is encode to bytes |
 
 * payload information and  explanation of  all types of  request and corresponding response will discuss in details in the coming section.
 
@@ -133,46 +132,18 @@ This request is to send the mine complete status to all others peers.This reques
 # 5. [P][N][Message] - 
 When the mining is complete and then check for the "MiningCompleted" status in the database . if the "MiningComplete" status is not received then the mined block is broadcast to all other peers
 ##[Sample message format]
-b'[P][N][{"index": "2", "hash": "000008323c645bf9a7dffe8109499ac4dbdb72ded3686ae7d4276c1636394471", "Block": {"Header": {"Version": "V1", "PreviousHash": "00006a374bcc1407441cf3bdd36efc062a81ea247dded90ae6d08b54c5950122", "MerkleRoot": ["d20bea979f0db2fe91a5ce9db4d6d40c271e47c5"], "Timestamp": "2022-03-13 23:47:57.282772", "DifficultyTarget": "4", "Nonce": 82201}, "TransactionCounter": 2, "TransactionList": {"Transactions": [{"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}, {"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}]}}}]'
+- b'[P][N][{"index": "2", "hash": "000008323c645bf9a7dffe8109499ac4dbdb72ded3686ae7d4276c1636394471", "Block": {"Header": {"Version": "V1", "PreviousHash": "00006a374bcc1407441cf3bdd36efc062a81ea247dded90ae6d08b54c5950122", "MerkleRoot": ["d20bea979f0db2fe91a5ce9db4d6d40c271e47c5"], "Timestamp": "2022-03-13 23:47:57.282772", "DifficultyTarget": "4", "Nonce": 82201}, "TransactionCounter": 2, "TransactionList": {"Transactions": [{"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}, {"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}]}}}]'
 ### Response for this request  - 
 - Succeed - Here the sender get the "Succeed" message depends on the situations.If the message is successfully received he gets to "succeed" reply from the receivers
 
-
-
-
-
-
-
-
-# 3.[Get][KeepAlive] - 
-      Here the KeepAlive is  used to check the communication status of the connected nodes in the network.
-
+# 6.[G][K][Message] -
+Here the KeepAlive is  used to check the communication status of the connected nodes in the network which done by the tracker.
+## [ Sample request format]
+- b'[G][K]000000
 # Response of this request - 
-# [StatusCode][Data] -
-      This repsonse contain the status code which is 200 - Ok or 404 - not found  and Data and the code is 200 then it contain a data in json format.
-      sample message - 
-      {
-          "nodeid":"34",
-          "status":"online"
-      }
+When the peers get this message then they will return the response as per the design
+- b'[G][K]111111
+- KeepAlive request is to check the communication status of the connected nodes in the network.The Tracker will periodically(for each 30 seconds) send the request to the peers and the peers will reply back
+if the Tracker doesn't get any reply from any peer which is in the database of the Tracker, and it will be removed the tracker's database also send the unconnected peer list to the all other connected peers ,also then the peers will remove the same from their database too
 
-# 4.[Post][Win][Data] - 
-    This is used to broadcast the created blocks to all nodes in the network.
-    sample message format - 
-    {[{
-      "transactionid:"232",
-      "sender":"Arun",
-      "receiver":"Vishnu,
-      "timestamp":39043949230,
-      "amount":20
-    },------],
-    "hashnumber":"000000SDSDUFEFUEFUEFIEJD",
-    "specialnumber":30930490349
-    }
-
-# Response of this request -  
-# [StatusCode] - 
-    This contain mainly 200 - success or 400 - bad request
-
-
-   
+# 7.[P][U][Message]  - 

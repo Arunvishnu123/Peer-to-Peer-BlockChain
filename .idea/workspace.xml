@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/BlockChain.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BlockChain.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/protocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/protocol.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
