@@ -15,14 +15,9 @@ class RequestCreation:
         mType = str[:1] + "M" + str[1:]
         return mType
 
-    def data(self):
-        str = "[]"
-        data = json.dumps(self.message)
-        dType = str[:1] + data + str[1:]
-        return dType
 
     def final(self):
-        final = self.requestType() + self.messageType() + self.data()
+        final = self.requestType() + self.messageType() + self.message
         finalMessage = final.encode('utf-8')
         return finalMessage
 
@@ -32,8 +27,8 @@ class DataExtraction:
         self.receivedMessage = receivedMessage
 
     def finalDataExtraction(self):
-        decodedMessage  = self.receivedMessage.decode('utf-8')
-        data = decodedMessage[7:-1]
+        decodedMessage  = self.receivedMessage
+        data = decodedMessage[6:]
         return data
 
 

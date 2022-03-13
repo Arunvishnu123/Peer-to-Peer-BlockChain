@@ -1,7 +1,7 @@
 # This is always a post request type
 # sender side
 import json
-class RequestCreation:
+class BlockRequestCreation:
     def __init__(self,message):
         self.message = message
 
@@ -27,14 +27,16 @@ class RequestCreation:
         return finalMessage
 
 # receiver side
-class DataExtraction:
+class BlockDataExtraction:
     def __init__(self,receivedMessage):
         self.receivedMessage = receivedMessage
 
     def finalDataExtraction(self):
-        decodedMessage  = self.receivedMessage.decode('utf-8')
+        decodedMessage  = self.receivedMessage
         data = decodedMessage[7:-1]
-        return data
+        dict = json.loads(data)
+        extractedData =(dict["index"],dict["hash"],dict["Block"]["Header"]["Version"],dict["Block"]["Header"]["PreviousHash"],dict["Block"]["Header"]["MerkleRoot"],dict["Block"]["Header"]["Timestamp"],dict["Block"]["Header"]["DifficultyTarget"],dict["Block"]["Header"]["Nonce"],dict["Block"]["TransactionCounter"],dict["Block"]["TransactionList"]["Transactions"])
+        return extractedData
 
 
 

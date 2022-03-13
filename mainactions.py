@@ -16,6 +16,8 @@ from BlockChain.CheeseCoin.Blocks.MerkelRootsCreation import merkelroots
 from BlockChain.CheeseCoin.Blocks.CreateBlock import Block
 from BlockChain.CheeseCoin.Blocks.BlockMining import Mining
 from BlockChain.Network.MessageType.MineComplete import RequestCreation
+from BlockChain.Database.MineComplete import MiningCompleteStatusDT
+from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
 import time
 import socket
 
@@ -23,6 +25,7 @@ import socket
 #database for the connected peer details
 connectedPeers  = PeerDetailsTable()
 ledgerDataTable  = TransactionsLedgerDT()
+miningCompleteStatusTable = MiningCompleteStatusDT()
 ################################################################################################################
 if __name__ == "__main__":
     ############################################################################################################
@@ -130,13 +133,30 @@ if __name__ == "__main__":
             mineCreatedBlock = Mining(createdBloc)
             minedBlock = mineCreatedBlock.mining()
             print("Final Created Block", minedBlock[0])
-            if minedBlock[1]  == 1:
-                mineCompleteRequestCreation = RequestCreation(("MineCompleted  " +  name))
+            miningPeerStatus =  miningCompleteStatusTable.retriveMiningStatus()
+            ########################################################################################################
+            #Proof of Work
+            try:
+               print("miningPeerStatus",miningPeerStatus[0])
+            except:
+                addBlock = 1
+            ##########################################################################################################
+            #proof of work
+            if minedBlock[1]  == 1 and addBlock == 1 :
+                mineCompleteRequestCreation = RequestCreation("MineCompleted")
                 mineCompleteMessage = mineCompleteRequestCreation.final()
                 print("Mine Complete Message Format :", mineCompleteMessage)
                 connectedPeersList1 = connectedPeers.retrieveElements()
                 broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList1,mineCompleteMessage)
                 broadCastMineCompleteMessage.mPeer()
+                blockRequestCreation = BlockRequestCreation(minedBlock[0])
+                print("final request creation",blockRequestCreation.final())
+                broadCastBlock = BroadCastMulitple(connectedPeersList1,blockRequestCreation.final())
+                broadCastBlock.mPeer()
+                addBlock = 0
+
+            miningCompleteStatusTable.deleteMiningStatus()
             ledgerDataTable.deleteLedgerElement()
+
 
 

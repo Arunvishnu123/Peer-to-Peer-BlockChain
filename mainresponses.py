@@ -7,6 +7,9 @@ from BlockChain.Database.PeerDetails import PeerDetailsTable
 from BlockChain.Database.Transactions import TransactionsDT
 from BlockChain.Database.Ledger import TransactionsLedgerDT
 from BlockChain.Network.MessageType.TransactionLedger import LedgerDataExtraction
+from BlockChain.Network.MessageType.MineComplete import DataExtraction as MineCompleteDataExtraction
+from BlockChain.Database.MineComplete import MiningCompleteStatusDT
+from BlockChain.Network.MessageType.NewBlock import BlockDataExtraction
 ###################################################################################################
 #create datables object
 peerDataTable = PeerDetailsTable()
@@ -43,4 +46,23 @@ while True:
         extractedLedgerData = LedgerDataExtraction(receivedMessage)
         print("Extracted Message of Transactions(for ledger creation:",extractedLedgerData.finalDataExtraction())
         ledgerDataTable.addLedgerElements(extractedLedgerData.finalDataExtraction())
+
+    #Mine Complete Request
+    if(receivedMessage[4] == "M"):
+        mineCompleteDataExtraction = MineCompleteDataExtraction(receivedMessage)
+        statusMine = mineCompleteDataExtraction.finalDataExtraction()
+        print("status",statusMine)
+        print(type(statusMine))
+        miningCompleteStatus = MiningCompleteStatusDT()
+        print((statusMine,1))
+        miningCompleteStatus.addMiningStatus((statusMine,1))
+
+    #newBlockCreated
+    if(receivedMessage[4] == "N"):
+        blockExtraction =  BlockDataExtraction(receivedMessage)
+        print(blockExtraction.finalDataExtraction())
+
+
+
+
 
