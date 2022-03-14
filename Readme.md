@@ -7,7 +7,7 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
 - Arun Raveendran Nair Sheela
 
 ##Folder structure explanation
-* ##BlockChain - Blockchain folder contain all the packages used for each peers
+##BlockChain - Blockchain folder contain all the packages used for each peers
     - ###CheeseCoin - It is package which contain th modules which help to create only blockchain parts
       - ###BlockChain -
         - BlockChain.py - Module helps to add the mined block to the existing chain
@@ -53,10 +53,10 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
         - MessageCreationToTracker.py - Module used to create a dictionary which contain IP address,portnumber,name and publickey the new peer which will be send to the tracker
       - ###Queue 
         - Queue.py - Module used to return the value from the threaded function(Queue Data structure)
-* ###Database - 
+###Database - 
     - BlockChain.db - Database which is used store the information of the blockchain
-* ###Images - Folder which contain the architecture and diagrams required for the documentation
-* ##Tracker - Folder which contain all the packages and modules required for the Tracker logic
+###Images - Folder which contain the architecture and diagrams required for the documentation
+##Tracker - Folder which contain all the packages and modules required for the Tracker logic
     - ###Database
       - Creation.py -Module used to create the database for the tracker 
       - MessageQueue.py - Module used to do the CRUD operation for the MessageQueue table
@@ -67,13 +67,13 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
       - QueueThreading.py - Module used to return the value from the threaded function(Queue Data structure)
     - ###Server 
       - Server.py - Module for creating tracker server,sending the new peer details, receiving new peer details and check the status of the network 
-* ###AutoEvaluation.md
-* ###CreateDB-Tables.py - Module used to create table in the database only for the BLOCKCHAIN/CHEESECHAIN
+###AutoEvaluation.md
+###CreateDB-Tables.py - Module used to create table in the database only for the BLOCKCHAIN/CHEESECHAIN
    ##   - Run this module to create tables in the database if it is  not created
-* ##mainactions.py -   Main Module which help to give command to the system from the user for the corresponding operations like "JOIN","MINING","TRANSACTIONS" etc which should explain in detail later in the same document
+##mainactions.py -   Main Module which help to give command to the system from the user for the corresponding operations like "JOIN","MINING","TRANSACTIONS" etc which should explain in detail later in the same document
    ##  - Run this module in every peers to send the data( run compulsory for every peer)
-* ##mainresponses.py - Main Module which help to receive the messages broadcast in the network
-  ##  - Run this module in every peers to recieve the data( run compulsory for every peer)
+##mainresponses.py - Main Module which help to receive the messages broadcast in the network
+    - Run this module in every peers to recieve the data( run compulsory for every peer)
 * protocol.md
 * Readme.md
 * ##Trackermain.py  - Tracker main Module to run the tracker server
