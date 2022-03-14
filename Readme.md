@@ -69,11 +69,11 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
       - Server.py - Module for creating tracker server,sending the new peer details, receiving new peer details and check the status of the network 
 * ###AutoEvaluation.md
 * ###CreateDB-Tables.py - Module used to create table in the database only for the BLOCKCHAIN/CHEESECHAIN
-      - Run this module to create tables in the database if it is  not created
+   ##   - Run this module to create tables in the database if it is  not created
 * ##mainactions.py -   Main Module which help to give command to the system from the user for the corresponding operations like "JOIN","MINING","TRANSACTIONS" etc which should explain in detail later in the same document
-      - Run this module in every peers to send the data( run compulsory for every peer)
+   ##  - Run this module in every peers to send the data( run compulsory for every peer)
 * ##mainresponses.py - Main Module which help to receive the messages broadcast in the network
-      - Run this module in every peers to recieve the data( run compulsory for every peer)
+  ##  - Run this module in every peers to recieve the data( run compulsory for every peer)
 * protocol.md
 * Readme.md
 * ##Trackermain.py  - Tracker main Module to run the tracker server
