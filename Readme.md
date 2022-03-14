@@ -79,7 +79,7 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
 * ## Trackermain.py  - Tracker main Module to run the tracker server
       - Run this module only in the system which is selected as tracker
 
-#Procedure for starting the application (User Manual)
+# Procedure for starting the application (User Manual)
 
 * install the "rsa" module by using the "pip install rsa command"
 * Download the SQLite studio for see the data
@@ -105,5 +105,5 @@ please use the below command to work with application
 * During the operation check the mainresponse.py to check the receiving message
 * And Also, check the SQLIte studio to see the updations
 
-##Architecture of the System
+## Architecture of the System
 ![title](Images/architecture.jpg)
