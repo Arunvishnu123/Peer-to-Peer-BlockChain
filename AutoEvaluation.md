@@ -51,10 +51,41 @@ We have multiple team  meetings to define the use cases of the blockchain system
 * If there is not "MiningComplete" status then send the block other peers 
 * Other peer receives this block and add it to the blockchain
 * Also, here Genesis Block also called "RacletteCheese" will created by the first peer connected to the network
-* 
+* Also there is message queue system in the block,The working is when a the peer try to send the created block to other peers, at this time, any failure instance occur then that message and connection information will be logged into a database
+constantly the peer try to send the message in the database
+* Also, new peer can request the blockchain history
+
+# Tracker
+* Tracker will accept the new peer details and distribute it to all other peers
+* Tracker there is one message queue system - Working is that when the tracker broadcast the new node details according the peer list in there local database to other peer, then any failed case occur when try to connect to ta peer then the message and the connection information of that peer will log into another table in the database
+* Constantly the tracker will send the message in the queue according the connections
+* Tracker will check the communication status of each peer in the network according to the peer list in the tracker 
+* If the tracker find out any peer is offline then the tracker send this peer details(it can be one or many ) to other connected peers 
+* Peers will receive this information and delete the connection details of the offline peers from the database
+
+# What Works on the Tracker
+
+ |Features|Status|
+ |---------------|--------------|
+ |Features|Status|
+
+# What Works on the Peers
+
+ |Features|Status|
+ |---------------|--------------|
+ |Features|Status|
 
 
+# Time Spent for each member and their contribution
 
+ |Features|Part which member worked|Time spend|
+ |---------------|--------------|-------------|
+|Features|Part which member worked|Time spend|
+
+# Good Development Practices Followed
+|   Class    |   Practises followed   |
+|-------|--------|
+|   Class    |   Practises followed   |
 
 
     
