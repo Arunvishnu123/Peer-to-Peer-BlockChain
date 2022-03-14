@@ -77,9 +77,9 @@ constantly the peer try to send the message in the database
 
 # Time Spent for each member and their contribution
 
- |Member Name|Part which member worked|Time spend|
+ |Member Name|Part which each member worked|Time spend in hours|
  |---------------|--------------|-------------|
-|Member Name|Part which member worked|Time spend|
+|Arun Raveendran Nair Sheela|Block Chain creation,Designing,Network Programming,Tracker,Testing,Research|~80 hours|
 
 # Good Development Practices Followed
 |   Class    |   Practises followed   |
