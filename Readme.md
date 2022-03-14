@@ -11,6 +11,13 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
 
 # Procedure for starting the application (User Manual)
 
+### Tools used
+* Python - Verison 3.9
+* Pycharm Community edition as IDE
+* SQLite database for storing the information
+* Sqlite Studio is used to visualise the data in the datbase
+
+### Steps for running the application
 * install the "rsa" module by using the "pip install rsa command"
 * Download the SQLite studio for see the data
 * Run the CreateDB-Table.py module first 
