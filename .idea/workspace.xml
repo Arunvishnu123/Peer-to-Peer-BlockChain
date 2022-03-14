@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoEvaluation.md" beforeDir="false" afterPath="$PROJECT_DIR$/AutoEvaluation.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

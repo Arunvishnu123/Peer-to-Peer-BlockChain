@@ -65,22 +65,21 @@ constantly the peer try to send the message in the database
 
 # What Works on the Tracker
 
- |Features|Status|
- |---------------|--------------|
- |Features|Status|
+ |Features|Status|Remarks|
+ |---------------|--------------|-------------|
+ |Features|Status|Remarks|
 
 # What Works on the Peers
 
- |Features|Status|
- |---------------|--------------|
- |Features|Status|
-
+ |Features|Status|Remarks|
+ |---------------|--------------|-------------|
+ |Features|Status|Remarks|
 
 # Time Spent for each member and their contribution
 
- |Features|Part which member worked|Time spend|
+ |Member Name|Part which member worked|Time spend|
  |---------------|--------------|-------------|
-|Features|Part which member worked|Time spend|
+|Member Name|Part which member worked|Time spend|
 
 # Good Development Practices Followed
 |   Class    |   Practises followed   |
