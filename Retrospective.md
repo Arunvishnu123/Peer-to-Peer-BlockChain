@@ -12,6 +12,7 @@
 * socket  - For Network programming - inbuilt
 * pathlib - Get the location of files 
 * SQLite - For connecting to the Sqlite database
+* json - 
 * PyQT5  - for creating the user interface
 
 # Project Organization - 
@@ -45,30 +46,60 @@ We followed the SCRUM methodology for this project development.We have several s
 ### The main objective of this sprint is to develop the networking aspects and test the blockchain.
  |ID|Task Name|Hours Spend|Remarks|
  |---------------|--------------|-------------|----------|
- |#1|Understand the full requirements of this project|||
- |#2|Study about the Blockchain working|||
-|#3|Study about the peer to peer networking|||
-|#4|Define the types of message that are transmitted in the peer to peer network|||
-|#5|Write the protocol document according to the message types defined with format of each message|||
+ |#10|Learn about the socket programming and do the required test|||
+ |#11|Create modules to structure the message required for the sending and receiving in the network as per the protocol document|||
+|#12|Design the database and identifying the table required|||
+|#13|Create modules to do the CRUD operations for each tables in the database|||
+|#14|Create module for receiving and sending message in the peer to peer network using the socket programming|||
+|#15|Create the Tracker server as per design|||
+|#16|Integrate all modules in the main program|||
+|#17|So the required testing and make sure every thing is working fine|||
 
 ## Sprint - 4 - 
 ### The main objective of this sprint is to add the additional functionalities like message queue system and automatic liveliness test of peers by tracker.
  |ID|Task Name|Hours Spend|Remarks|
  |---------------|--------------|-------------|----------|
- |#1|Understand the full requirements of this project|||
- |#2|Study about the Blockchain working|||
-|#3|Study about the peer to peer networking|||
-|#4|Define the types of message that are transmitted in the peer to peer network|||
-|#5|Write the protocol document according to the message types defined with format of each message|||
+|#18|Add the message queue system in the block chain to store the mined Blocks|||
+|#19|Add the message queue system in the tracker to store the new peer details|||
+|#20|Add the liveliness test of peers by tracker|||
+|#21|Do the testing and make sure the system is working fine|||
+|#22|Create the user interface for the blockchain|||
+|#21|DD the testing of user interface|||
 
 # Difficulties we faced during the implementation of this application - 
-
-
+|ID|Difficulties|
+|---------|-----------|
+|1|Designing the Asymmetric cryptography is the first difficulty we faced while implementing the block chain.We tested many modules and final found one that is "rsa",During the initial testing the module was working perfectly.But there was a problem in that module that is we can't able to double encrypt the message for achieving both Authentication and confidentiality.We already lost lot of time for testing this module.We didn't plan to change te module,instead of that we give digital signature for the authentication and encrypt the message for confidentiality(Already explain in details about our design of Asymmetric cryptography in ProjectDescription.md file)  |
+|2|Understanding the concept of network programming.We do lot of testing using socket module using python to understand the concept.Finally we reached our goal |
+|3|Couldn't able to send the public key in the network. Because the type of public key is ""<class 'rsa.key.PublicKey'>"".To send via network we need to convert it into string and then bytes.But after that it can't convert back to its initial datatype. So here we can't able using it for encryption or for validation.The issue is still in the system|
+|4|We waste lot of time in looking for a small problem.that is buf-size.Initially our buf-size was 1024.But when try to send long messages some data are missing and thus causing error in the application .after a  long testing we found that it was caused due to the buf-size.After that it changed to 4096|
+|5|Now is How to return value from a threaded function.This issue also consume lot of our time.Finally solve the issue by using the queue data structure|
 # Lessons learned from the implementation - 
+|ID|lessons learned|
+|-------------|--------------|
+|1|Learned the concept about blockchain and knows it importance|
+|2|Learned the working of peer to peer networking|
+|3|Learned about the socket programming using python|
+|4|Learned about the multi-threading concept|
+|5|Learned about asymmetric cryptography|
+|6|Learned about SQlite database and understand its advantage|
+# what you would keep for next time -
 
-
-# what you would keep for next time - 
+|ID|Thing keep for the next time|
+|-------------|--------------|
+|1|Module based development which is more robust and flexible style of coding.We can easily add things here and also troubleshoot is also very easy|
+|2|Continuous testing of logic makes easier to find bugs at earlier stage|
+|3|Usage of github for version control|
 
 
 # what you would do differently - 
+
+|ID|Improvements Areas|
+|-------------|--------------|
+|1|Project management should be improved better|
+|2|Have a proper plan of designing the whole system before start the coding.Learn all concepts used in the programming,do the required poc(Proof of concept) before starting the development.Also, Draw the UML diagram if required, Atleast the sequence diagram before developing|
+|3|Create a user interface for the system that|
+|4|Create wallet for the users outside the networking.So that they can also use the full benefits|
+|5|Do the Automated testing of the application|
+|6|Write the unit test to know bug and stability of the system in all conditions|
 
