@@ -67,18 +67,43 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
       - QueueThreading.py - Module used to return the value from the threaded function(Queue Data structure)
     - ###Server 
       - Server.py - Module for creating tracker server,sending the new peer details, receiving new peer details and check the status of the network 
-* ###AutoEvaluation.md
-* ###CreateDB-Tables.py - Module used to create table in the database only for the BLOCKCHAIN/CHEESECHAIN
+* ### AutoEvaluation.md
+* ### CreateDB-Tables.py - Module used to create table in the database only for the BLOCKCHAIN/CHEESECHAIN
    ##   - Run this module to create tables in the database if it is  not created
-* ##mainactions.py -   Main Module which help to give command to the system from the user for the corresponding operations like "JOIN","MINING","TRANSACTIONS" etc which should explain in detail later in the same document
+* ## mainactions.py -   Main Module which help to give command to the system from the user for the corresponding operations like "JOIN","MINING","TRANSACTIONS" etc which should explain in detail later in the same document
    ##  - Run this module in every peers to send the data( run compulsory for every peer)
-* ##mainresponses.py - Main Module which help to receive the messages broadcast in the network
+* ## mainresponses.py - Main Module which help to receive the messages broadcast in the network
   ##  - Run this module in every peers to recieve the data( run compulsory for every peer)
 * protocol.md
 * Readme.md
-* ##Trackermain.py  - Tracker main Module to run the tracker server
+* ## Trackermain.py  - Tracker main Module to run the tracker server
       - Run this module only in the system which is selected as tracker
-##Procedure for starting the application
+
+#Procedure for starting the application (User Manual)
+
+* install the "rsa" module by using the "pip install rsa command"
+* Download the SQLite studio for see the data
+* Run the CreateDB-Table.py module first 
+* Run the mainaction.py module
+* Run the mainresponse.py module
+## only for the Tracker system - 
+* Run the Trackermain.py
+
+## Interacting with the application - 
+* mainaction.py terminal output window is used for the user interaction.
+please use the below command to work with application
+#### Intial configuration of each peer when connecting the first time
+* Select the port number which the peer need to run (IP address will take automatically)
+* Enter the name of the peer
+* Enter the "C" or "c" to connect the peer to the network. When selecting this command is executed then peer will send the information like IP address,port number,Public key, name to the tracker
+* Enter the "T" or "t" to send money to individual peers. when selecting this command is executed peer need to enter the following procedures. 
+   - Show the connected peers list
+   - Select the name from the list
+   - Enter the amount
+   - Enter the message
+* Enter the "M" or "m" to for creating the new block by using the  transactions in ledger and Mine it
+#### During the operation check the mainresponse.py to check the receiving message
+#### And Also, check the SQLIte studio to see the updations
 
 ##Architecture of the System
 ![title](Images/architecture.jpg)
