@@ -3,8 +3,37 @@
 The goal of the project is to implement a blockchain -  peer-to-peer system inspired by Bitcoin.It uses a tracker  which help to add peers to the network and also, 
 the Peer-to-Peer communication to share the data between the nodes in the cheese chain(Block-Chain)
 
-## Team Members - 
+# Team Members - 
 - Arun Raveendran Nair Sheela
+
+# Architecture of the System
+![title](Images/architecture.jpg)
+
+# Procedure for starting the application (User Manual)
+
+* install the "rsa" module by using the "pip install rsa command"
+* Download the SQLite studio for see the data
+* Run the CreateDB-Table.py module first 
+* Run the mainaction.py module
+* Run the mainresponse.py module
+## only for the Tracker system - 
+* Run the Trackermain.py
+
+## Interacting with the application - 
+* mainaction.py terminal output window is used for the user interaction.
+please use the below command to work with application
+## Intial configuration of each peer when connecting the first time
+* Select the port number which the peer need to run (IP address will take automatically)
+* Enter the name of the peer
+* Enter the "C" or "c" to connect the peer to the network. When selecting this command is executed then peer will send the information like IP address,port number,Public key, name to the tracker
+* Enter the "T" or "t" to send money to individual peers. when selecting this command is executed peer need to enter the following procedures. 
+   - Show the connected peers list
+   - Select the name from the list
+   - Enter the amount
+   - Enter the message
+* Enter the "M" or "m" to for creating the new block by using the  transactions in ledger and Mine it
+* During the operation check the mainresponse.py to check the receiving message
+* And Also, check the SQLIte studio to see the updations
 
 ## Folder structure explanation
 * ## BlockChain - Blockchain folder contain all the packages used for each peers
@@ -79,31 +108,4 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
 * ## Trackermain.py  - Tracker main Module to run the tracker server
       - Run this module only in the system which is selected as tracker
 
-# Procedure for starting the application (User Manual)
 
-* install the "rsa" module by using the "pip install rsa command"
-* Download the SQLite studio for see the data
-* Run the CreateDB-Table.py module first 
-* Run the mainaction.py module
-* Run the mainresponse.py module
-## only for the Tracker system - 
-* Run the Trackermain.py
-
-## Interacting with the application - 
-* mainaction.py terminal output window is used for the user interaction.
-please use the below command to work with application
-## Intial configuration of each peer when connecting the first time
-* Select the port number which the peer need to run (IP address will take automatically)
-* Enter the name of the peer
-* Enter the "C" or "c" to connect the peer to the network. When selecting this command is executed then peer will send the information like IP address,port number,Public key, name to the tracker
-* Enter the "T" or "t" to send money to individual peers. when selecting this command is executed peer need to enter the following procedures. 
-   - Show the connected peers list
-   - Select the name from the list
-   - Enter the amount
-   - Enter the message
-* Enter the "M" or "m" to for creating the new block by using the  transactions in ledger and Mine it
-* During the operation check the mainresponse.py to check the receiving message
-* And Also, check the SQLIte studio to see the updations
-
-## Architecture of the System
-![title](Images/architecture.jpg)
