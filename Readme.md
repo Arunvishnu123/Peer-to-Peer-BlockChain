@@ -6,18 +6,18 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
 ## Team Members - 
 - Arun Raveendran Nair Sheela
 
-##Folder structure explanation
-* ##BlockChain - Blockchain folder contain all the packages used for each peers
-    - ###CheeseCoin - It is package which contain th modules which help to create only blockchain parts
-      - ###BlockChain -
+## Folder structure explanation
+* ## BlockChain - Blockchain folder contain all the packages used for each peers
+    - ### CheeseCoin - It is package which contain th modules which help to create only blockchain parts
+      - ### BlockChain -
         - BlockChain.py - Module helps to add the mined block to the existing chain
         - BlockValidation.py - Module helps to validate the entire blockchain/cheesechain
         - GenesisBlock.py - Module helps to calculate the first block in the block chain 
-      - ###Blocks
+      - ### Blocks
         - BlockMining.py - Module helps to mine the created block and calculate the nonce
         - CreateBlock.py - Module helps to create the Block in dictionary data structure by adding the elements as per the structure
         - MerkelRootsCreation.py - Module helps to create the merkel roots of the transactions in the Transaction Ledger
-      - ###Transaction
+      - ### Transaction
         - CreateTransactionData.py - Module which create the transaction message which contain transaction message,sender and receiver name,timestamp in dictionary data structure for sending 
         - CreateTransactionDictionaryLedger.py - 
         - CreateTransactionLedger.py - 
@@ -26,14 +26,14 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
         - GeneratePublicPrivateKey.py - Module used to create the private and public key for each peers
         - TransactionData.py - module used to convert the message and amount entered by the sender to dictionary data structure for the encryption purpose
       - main.py - This main module test the whole modules written above and verify that all the module is working fine as per sequence of operation. Purpose of this module is only for testing the BLockChain working without the networking an any kind of database and data sharing
-    - ###Database
+    - ### Database
       - BlockChain.py - Module used to do the CRUD operation for the BlockChain Table
       - CreateDatabase.py - Module used to create the database name "BlockChain.db" in the specified location
       - Ledger.py - Module used to do the CRUD operation for the Transaction Ledger Table
       - MineComplete.py - Module used to do the CRUD operation for the MineComplete table
       - PeerDetails.py - Module used to do the CRUD operation for the PeerDetails table
       - Transaction.py - Module used to do te CRUD operation for the Transaction table
-    - ###Network
+    - ### Network
       - MessageType - Package used to create message structures for and broadcasting and also, extract the required information from the received message(for more information  - check the protocol.md file)
         - Join.py - Module used to create message structure as per format  for sending and also, extract the information received a convert the data to tuples to log the data to the database for the "JOIN" request(for more information  - check the protocol.md file)
         - KeepAlive.py - Module used to create message structure as per format  for sending and also, extract the information received a convert the data to tuples to log the data to the database for the "KEEPAlIVE" request(for more information  - check the protocol.md file)
@@ -44,28 +44,28 @@ the Peer-to-Peer communication to share the data between the nodes in the cheese
         - SendNodeData.py - Module used to create message structure as per format  for sending and also, extract the information received a convert the data to tuples to log the data to the database for the "SENDNODEDATA" request(for more information  - check the protocol.md file)
         - Transaction.py - Module used to create message structure as per format  for sending and also, extract the information received a convert the data to tuples to log the data to the database for the "TRANSACTION" request(for more information  - check the protocol.md file)
         - TransactionLedger.py - Module used to create message structure as per format  for sending and also, extract the information received a convert the data to tuples to log the data to the database for the "TRANSACTIONLEDGER" request(for more information  - check the protocol.md file)
-      - ###RequestType - This package contains the modules which used to send messages to the peers and receive messages from peers
+      - ### RequestType - This package contains the modules which used to send messages to the peers and receive messages from peers
         - BroadcastMultiple.py - Module used to broadcast the message to multiple peers
         - BroadcastSelected.py - Module used to broadcast the message to only one selected peers
         - ReceiveMessage.py - Module used to receive message from the other peers and tracker
-      - ###TrackerClient
+      - ### TrackerClient
         - Client.py - Module used to send the message only to the tracker
         - MessageCreationToTracker.py - Module used to create a dictionary which contain IP address,portnumber,name and publickey the new peer which will be send to the tracker
-      - ###Queue 
+      - ### Queue 
         - Queue.py - Module used to return the value from the threaded function(Queue Data structure)
-* ###Database - 
+* ### Database - 
     - BlockChain.db - Database which is used store the information of the blockchain
-* ###Images - Folder which contain the architecture and diagrams required for the documentation
-* ##Tracker - Folder which contain all the packages and modules required for the Tracker logic
-    - ###Database
+* ### Images - Folder which contain the architecture and diagrams required for the documentation
+* ## Tracker - Folder which contain all the packages and modules required for the Tracker logic
+    - ### Database
       - Creation.py -Module used to create the database for the tracker 
       - MessageQueue.py - Module used to do the CRUD operation for the MessageQueue table
       - PeerDetails.py - Module used to do the CRUD operation for the PeerDetails table
-    - ####DatabaseSource - Tracker database source folder
+    - #### DatabaseSource - Tracker database source folder
       - Tracker.db
-    - ###Queue 
+    - ### Queue 
       - QueueThreading.py - Module used to return the value from the threaded function(Queue Data structure)
-    - ###Server 
+    - ### Server 
       - Server.py - Module for creating tracker server,sending the new peer details, receiving new peer details and check the status of the network 
 * ### AutoEvaluation.md
 * ### CreateDB-Tables.py - Module used to create table in the database only for the BLOCKCHAIN/CHEESECHAIN
