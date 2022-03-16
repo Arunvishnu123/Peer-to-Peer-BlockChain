@@ -63,11 +63,19 @@ constantly the peer try to send the message in the database
 * If the tracker find out any peer is offline then the tracker send this peer details(it can be one or many ) to other connected peers 
 * Peers will receive this information and delete the connection details of the offline peers from the database
 
-# What Works on the Tracker
+# What Works on the Tracker and what not
 
  |Features|Status|Remarks|
  |---------------|--------------|-------------|
- |Features|Status|Remarks|
+ |Receive new peer details|Online|Each peer need to register with the tracker to  be connected with the network|
+ |Broadcast received new peer details to all other connected peers|Online|For adding the new peer details for the peer's local database.Once a peer is registered the information will be always their on the tracker database.|
+ |Store the new peer details in tracker's local database|Online|Used for the Liveliness test of the peers|
+ |Automatic Liveliness check for every 30 seconds using the local database |Online|To check the current connected peers in the network|
+|Message queueing system - While sending the new peer details to the connected peer, but due to some reasons when the peer didn't get connected to some peers,then that message and connection details put it in the queue and one by one the messages in the queue will try to send to their corresponding receiver|Online| |
+|Send the failed peer details found using the liveliness test of the tracker to all connected peers|online|To remove the unconnected peers from the local database of the peers|
+|send the new found peers all other peer.for example ,a peer in registered but due to some reasons it was disconnected.So during the liveliness test the tracker found this and remove send this information to all other peers. After that when the tracker found this in liveliness test, then again  send to the peer details which is online|offline|So using this no need registered twice for already registered peers|
+
+
 
 # What Works on the Peers
 
@@ -79,12 +87,14 @@ constantly the peer try to send the message in the database
 
  |Member Name|Part which each member worked|Time spend in hours|
  |---------------|--------------|-------------|
-|Arun Raveendran Nair Sheela|Block Chain creation,Designing,Network Programming,Tracker,Testing,Research|~80 hours|
+|Arun Raveendran Nair Sheela|Block Chain creation,Designing,Network Programming,Tracker,Testing,Research,Documentation|~80 hours|
 
 # Good Development Practices Followed
 |   Class    |   Practises followed   |
 |-------|--------|
-|   Class    |   Practises followed   |
+|   About the code    |  - Program is written in python programming language.<br /> - Used Pycharm as IDE for development.<br /> - Used module based development for improved readability and code Manageability.Also helps for the collaboration. <br /> - Code are written in English and gave proper comments and also followed the standard approach for creating variables(camel case used).|
+|  About git  |   - Frequently committed the code and pushed to the github. <br /> - Tried to give to meaningful commit messages. <br /> -All commit messages are given in english. <br /> |
+| Testing | - Only followed the manual testing. <br /> The software is tested in all possible conditions|
 
 
     
