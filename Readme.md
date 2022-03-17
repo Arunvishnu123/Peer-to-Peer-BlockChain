@@ -46,11 +46,11 @@ please use the below command to work with application
 * ## BlockChain - Blockchain folder contain all the packages used for each peers
     - ### CheeseCoin - It is package which contain th modules which help to create only blockchain parts
       - ### BlockChain -
-        - BlockChain.py - Module helps to add the mined block to the existing chain
+        - BlockChain.py - Module helps to add the mined block to the existing chain // not used in the main program(used only for testing purpose)
         - BlockValidation.py - Module helps to validate the entire blockchain/cheesechain
         - GenesisBlock.py - Module helps to calculate the first block in the block chain 
       - ### Blocks
-        - BlockMining.py - Module helps to mine the created block and calculate the nonce
+        - BlockMining.py - Module helps to mine the created block and calculate the nonce 
         - CreateBlock.py - Module helps to create the Block in dictionary data structure by adding the elements as per the structure
         - MerkelRootsCreation.py - Module helps to create the merkel roots of the transactions in the Transaction Ledger
       - ### Transaction

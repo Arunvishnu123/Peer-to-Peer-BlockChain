@@ -12,7 +12,6 @@ class merkelroots:
             message = str(self.transactionList[i])
             messageHash = hashlib.sha1(message.encode()).hexdigest()
             hashTransactionList.append(messageHash)
-
         return hashTransactionList
 
     def createMerkeltree(self, hasedTransactionList):

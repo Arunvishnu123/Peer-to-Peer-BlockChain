@@ -42,7 +42,7 @@ if __name__ == "__main__":
     ############################################################################################################
     # create tracker client object and message creation to send the connection details to the tracker
     # Tracker network details
-    trackerIP = "192.168.0.13"
+    trackerIP = "161.3.48.146"
     trackerPort = 7070
     trackerTriple = (trackerIP,trackerPort)
     # new peer details

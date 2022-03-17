@@ -7,7 +7,7 @@ from Tracker.Database.PeerDetails import PeerDetailsTable
 
 ####################################################################################################
 # tracker connection details
-ip = "192.168.0.13"
+ip = "161.3.48.146"
 port = 7070
 connection = (ip, port)
 ####################################################################################################
@@ -18,6 +18,7 @@ else:
     dataBaseCreation = CreateDatabase()
 
 peerDataTable = PeerDetailsTable()
+peerDataTable.createTable()
 
 if __name__ == "__main__":
     tracker = Tracker(connection)

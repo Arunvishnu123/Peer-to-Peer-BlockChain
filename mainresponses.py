@@ -19,7 +19,7 @@ ledgerDataTable = TransactionsLedgerDT()
 blockchainTable  =  BlockChainDT()
 
 #ServerIP
-reciever = Receiver(('192.168.0.13',4001))
+reciever = Receiver(('161.3.48.146',4001))
 peerList = [ ]
 
 while True:

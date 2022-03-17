@@ -13,6 +13,7 @@ class Tracker:
         self.recievedMessage = ''
 
     def receiveNewNode(self,queue):
+        print("running")
         client, address = self.server.accept()
         self.recievedMessage = client.recv(1024).decode('utf-8')
         print(self.recievedMessage)
@@ -25,7 +26,7 @@ class Tracker:
         print("Port is ", extracted['port'])
         print("IP address is ", extracted['ipaddress'])
         print("Public Key is ", extracted['publickey'])
-        connectionDetails = (extracted['ipaddress'], int(extracted['port'] ,extracted['publickey']))
+        connectionDetails = (extracted['ipaddress'], int(extracted['port']) ,extracted['publickey'])
         print(connectionDetails)
         return connectionDetails
 
