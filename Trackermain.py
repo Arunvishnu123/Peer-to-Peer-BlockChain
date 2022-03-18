@@ -8,7 +8,6 @@ from Tracker.Database.RegisteredPeers import RegisteredPeerTable
 from Tracker.MessageFormat.SendUnconnected import RequestCreation
 import time
 import socket
-
 ####################################################################################################
 # tracker connection details
 ip = socket.gethostbyname(socket.gethostname())
@@ -17,7 +16,6 @@ connection = (ip, port)
 ####################################################################################################
 if Path('./Tracker/DatabaseSource/Tracker.db').is_file():
     print("DataBaseAlreadyCreated")
-
 else:
     dataBaseCreation = CreateDatabase()
 
@@ -32,20 +30,19 @@ createdRegisteredPeers.createRegisteredTable()
 def livelinesstest():
     while True:
        print("Doing Liveliness Test")
-       time.sleep(40)
+       time.sleep(5)
        connectionDetails = createdRegisteredPeers.retrieveRegisteredElements()
        print("Connected peers list:",connectionDetails)
        unconnectedPeers = tracker.liveness(connectionDetails,"00000")
        print("unconnected peers list:", unconnectedPeers )
        if (len(unconnectedPeers) != 0):
            requestMessage  = RequestCreation(unconnectedPeers)
-           print(requestMessage)
+           print(requestMessage.final())
        print("succeed")
 #liviliness test
 livelinessTest = Thread(target=livelinesstest)
 livelinessTest.start()
 if __name__ == "__main__":
-
     while True:
         trackerReceiverQueue = Queue()
         receiveData = Thread(target=tracker.receiveNewNode, args=(trackerReceiverQueue,))

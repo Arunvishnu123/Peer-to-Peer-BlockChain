@@ -17,6 +17,6 @@ class RequestCreation:
 
 
     def final(self):
-        final = self.requestType() + self.messageType() + self.message
+        final = self.requestType() + self.messageType() + str(self.message)
         finalMessage = final.encode('utf-8')
         return finalMessage
