@@ -33,13 +33,30 @@ class Tracker:
     def sendNewNode(self, connectionDetails, message):
         for connection in connectionDetails:
             try:
+              print(connection)
               client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
               client.connect(connection)
               client.send(message.encode())
               response = client.recv(1024).decode('utf-8')
-              print(response)
+              print("response from the server",response)
+              print(connection,response)
             except:
-                continue
+              print( "failed",connection)
+              continue
 
-    def liveness(self):
-        pass
+    def liveness(self, connectionDetails, message):
+        li = []
+        for connection in connectionDetails:
+            try:
+                print(connection)
+                client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                client.connect(connection)
+                client.send(message.encode())
+                response = client.recv(1024).decode('utf-8')
+                print("response from the server", response)
+                print(connection, response)
+            except:
+                print("failed", connection)
+                li.append(connection)
+                continue
+        return tuple(li)

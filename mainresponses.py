@@ -11,6 +11,7 @@ from BlockChain.Network.MessageType.MineComplete import DataExtraction as MineCo
 from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Network.MessageType.NewBlock import BlockDataExtraction
 from BlockChain.Database.BlockChain import BlockChainDT
+import socket
 ###################################################################################################
 #create datables object
 peerDataTable = PeerDetailsTable()
@@ -19,7 +20,8 @@ ledgerDataTable = TransactionsLedgerDT()
 blockchainTable  =  BlockChainDT()
 
 #ServerIP
-reciever = Receiver(('161.3.48.146',4001))
+ipaddress = socket.gethostbyname(socket.gethostname())
+reciever = Receiver((ipaddress,4001))
 peerList = [ ]
 
 while True:

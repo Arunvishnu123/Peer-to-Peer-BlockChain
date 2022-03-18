@@ -5,7 +5,7 @@
 # Structure of Block
 
 # Peer to Peer Network(Architecture used here)
-
+![title](Images/p2pnetwork.png)
 # Multi-Threading
 
 # Socket Programming
@@ -30,6 +30,8 @@ Here we are using Asymmetric Key cryptography
 * Create Private key generator for nodes
 * Encryption of the message using private and public key of receiver and sender simultaneously
 * Decryption of the message using private and public key of sender and receiver simultaneously
+
+### But here we couldn't able to follow the above procedure.Here we used "rsa module" which is used to encrypt and decrypt the message and also for the validation.We give a digital signature for the validation and 
 # Message Queue System
 
 # Sqlite Database

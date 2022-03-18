@@ -88,6 +88,9 @@ constantly the peer try to send the message in the database
  |Member Name|Part which each member worked|Time spend in hours|
  |---------------|--------------|-------------|
 |Arun Raveendran Nair Sheela|Block Chain creation,Designing,Network Programming,Tracker,Testing,Research,Documentation|~80 hours|
+|Siva |Research related to the project and module development for the project| hours|
+|Sushanta Saha|Research related to the project and module development for the project| hours|
+|Nuren Samia|Research related to the project and module development for the project| hours|
 
 # Good Development Practices Followed
 |   Class    |   Practises followed   |

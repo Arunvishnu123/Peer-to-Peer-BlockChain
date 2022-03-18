@@ -42,7 +42,7 @@ if __name__ == "__main__":
     ############################################################################################################
     # create tracker client object and message creation to send the connection details to the tracker
     # Tracker network details
-    trackerIP = "161.3.48.146"
+    trackerIP = socket.gethostbyname(socket.gethostname())
     trackerPort = 7070
     trackerTriple = (trackerIP,trackerPort)
     # new peer details
@@ -157,7 +157,7 @@ if __name__ == "__main__":
             try:
                print("miningPeerStatus",miningPeerStatus[0])
             except:
-                addBlock = 1
+               addBlock = 1
             ##########################################################################################################
             #proof of work
             if minedBlock[1]  == 1 and addBlock == 1 :

@@ -4,10 +4,12 @@ from Tracker.Queue.QueueThreading import Queue
 from pathlib import Path
 from Tracker.Database.Creation import CreateDatabase
 from Tracker.Database.PeerDetails import PeerDetailsTable
+import time
+import socket
 
 ####################################################################################################
 # tracker connection details
-ip = "161.3.48.146"
+ip = socket.gethostbyname(socket.gethostname())
 port = 7070
 connection = (ip, port)
 ####################################################################################################
@@ -19,9 +21,22 @@ else:
 
 peerDataTable = PeerDetailsTable()
 peerDataTable.createTable()
-
+tracker = Tracker(connection)
+######################
+def livelinesstest():
+    while True:
+       print("Doing Liveliness Test")
+       time.sleep(100)
+       connectionDetails = peerDataTable.retrieveElements()
+       print(connectionDetails)
+       y = tracker.liveness(connectionDetails,"00000")
+       print("unconnected list", y)
+       print("succeed")
+       print("Enter the data")
+v = Thread(target=livelinesstest)
+v.start()
 if __name__ == "__main__":
-    tracker = Tracker(connection)
+
     while True:
         trackerReceiverQueue = Queue()
         receiveData = Thread(target=tracker.receiveNewNode, args=(trackerReceiverQueue,))
@@ -36,3 +51,4 @@ if __name__ == "__main__":
             peerDataTable.addElements(extractReceivedData)
             connectionDetails = peerDataTable.retrieveElements()
             tracker.sendNewNode(connectionDetails, receivedMessage)
+
