@@ -36,7 +36,9 @@ class Tracker:
             try:
               print(connection)
               client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+              client.settimeout(1)
               client.connect(connection)
+              client.settimeout(None)
               client.send(message.encode())
               response = client.recv(1024).decode('utf-8')
               print("response from the server",response)

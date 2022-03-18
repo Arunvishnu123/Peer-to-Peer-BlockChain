@@ -70,15 +70,15 @@ class PeerDetailsTable:
         except:
             print("error in operation")
 
-    def deletePeerData(self,name):
+    def deletePeerData(self,ipAddress):
         db = sqlite3.connect('./Database/BlockChain.db')
-        qry = """select * FROM peerData where peerName = ? """
+        qry = """delete FROM peerData where peerIPAddress = ? """
         try:
             cur = db.cursor()
-            cur.execute(qry,(name,))
-            cur.commit()
-            cur.close()
+            cur.execute(qry,(ipAddress,))
+            db.commit()
+            db.close()
         except:
-            print("error in operation")
+            print("edrror in operation")
 
 

@@ -12,11 +12,10 @@ class RequestCreation:
 
     def messageType(self):
         str = "[]"
-        mType = str[:1] + "M" + str[1:]
+        mType = str[:1] + "U" + str[1:]
         return mType
 
 
     def final(self):
         final = self.requestType() + self.messageType() + str(self.message)
-        finalMessage = final.encode('utf-8')
-        return finalMessage
+        return final

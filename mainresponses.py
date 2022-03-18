@@ -11,6 +11,7 @@ from BlockChain.Network.MessageType.MineComplete import DataExtraction as MineCo
 from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Network.MessageType.NewBlock import BlockDataExtraction
 from BlockChain.Database.BlockChain import BlockChainDT
+from BlockChain.Network.MessageType.UnconnectedPeer import UnconnectedDataExtraction
 import socket
 ###################################################################################################
 #create datables object
@@ -32,8 +33,9 @@ while True:
     recieveNewNode.join()
     receivedMessage = recieveNewNodeQueue.dequeue()
     print(type(receivedMessage))
+    print(receivedMessage)
 
-    #peer deatils recives
+    #peer details receives
     if(receivedMessage[4] == "J"):
          extractedData = joinNewPeerDetails(receivedMessage,peerList)
          print("Data Extracted from the recieved message:",extractedData.finalDataExtraction())
@@ -67,6 +69,21 @@ while True:
         blockExtraction =  BlockDataExtraction(receivedMessage)
         print(blockExtraction.finalDataExtraction())
         blockchainTable.addBlocks(blockExtraction.finalDataExtraction())
+
+    #sendUnconnected
+    if(receivedMessage[4]=="U"):
+        print("Unconnected Received")
+        unconnectedDataExtraction = UnconnectedDataExtraction(receivedMessage)
+        unConnectedPeers = unconnectedDataExtraction.finalDataExtraction()
+        print(unconnectedDataExtraction.finalDataExtraction()[0][1])
+        print(type(unconnectedDataExtraction.finalDataExtraction()[0]))
+        for unconnected in unConnectedPeers:
+            print("unconnected",unconnected)
+            print(unconnected[0])
+            peerDataTable.deletePeerData(unconnected[0])
+
+
+
 
 
 
