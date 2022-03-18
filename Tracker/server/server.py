@@ -1,7 +1,7 @@
 # server program to receive data from other peers
 import json
 import socket
-
+from Tracker.Database.PeerDetails import PeerDetailsTable
 class Tracker:
     def __init__(self, connectionDetails):
         self.connectionDetails = connectionDetails
@@ -50,13 +50,20 @@ class Tracker:
             try:
                 print(connection)
                 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                client.settimeout(1)
                 client.connect(connection)
+                client.settimeout(None)
                 client.send(message.encode())
                 response = client.recv(1024).decode('utf-8')
                 print("response from the server", response)
-                print(connection, response)
+                print("succed",connection, response)
             except:
                 print("failed", connection)
+                peerTable = PeerDetailsTable()
+                peerTable.deletePeerData(connection)
                 li.append(connection)
                 continue
         return tuple(li)
+
+    def livenessTest(self,):
+        pass

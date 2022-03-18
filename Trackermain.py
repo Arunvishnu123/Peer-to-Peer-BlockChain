@@ -22,19 +22,20 @@ else:
 peerDataTable = PeerDetailsTable()
 peerDataTable.createTable()
 tracker = Tracker(connection)
-######################
+############################################################################################################
+#Automatic liviliness test for the peers
 def livelinesstest():
     while True:
        print("Doing Liveliness Test")
-       time.sleep(100)
+       time.sleep(10)
        connectionDetails = peerDataTable.retrieveElements()
-       print(connectionDetails)
+       print("Connected peers list:",connectionDetails)
        y = tracker.liveness(connectionDetails,"00000")
-       print("unconnected list", y)
+       print("unconnected peers list:", y)
        print("succeed")
-       print("Enter the data")
-v = Thread(target=livelinesstest)
-v.start()
+#liviliness test
+livelinessTest = Thread(target=livelinesstest)
+livelinessTest.start()
 if __name__ == "__main__":
 
     while True:

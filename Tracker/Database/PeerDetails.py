@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class PeerDetailsTable:
     def __init__(self):
         pass
@@ -39,7 +40,7 @@ class PeerDetailsTable:
             cur = db.cursor()
             cur.execute(qry)
             result = cur.fetchall()
-            cur.close()
+            db.close()
             return result
         except:
             print("error in operation")
@@ -51,7 +52,7 @@ class PeerDetailsTable:
             cur = db.cursor()
             cur.execute(qry)
             result = cur.fetchall()
-            cur.close()
+            db.close()
             return result
         except:
             print("error in operation")
@@ -64,20 +65,23 @@ class PeerDetailsTable:
             cur = db.cursor()
             cur.execute(qry,(name,))
             result = cur.fetchone()
-            cur.close()
+            db.close()
             return result
         except:
             print("error in operation")
 
-    def deletePeerData(self,name):
+    def deletePeerData(self,connection):
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
-        qry = """select * FROM peerData where peerName = ? """
+        qry = """delete FROM peerData where peerIPAddress = ? """
         try:
-            cur = db.cursor()
-            cur.execute(qry,(name,))
-            cur.commit()
-            cur.close()
+           print("conencccdcdcdcdc",connection[0])
+           cur = db.cursor()
+           cur.execute(qry,(connection[0],))
+           db.commit()
+           db.close()
+           print("Successfully deleted")
         except:
-            print("error in operation")
+           print("error in operation")
+
 
 
