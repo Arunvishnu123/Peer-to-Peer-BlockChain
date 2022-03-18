@@ -5,6 +5,7 @@ from pathlib import Path
 from Tracker.Database.Creation import CreateDatabase
 from Tracker.Database.PeerDetails import PeerDetailsTable
 from Tracker.Database.RegisteredPeers import RegisteredPeerTable
+from Tracker.MessageFormat.SendUnconnected import RequestCreation
 import time
 import socket
 
@@ -34,8 +35,11 @@ def livelinesstest():
        time.sleep(40)
        connectionDetails = createdRegisteredPeers.retrieveRegisteredElements()
        print("Connected peers list:",connectionDetails)
-       y = tracker.liveness(connectionDetails,"00000")
-       print("unconnected peers list:", y)
+       unconnectedPeers = tracker.liveness(connectionDetails,"00000")
+       print("unconnected peers list:", unconnectedPeers )
+       if (len(unconnectedPeers) != 0):
+           requestMessage  = RequestCreation(unconnectedPeers)
+           print(requestMessage)
        print("succeed")
 #liviliness test
 livelinessTest = Thread(target=livelinesstest)

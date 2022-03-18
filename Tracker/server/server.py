@@ -2,6 +2,7 @@
 import json
 import socket
 from Tracker.Database.PeerDetails import PeerDetailsTable
+
 class Tracker:
     def __init__(self, connectionDetails):
         self.connectionDetails = connectionDetails
@@ -65,5 +66,5 @@ class Tracker:
                 continue
         return tuple(li)
 
-    def livenessTest(self,):
+    def livenessTest(self):
         pass
