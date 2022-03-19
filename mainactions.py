@@ -144,7 +144,7 @@ if __name__ == "__main__":
             merkleRoot = createdMerkalRoot
             difficultyTarget = "4"
             nonce = 0
-            blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData)
+            blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData,name)
             createdBloc = blockCreation.createBlocks()
             print(createdBloc)
             #mining logic

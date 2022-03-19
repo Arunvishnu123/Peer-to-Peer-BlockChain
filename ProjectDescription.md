@@ -3,7 +3,7 @@
 # Blockchain 
 
 # Structure of Block
-
+![title](Images/Strucutre%20of%20the%20Block.png)
 # Peer to Peer Network(Architecture used here)
 ![title](Images/p2pnetwork.png)
 # Multi-Threading
@@ -31,7 +31,7 @@ Here we are using Asymmetric Key cryptography
 * Encryption of the message using private and public key of receiver and sender simultaneously
 * Decryption of the message using private and public key of sender and receiver simultaneously
 
-### But here we couldn't able to follow the above procedure.Here we used "rsa module" which is used to encrypt and decrypt the message and also for the validation.We give a digital signature for the validation and 
+### But here we couldn't able to follow the above procedure.Here we used "rsa module" which is used to encrypt the message only using the receiver public key  and decrypt the message using the reciever's private key for confidentiality and also,w e give a digital signature which is created using the senders private key and message which can be validation using the sender public key 
 # Message Queue System
 
 # Sqlite Database

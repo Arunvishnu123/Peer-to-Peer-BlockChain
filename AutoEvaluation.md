@@ -39,24 +39,30 @@ We have multiple team  meetings to define the use cases of the blockchain system
 * During the transaction the local database of the peer will provide the list of connected peers
 * Peer can select the name from the list and Enter the message and amount
 * After this the peer will do encryption of the message based on the Asymmetric cryptography using the private and public key of the sender and receiver respectively
-* After this the sender peer will convert this into the message format as per protocol document and send to the receiver
-* When the peer receive the message then first convert the message into its form 
-* Then decrypt the message and at the same time do the validation of the transaction and add the transaction to it local db
-* If the validation is successful then, the receiver the broadcast the transaction to all other connected peers 
+* After this the sender peer will convert this into the  format as per protocol document and send to the receiver
+* When the peer receive the message then first convert the message into its base form 
+* Then decrypt the message and at the same time do the validation of the transaction and add the transaction to it local database table which contain all the individual transaction details
+* If the validation is successful then, the receiver  broadcast the transaction to all other connected peers 
 * Each peer will receive this message and add it the ledger table in the database 
 * When any peer can give  command for mining and creating the block and add to the chain
 * At first, peer will create the block as per structure defined earlier using the transactions in the ledger 
 * Then do the Proof of Work as per the difficulty target and calculate the nonce 
-* When the Mining is complete then the peer will check  any "MiningComplete" status from other peer
-* If there is not "MiningComplete" status then send the block other peers 
-* Other peer receives this block and add it to the blockchain
+* When the Mining is complete then the peer will check  any "MiningComplete" status from other peer in the local db which shows the minus status of other peer in the network
+* If there is no "MiningComplete" status then send the block to other peers 
+* If there is any "Mining Complete Status in the database then terminate the mining process"
+* Other peers receives this block and add it to the blockchain
 * Also, here Genesis Block also called "RacletteCheese" will created by the first peer connected to the network
-* Also there is message queue system in the block,The working is when a the peer try to send the created block to other peers, at this time, any failure instance occur then that message and connection information will be logged into a database
-constantly the peer try to send the message in the database
+* Also there is message queue system in the block,The working is when a  peer try to send the created block to other peers, at this time, any failure instance occur then that message and connection information will be logged into a database
+constantly the peer try to send the message in the database one by one 
 * Also, new peer can request the blockchain history
 
 # Tracker
 * Tracker will accept the new peer details and distribute it to all other peers
+* Tracker has two list of peers - one is the registered peer details and live connected peers
+* Tracker have an automatic liveliness test which work for every 30 seconds try to send random message to all peers in the registered datatable and check any new unconnected peer or any connected peer found
+* After liveliness test the tracker get two list , one is unconnected peer and connected peers
+* Tracker compare the connected peer list found from the liveliness test and the live connected peer table, if it any new peer found then, add that element to the live connected peer table and send the same to the other connected peer to update in there local database
+* Similarly, the tracker check the same with the unconnected peers and the live connected peer table,if any member in the live connected peer table is in the unconnected list then it should be removed and send the details to all connected peers
 * Tracker there is one message queue system - Working is that when the tracker broadcast the new node details according the peer list in there local database to other peer, then any failed case occur when try to connect to ta peer then the message and the connection information of that peer will log into another table in the database
 * Constantly the tracker will send the message in the queue according the connections
 * Tracker will check the communication status of each peer in the network according to the peer list in the tracker 
@@ -73,24 +79,35 @@ constantly the peer try to send the message in the database
  |Automatic Liveliness check for every 30 seconds using the local database |Online|To check the current connected peers in the network|
 |Message queueing system - While sending the new peer details to the connected peer, but due to some reasons when the peer didn't get connected to some peers,then that message and connection details put it in the queue and one by one the messages in the queue will try to send to their corresponding receiver|Online| |
 |Send the failed peer details found using the liveliness test of the tracker to all connected peers|online|To remove the unconnected peers from the local database of the peers|
-|send the new found peers all other peer.for example ,a peer in registered but due to some reasons it was disconnected.So during the liveliness test the tracker found this and remove send this information to all other peers. After that when the tracker found this in liveliness test, then again  send to the peer details which is online|offline|So using this no need registered twice for already registered peers|
-
+|send the new found peers to all other peer.for example ,a peer in registered but due to some reasons it was disconnected.So during the liveliness test the tracker found this and remove send this information to all other peers. After that when the tracker found this in liveliness test, then again  send to the peer details which is online|offline|So using this no need to registered twice for already registered peers|
+|Multi-Treading - Tracker can handle multiple messages at the same time|Online||
 
 
 # What Works on the Peers
 
  |Features|Status|Remarks|
  |---------------|--------------|-------------|
- |Features|Status|Remarks|
+ |Register the new peer details with the tracker|Online||
+ |Send the transactions to the individual peers|Online||
+ |Encrypt the messages and amount for the transactions using the public key of the receiver|Online|For Confidentiality|
+ |Give the digital signature for every transactions for the validation|Online|For Authentication|
+ |Send individual transaction to all connected peer for making the ledger|Online||
+ |Digital signature given for every transactions for the validation using the public key of the sender|Online||
+|Decrypt the messages received using private key of the receiver |Online|For Confidentiality|
+|Create the block as per the structure and mine it as per the difficulty target |Online|for Proof of Work|
+|Send the first mined block as per the required difficulty target to all other peers|Online|Proof of Work|
+|Reset the ledger of every peers after every block creation|Online||
+|Delete the unconnected peers found from the liveliness test of the Tracker from the connected peer  database |online||
+|Multi-Treading - Peers can handle multiple messages at the same time|Online||
 
 # Time Spent for each member and their contribution
 
  |Member Name|Part which each member worked|Time spend in hours|
  |---------------|--------------|-------------|
 |Arun Raveendran Nair Sheela|Block Chain creation,Designing,Network Programming,Tracker,Testing,Research,Documentation|~80 hours|
-|Siva |Research related to the project and module development for the project| hours|
-|Sushanta Saha|Research related to the project and module development for the project| hours|
-|Nuren Samia|Research related to the project and module development for the project| hours|
+|Siva |Research related to the project and module developments for the project,Documentation| ~25 hours|
+|Sushanta Saha|Research related to the project and module developments for the project,Documentation|~25 hours|
+|Nuren Samia|Research related to the project and module developments for the project,Documentation|~25 hours|
 
 # Good Development Practices Followed
 |   Class    |   Practises followed   |

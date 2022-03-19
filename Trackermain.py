@@ -30,7 +30,7 @@ createdRegisteredPeers.createRegisteredTable()
 def livelinesstest():
     while True:
        print("Doing Liveliness Test")
-       time.sleep(20)
+       time.sleep(60)
        connectionDetails = createdRegisteredPeers.retrieveRegisteredElements()
        print("Connected peers list:",connectionDetails)
        unconnectedPeers = tracker.liveness(connectionDetails,"00000")

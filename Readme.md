@@ -3,9 +3,6 @@
 The goal of the project is to implement a blockchain -  peer-to-peer system inspired by Bitcoin.It uses a tracker  which help to add peers to the network and also, 
 the Peer-to-Peer communication to share the data between the nodes in the cheese chain(Block-Chain)
 
-# Team Members - 
-- Arun Raveendran Nair Sheela
-
 # Architecture of the System
 ![title](Images/architecture.jpg)
 

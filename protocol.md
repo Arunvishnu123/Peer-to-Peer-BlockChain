@@ -62,14 +62,15 @@ The basic unit of information, encoded as a JSON String.
 | Message Type | Message Name |Request Type | Description | Payload Type |
 | ------------- | ------------- |------------- |------------- | ------------- |
 J | Join | Post |Broadcast the new node details to the tracker from the new node and then tracker to other connected peers| JSON String representation which is encode to bytes | 
-K | KeepAlive | Get |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |
+K | KeepAlive | Post |The tracker will send periodically this messages to the peers to check their status | Random nonce received as response |
 U | UnconnectedPeerList |Post | Send the unconnected peers list found during the "KeepAlive" test  and broadcast this data to all other connected peers to remove that details from their database| JSON String representation which is encode to bytes  |
 T | Transaction | Post |A peer will broadcast this message when performing a transaction for the other peers to validate it and include it into the cheesechain(BlockChain) | JSON String representation which is encode to bytes|
 L | TransactionLedger | Post | Full transaction message to adding it in the transaction ledger | JSON String representation which is encode to bytes |
 M | MineComplete |Post |Send the Mining complete status to the other peers | JSON String representation which is encode to bytes  |
 N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation which is encode to bytes|
-P | Ping | Get |Sent from one peer to another Peer to make sure that it is online before trying to establish a TCP connection | Random nonce |
+P | Ping | Post |Sent from one peer to another Peer to make sure that it is online before trying to establish a TCP connection | Random nonce |
 H | History | Get|Get the history of blocks in the individual nodes.This should be useful when new node is connected to the network | JSON String representation which is encode to bytes |
+S | SendConnected | Post| Found the connected peer using the "KeepAlive" test and found any registered peers(after the unconnected state of that peer). Send this information to all peers | JSON String representation which is encode to bytes |
 
 * payload information and  explanation of  all types of  request and corresponding response will discuss in details in the coming section.
 
