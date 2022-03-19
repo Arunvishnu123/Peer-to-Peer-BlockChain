@@ -10,6 +10,7 @@
 
 # Socket Programming
 
+
 # Asymmetric Cryptography 
 ## There are two types of cryptography
 * Symmetric Key Cryptography
@@ -35,3 +36,19 @@ Here we are using Asymmetric Key cryptography
 # Message Queue System
 
 # Sqlite Database
+Here two databases are there one is for the Peer and other for the Tracker
+
+### Tables Created for the Peer Database
+|Table Name |Uses|
+|--------|--------------|
+|BlockChain|Copy of the BlockChain/CheeseChain|
+|Ledger|Contain Multiple transaction carried out by the peers in the network.After mining the ledger table will be reset|
+|Mine Complete|Mine Complete status from the other peers. After mining peer check for this message in this table.If the message is there then cancel the mining process and reset the table|
+|Peer Details|Details of all the connected elements in the network which is live|
+|Transactions|It contain all the individual transaction between the peer.For this table every peer having different data|
+
+### Table Created for Tracker Database
+|Table Name |Uses|
+|--------|--------------|
+|PeerDetails|This table contain all the live connected peers in the network|
+|RegisteredPeers|This table contain all the registered peers in the network which may currently offline or may be online|

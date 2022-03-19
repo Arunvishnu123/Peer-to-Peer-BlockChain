@@ -176,4 +176,6 @@ if __name__ == "__main__":
             ledgerDataTable.deleteLedgerElement()
 
 
+        if operation == "B" or operation == "b":
+            pass
 

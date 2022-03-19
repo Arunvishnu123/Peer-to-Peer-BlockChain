@@ -12,8 +12,10 @@ class BroadCastMulitple:
     def mPeer(self):
         for node in self.connectedList:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            client.settimeout(1)
             try:
               client.connect(node)
+              client.settimeout(None)
               client.send(self.message)
               status = client.recv(1024).decode('utf-8')
               print("Status of the message to each client",node,status)
