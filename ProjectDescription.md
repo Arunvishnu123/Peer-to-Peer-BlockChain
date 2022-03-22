@@ -19,14 +19,16 @@
 
 **Timestamp** - It is nothing but a date and time in which the event is happening. In our system, it is to determine at which moment the block has been mined and validated by the blockchain network.<br />
 
-**Difficulty Target** - Difficulty is a measure of how difficult it is to mine a block in a blockchain for a particular blockchain. A high difficulty target means it takes additional computing power to verify transactions entered on a blockchain.Useful for the proof of work<br />
+**Difficulty Target** - Difficulty is a measure of how difficult it is to mine a block in a blockchain for a particular blockchain. A high difficulty target means it takes additional computing power to verify transactions entered on a blockchain. Useful for the proof of work.<br />
 
-**Nonce** -The nonce is the short form for Number Only Used Once is a number added to an encrypted block in a blockchain.  A cryptographic nonce can be combined with data to produce different hash digests per nonce: hash (data + nonce) = digest.
+**Nonce** -It is a number added to an encrypted block in a blockchain. When it is rehashed, it meets the difficulty level restrictions. Blockchain miners are solving this number to receive cryptocurrency.
 
 
 # Blockchain 
 * Blockchain is “a distributed datastructure that contains transactional records across many computers and it continuously stored those transactions in the form of Blocks. These blocks are linked using cryptography. Every block contains blockheader, transition counter and transaction data. It is considered very secure by it's design. 
+
 * Blockchains are generally managed through a peer-to-peer network for use as a distributed ledger. It means it is completely open to everyone in the network. Each transaction on a blockchain is secured with a digital signature that proves its authenticity. Due to the use of encryption and digital signatures, once a transation message is stored on a blockchain, it is extremely difficult to change it.
+
 * While transactions takes place on a blockchain, there are peers on the network that validate these transactions. They use the concept of proof-of-work in order to process and validate transactions on the network. In order for a transaction to be valid, each block must refer to the hash of its preceding block. The transaction will add only if the hash is correct.<br />
 
 **proof-of-work** - system requires scanning for a value that starts with a certain number of zero bits when hashed. This value is known as a nonce value. The number of leading zero bits is known as the difficulty. The average work required to create a block increases exponentially with the number of leading zero bits, and therefore, by increasing the difficulty with each new block, we can sufficiently prevent users from modifying previous blocks, since it is practically impossible to redo the following blocks and catch up to others.
