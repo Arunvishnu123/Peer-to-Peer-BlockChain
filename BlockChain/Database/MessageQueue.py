@@ -20,17 +20,18 @@ class MessageQueue:
         db.close()
 
     def addMessageQueue(self, data):
+
         db = sqlite3.connect('./Database/BlockChain.db')
-        qry = "insert into MessageQueue (SequenceNumber,Message,peerIPAddress,peerPort) values(?,?,?,?);"
+        qry = "insert into MessageQueue (Message,peerIPAddress,peerPort) values(?,?,?);"
         try:
-            cur = db.cursor()
-            cur.execute(qry, data)
-            db.commit()
-            print("new message queue added to the database successfully")
+           cur = db.cursor()
+           cur.execute(qry, data)
+           db.commit()
+           db.close()
+           print("new message queue added to the database successfully")
         except:
-            print("error in operation")
-            db.rollback()
-        db.close()
+           print("error in operation")
+
 
     def retriveMessageQueue(self):
         db = sqlite3.connect('./Database/BlockChain.db')

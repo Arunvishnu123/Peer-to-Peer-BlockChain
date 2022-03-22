@@ -6,6 +6,7 @@ from pathlib import Path
 from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Database.BlockChain import BlockChainDT
 from BlockChain.Database.CurrentPeerData import PeerData
+from BlockChain.Database.MessageQueue import MessageQueue
 
 if Path('./Database/BlockChain.db').is_file():
     print ("DataBaseAlreadyCreated")
@@ -35,10 +36,6 @@ createBlockChainTable.createBlockChainTable()
 #create currentpeerdata
 createPeerTable = PeerData()
 createPeerTable.createPeerDataTable()
-
-
-
-
-
-
-
+#create the message queue table
+createTableMessageQueue = MessageQueue()
+createTableMessageQueue.createMessageTable()

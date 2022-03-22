@@ -1,5 +1,6 @@
 # post request to the multiple peers
 import socket
+from BlockChain.Database.MessageQueue import MessageQueue
 
 class BroadCastMulitple:
     def __init__(self,connectedList,message):
@@ -20,8 +21,12 @@ class BroadCastMulitple:
               status = client.recv(1024).decode('utf-8')
               print("Status of the message to each client",node,status)
             except:
-                return node
-                continue
+               data = self.message.decode('utf-8')
+               if(data[4] == "N"):
+                 messageQueue = MessageQueue()
+                 messageQueue.addMessageQueue((self.message,node[0],node[1]))
+                 print("one queue added to the message queue database")
+               continue
 
 
 
