@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BlockChain/Database/BlockChainValidationResults.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/CheeseCoin/BlockChain/BlockValidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/CheeseCoin/BlockChain/BlockValidation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/Database/BlockChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Database/BlockChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/Network/MessageType/NewBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/NewBlock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CreateDB-Tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/CreateDB-Tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/BlockChain.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BlockChain.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracker/DatabaseSource/Tracker.db" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/DatabaseSource/Tracker.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trackermain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trackermain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainresponses.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainresponses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracker/server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/server/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +55,7 @@
       <recent name="C:\Users\ARUN\OneDrive\Desktop\Block-Chain\Network\PostRequest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.mainresponses">
     <configuration name="BlockValidation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Block-Chain" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -98,27 +90,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CreateDB-Tables.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Trackermain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Block-Chain" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Trackermain.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -190,6 +161,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="mainresponses" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Block-Chain" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mainresponses.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Block-Chain" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -213,11 +205,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.mainresponses" />
+        <item itemvalue="Python.mainactions" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.CreateDB-Tables" />
         <item itemvalue="Python.BlockValidation" />
-        <item itemvalue="Python.Trackermain" />
-        <item itemvalue="Python.mainactions" />
       </list>
     </recent_temporary>
   </component>

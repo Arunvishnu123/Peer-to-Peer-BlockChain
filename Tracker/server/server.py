@@ -3,6 +3,7 @@ import json
 import socket
 from Tracker.Database.PeerDetails import PeerDetailsTable
 from Tracker.MessageFormat.RequestConnected import ConnectedRequest
+from Tracker.Database.MessageQueue import MessageQueue
 
 class Tracker:
     def __init__(self, connectionDetails):
@@ -54,6 +55,8 @@ class Tracker:
               print("response from the server",response)
               print(connection,response)
             except:
+              messageQueue =  MessageQueue()
+              messageQueue.addMessageQueue(message,connection[0],connection[1])
               print( "failed",connection)
               continue
 
