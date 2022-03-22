@@ -38,9 +38,10 @@
 
 # Multi-Threading
 * It means executing more than one thread at a time. In our system the tracker and peers handle more than one message at the same time. Peer can send transation mesaage to all the other connected peers in the network at a time.
-
+* Also, here we used a Queue data structure to return the value from the threaded function
 # Socket Programming
-
+* import the socket module
+* settimeout(seconds) used 
 
 # Asymmetric Cryptography 
 ## There are two types of cryptography
@@ -65,7 +66,9 @@
 
 ### But here we couldn't able to follow the above procedure. Here we used "rsa module" which is used to encrypt the message only using the receiver public key  and decrypt the message using the reciever's private key for confidentiality and also,we give a digital signature which is created using the senders private key and message which can be validation using the sender public key 
 # Message Queue System
-
+* Here two message queue system is there - One is for the Tracker and other is for Peer
+* Tracker Message queue contain all the failed messages sending attempts of the JOIN request.Every 60 seconds the Tracker will try to send the message in the message queue to its corresponding receiver and when it success it deleted from the database
+* Peer Message Queue contain all the failed message attempts of the NewBlock Request.Here also peer  try to send the messages in the message queue to its corresponding receiver and when it success it deleted from the database
 # Sqlite Database
 Here two databases are there one is for the Peer and other for the Tracker
 
@@ -77,9 +80,13 @@ Here two databases are there one is for the Peer and other for the Tracker
 |Mine Complete|Mine Complete status from the other peers. After mining peer check for this message in this table.If the message is there then cancel the mining process and reset the table|
 |Peer Details|Details of all the connected elements in the network which is live|
 |Transactions|It contain all the individual transaction between the peer.For this table every peer having different data|
+|CurrentPeerData|It contain the individual peer data like IP address,Port Number etc|
+|BlockChainValidation|It contain the BlockChain Validation result|
+|MessageQueue|It contain all the failed Mined Block message request from the each peer|
 
 ### Table Created for Tracker Database
 |Table Name |Uses|
 |--------|--------------|
 |PeerDetails|This table contain all the live connected peers in the network|
 |RegisteredPeers|This table contain all the registered peers in the network which may currently offline or may be online|
+|MessageQueue|This table contain all the Queue of the unconnected message in the tracker|

@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoEvaluation.md" beforeDir="false" afterPath="$PROJECT_DIR$/AutoEvaluation.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/BlockChain.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BlockChain.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Retrospective.md" beforeDir="false" afterPath="$PROJECT_DIR$/Retrospective.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectDescription.md" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectDescription.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracker/DatabaseSource/Tracker.db" beforeDir="false" afterPath="$PROJECT_DIR$/Tracker/DatabaseSource/Tracker.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainactions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainresponses.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainresponses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/protocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/protocol.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,27 +61,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.mainactions">
-    <configuration name="BlockValidation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Block-Chain" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BlockChain/CheeseCoin/BlockChain" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BlockChain/CheeseCoin/BlockChain/BlockValidation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="CreateDB-Tables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Block-Chain" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,6 +74,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CreateDB-Tables.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Trackermain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Block-Chain" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Trackermain.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -208,9 +212,9 @@
       <list>
         <item itemvalue="Python.mainactions" />
         <item itemvalue="Python.mainresponses" />
+        <item itemvalue="Python.Trackermain" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.CreateDB-Tables" />
-        <item itemvalue="Python.BlockValidation" />
       </list>
     </recent_temporary>
   </component>

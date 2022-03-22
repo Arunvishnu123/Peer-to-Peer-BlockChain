@@ -168,22 +168,22 @@ if __name__ == "__main__":
             #Proof of Work
             try:
                print("miningPeerStatus",miningPeerStatus[0])
+               print("Block is already mined")
             except:
                addBlock = 1
             ##########################################################################################################
-            #proof of work
-            if minedBlock[1]  == 1 and addBlock == 1 :
-                mineCompleteRequestCreation = RequestCreation("MineCompleted")
-                mineCompleteMessage = mineCompleteRequestCreation.final()
-                print("Mine Complete Message Format :", mineCompleteMessage)
-                connectedPeersList1 = connectedPeers.retrieveElements()
-                broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList1,mineCompleteMessage)
-                broadCastMineCompleteMessage.mPeer()
-                blockRequestCreation = BlockRequestCreation(minedBlock[0])
-                print("final request creation",blockRequestCreation.final())
-                broadCastBlock = BroadCastMulitple(connectedPeersList1,blockRequestCreation.final())
-                broadCastBlock.mPeer()
-                addBlock = 0
+               mineCompleteRequestCreation = RequestCreation("MineCompleted")
+               mineCompleteMessage = mineCompleteRequestCreation.final()
+               print("Mine Complete Message Format :", mineCompleteMessage)
+               connectedPeersList1 = connectedPeers.retrieveElements()
+               broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList1, mineCompleteMessage)
+               broadCastMineCompleteMessage.mPeer()
+               blockRequestCreation = BlockRequestCreation(minedBlock[0])
+               print("final request creation", blockRequestCreation.final())
+               broadCastBlock = BroadCastMulitple(connectedPeersList1, blockRequestCreation.final())
+               broadCastBlock.mPeer()
+               addBlock = 0
+
             miningCompleteStatusTable.deleteMiningStatus()
             ledgerDataTable.deleteLedgerElement()
 

@@ -149,14 +149,22 @@ if the Tracker doesn't get any reply from any peer which is in the database of t
 
 # 7.[P][U][Message]  -  Unconnected Peers List
 - Tracker will found the unconnected peers during liveliness test and Tracker will send these peers list  to all connected peer and connected peers receives this message and delete the peer from the database 
+- RequestMessageFormat  - [P][U][data]
+- Response - Succeed
 
 # 8.[G][H][Message]  -  BlockChain(CheeseCoin)  - History
 - The newly connected peers can request the copy of the blockchain existing in the system.Peer receives this blockchain copy to save in the local database of that particular peer 
+- Request  - [G][H](Connectiondetails) - IPaddress and the port
+- Response - [G][X]Blockchain history Data
 
-# 9.[P][P][Message]  - Ping between the peers
-
+# 9.[P][P][Message]  - Ping between the peers - For every 1 minute peer will send random messages to all connected peers in the network and check for the response 
+- Request - [P][P]0000000
+- Response - Succeed
 # 10.[P][S][Message] - Send Connected
 - The tracker will do liveliness test to all the registered peers.So to due to some reason if one peer will disconnected and again connected.This peer details will automatically detect from liveliness test and send this peer details to other connected peer to update the local database at the peer side 
-
+- Request - [G][H][Newly connected peer data]
+- Response - Succeed
 # 11.[G][R][Message] - Request for the list of connected peer from the tracker by a individual peer
 Each peer can request a total list of connected peers from the tracker by this request
+- Request - [G][R][ConnectedPeers]
+- Response  -[G][R][tuple contain the all connected peers in the network]

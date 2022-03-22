@@ -143,6 +143,8 @@ if __name__ == "__main__":
 
         #receive history
         if(receivedMessage[4] == "X"):
-            print(receivedMessage)
+            print("blockchain history",receivedMessage)
             historyDataExtraction = HistoryDataExtraction(receivedMessage)
             blockChainCopy = historyDataExtraction.finalDataExtraction()
+            blockchainTable.addMultiple(blockChainCopy)
+
