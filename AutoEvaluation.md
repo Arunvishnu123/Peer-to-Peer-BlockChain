@@ -101,7 +101,7 @@ constantly the corresponding peer try to send the message in the database one by
  |Reset the ledger of every peers after every block creation|Online||
  |Delete the unconnected peers found from the liveliness test of the Tracker from the connected peer database|online||
  |Multi-Treading - Peers can handle multiple messages at the same time|Online|To improves the responsiveness of a system|
-|Peer can request copy of blockchain from the selected peer|Online||
+|Peer can request copy of blockchain from the selected peer|Online|Testing is pending|
 |BlockChain Validation depends on the sequence number and difficulty target |Online||
 |Message Queue System for handling the created block request |Online||
 

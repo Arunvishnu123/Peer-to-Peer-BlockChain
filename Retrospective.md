@@ -106,8 +106,10 @@ We followed the SCRUM methodology for this project development.We have several s
 |1|Project management should be improved better and also need to use tools like Trello,Confluence etc for the improved result|
 |2|Have a proper plan of designing the whole system before start the coding.Learn all concepts used in the programming,do the required poc(Proof of concept) before starting the development.Also, Draw the UML diagram if required, Atleast the sequence diagram before developing|
 |3|Create a user interface for the system |
-|4|Create a wallet for the users outside the networking.So that they can also use the full benefits and also give a user authentication system |
+|4|Create a wallet for the users outside the network.So that they can also use the full benefits and also give a user authentication system |
 |5|Do the Automated testing of the application|
 |6|Write the unit test to know  the bugs and stability of the system in all conditions|
 |7|BlockChain validation part should be improved further like frequently calculate the hash of the each block in the chain and make sure that the data is unchanged by validating the lead zeros in each hash|
 |8|Give different ports for different message for receiving  to reduce the traffic(complex programming required| 
+|9|Improved message queue architecture|
+|10|Synchronization of the different messages in the network should be improved.Currently some bugs like message duplication in the database , are there due to this.Need to solve|
