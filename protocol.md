@@ -121,7 +121,7 @@ Message format for broadcasting the validated transaction details done between t
 "DigitalSignature": "b'M\\xa0*Q\\xc4\\t\\xd8\\xbe0\\xa3|=R\\x8c\\xbd\\xcc<\\xb4\\x0c\\xcdHL\\xb3sv\\x9e\\xf0<\\xa8\\xc9\\x9c\\xffq$x\\x02\\xe9\\x07\\xfc\"\\xa4-\\xb7\\xb0\\x00\\x95)\\xb2\\x8c\\xb9\\xcag\\xfa\\xba\\xeb}h\\xa8\\xffR/\\x14\\xd9\\xb6'"}}]
 ### Response for this request  -  
 - Succeed - Here the sender get the "Succeed" message depends on the situations.If the message is successfully received he gets to "succeed" reply from the receivers
-
+![title](Images/ledger.png)
 # 4. [P][M]Message - Mine Complete
 This request is to send the mine complete status to all others peers.This request is for the Proof of Work Concept in the Cheese Coin System(BlockChain System).
 ##[Sample message format] - 
@@ -136,7 +136,7 @@ When the mining is complete and then check for the "MiningCompleted" status in t
 - b'[P][N][{"index": "2", "hash": "000008323c645bf9a7dffe8109499ac4dbdb72ded3686ae7d4276c1636394471", "Block": {"Header": {"Version": "V1", "PreviousHash": "00006a374bcc1407441cf3bdd36efc062a81ea247dded90ae6d08b54c5950122", "MerkleRoot": ["d20bea979f0db2fe91a5ce9db4d6d40c271e47c5"], "Timestamp": "2022-03-13 23:47:57.282772", "DifficultyTarget": "4", "Nonce": 82201}, "TransactionCounter": 2, "TransactionList": {"Transactions": [{"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}, {"index": 1, "DataAndTime": "2022-03-13 23:47:53.378114", "TransactionID": "ce48ee6b01ef1767ccffb75d42ee2de7af21efdb", "SenderName": "Arun", "ReceiverName": "Arun", "Data(Amount and Message)": "b\\"\\\\x17L\\\\xc9\\\\xc4\\\\xe68\\\\xb6\\\\xadp[@\\\\xda\\\\xa9\\\\x11\\\\x1bR\\\\xbd\\\\xc0i\\\\x83?)\\\\xd0\\\\t=e\\\\x03\\\\xa1&_\\\\xa1\\\\xf5\\\\x03\\\\xa6n\\\\x95\\\\xbes\\\\xd3\\\\x1f\\\\xf4\\\\xfc*F\\\\xe4\\\\xd3\\\\x8d\\\\xa6\\\\xf6V\\\\xf4|HP$\\\\xfb\\\\xef\\\\x8d\\\\xccd\\\\xe7\'\\\\x10\\\\x13\\"", "DigitalSignature": "b\'=\\\\xccF#5\\\\x8a\\\\xc0VF\\\\x8d\\\\x8a\\\\xf2\\\\x90\\\\xcd\\\\x8d\\\\x96\\\\x07Y\\\\x19\\\\x0b\\\\x94\\\\x99\\\\x94\\\\x1d\\\\xe3\\\\x85L\\\\x98\\\\x00Vh3$\\\\xff-{\\\\xaa\\\\xd8\\\\x93\\\\xfd\\\\x15\\\\xe9\\\\xd0\\\\xd1JX\\\\t\\\\x1d\\\\xba!r\\\\xcf?\\\\xcb\\\\x9a\\\\x98&.\\\\x82?\\\\x9eP\\\\x9a\\\\xaa\'"}]}}}]'
 ### Response for this request  - 
 - Succeed - Here the sender get the "Succeed" message depends on the situations.If the message is successfully received he gets to "succeed" reply from the receivers
-
+![title](Images/Mining.png)
 # 6.[G][K][Message] - KeepAlive
 Here the KeepAlive is  used to check the communication status of the connected nodes in the network which done by the tracker.
 ## [ Sample request format]
@@ -149,6 +149,8 @@ if the Tracker doesn't get any reply from any peer which is in the database of t
 
 # 7.[P][U][Message]  -  Unconnected Peers List
 
-# 8.[G][H][Message]  -  BlockChain(CheeseCoin)  - History
+# 8.[P][H][Message]  -  BlockChain(CheeseCoin)  - History
 
-# 9.[G][P][Message]  - Ping between the peers 
+# 9.[P][P][Message]  - Ping between the peers 
+
+# 10.[P][S][Message] - Send Connected

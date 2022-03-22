@@ -33,14 +33,25 @@ class MessageQueue:
            print("error in operation")
 
 
-    def retriveMessageQueue(self):
+    def retriveMessageQueue(self,peerIPAddress):
         db = sqlite3.connect('./Database/BlockChain.db')
-        qry = """select * FROM MessageQueue """
+        qry = """select * FROM MessageQueue where peerIPAddress != ? """
         try:
             cur = db.cursor()
-            cur.execute(qry)
+            cur.execute(qry,(peerIPAddress,))
             result = cur.fetchall()
             db.close()
             return result
         except:
             print("error in operation")
+
+    def deleteMessage(self,id):
+        db = sqlite3.connect('./Database/BlockChain.db')
+        qry = """delete FROM MessageQueue where SequenceNumber = ? """
+        try:
+            cur = db.cursor()
+            cur.execute(qry, (id,))
+            db.commit()
+            db.close()
+        except:
+            print("edrror in operation")

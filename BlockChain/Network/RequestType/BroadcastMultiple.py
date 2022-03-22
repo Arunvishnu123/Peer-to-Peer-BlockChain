@@ -7,7 +7,7 @@ class BroadCastMulitple:
         #connectedList is list of all connected nodes in the network and
         # also each index in the list is a tuple which contain IP address and port number
         self.connectedList  = connectedList
-        #message to be transmitted throughout thre network
+        #message to be transmitted throughout three network
         self.message = message
 
     def mPeer(self):

@@ -16,20 +16,36 @@ from BlockChain.CheeseCoin.BlockChain.GenesisBlock import genesisBlock
 from BlockChain.Database.CurrentPeerData import PeerData
 from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
 from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
+from BlockChain.Database.MessageQueue import MessageQueue
+from BlockChain.Network.RequestType.BroadMessageQueue import BroadMessageQueue
+from BlockChain.MessageQueue.MessageQueuing import MessageQueueLogic
 import socket
+import time
 
 ###################################################################################################
-#create datables object
+#create table object for retrieving and adding
 peerDataTable = PeerDetailsTable()
 transactionDataTable  = TransactionsDT()
 ledgerDataTable = TransactionsLedgerDT()
 blockchainTable  =  BlockChainDT()
 peerData  = PeerData()
+messageQueue = MessageQueue()
+
+
 
 #ServerIP
 ipaddress = socket.gethostbyname(socket.gethostname())
 reciever = Receiver((ipaddress,4001))
 peerList = [ ]
+
+
+
+#message queueing
+#object creation to do the message queuing
+messageQueingLogic = MessageQueueLogic()
+messageQueueing = Thread(target=messageQueingLogic.messageQueuing())
+messageQueueing .start()
+
 
 while True:
     # receive new Node details
@@ -106,13 +122,3 @@ while True:
             print("unconnected",unconnected)
             print(unconnected[0])
             peerDataTable.deletePeerData(unconnected[0])
-
-
-
-
-
-
-
-
-
-

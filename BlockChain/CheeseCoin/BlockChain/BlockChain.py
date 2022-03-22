@@ -1,3 +1,4 @@
+# this class is written for the testing purpose not used in the logic
 chain = []
 
 class BlockChain:
