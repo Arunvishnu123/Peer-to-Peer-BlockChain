@@ -18,6 +18,7 @@ from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
 from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
 from BlockChain.Database.MessageQueue import MessageQueue
 from BlockChain.MessageQueue.MessageQueuing import MessageQueueLogic
+from BlockChain.CheeseCoin.BlockChain.BlockValidation import BlockValidation
 import socket
 import time
 
@@ -35,11 +36,18 @@ ipaddress = socket.gethostbyname(socket.gethostname())
 reciever = Receiver((ipaddress, 4001))
 peerList = []
 
+##############################################################################
 # message queueing
 # object creation to do the message queuing
 messageQueingLogic = MessageQueueLogic()
 messageQueueing = Thread(target=messageQueingLogic.messageQueuing)
 messageQueueing.start()
+
+##############################################################################
+#BlockChain Validation
+blockValidation = BlockValidation()
+blockValid = Thread(target=blockValidation.blockValidation())
+blockValid.start()
 
 if __name__ == "__main__":
     while True:

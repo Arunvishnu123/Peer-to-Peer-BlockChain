@@ -39,16 +39,20 @@ def livelinesstest():
        if (len(unconnectedPeers) != 0):
            requestMessage  = RequestCreation(unconnectedPeers)
            messageFormatUnconnected = requestMessage.final()
-           print("hiiiiiii",messageFormatUnconnected)
+           print("Message Format Unconnected",messageFormatUnconnected)
            connectionDetails = peerDataTable.retrieveElements()
            print(connectionDetails)
            print("SendingMessage")
            print(requestMessage.final())
            tracker.sendNewNode(connectionDetails,messageFormatUnconnected)
        print("succeed")
+
 #liviliness test
 livelinessTest = Thread(target=livelinesstest)
 livelinessTest.start()
+
+
+
 if __name__ == "__main__":
     while True:
         trackerReceiverQueue = Queue()

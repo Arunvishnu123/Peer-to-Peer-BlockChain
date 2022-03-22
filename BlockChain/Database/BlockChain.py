@@ -65,3 +65,15 @@ class BlockChainDT:
         except:
             print("error in operation")
 
+    def retrieveBlockVaidation(self):
+        db = sqlite3.connect('./Database/BlockChain.db')
+        qry = """select SequenceNumber,Hash FROM BlockChain """
+        try:
+            cur = db.cursor()
+            cur.execute(qry)
+            result = cur.fetchall()
+            db.close()
+            return result
+        except:
+            print("error in operation")
+
