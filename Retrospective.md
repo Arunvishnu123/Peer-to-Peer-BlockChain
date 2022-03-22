@@ -13,7 +13,7 @@
 * socket  - For Network programming - inbuilt
 * pathlib - Get the location of files 
 * SQLite - For connecting to the Sqlite database
-* json - 
+* json -  To convert the json string to dictionary and vice versa
 * PyQT5  - for creating the user interface
 
 # Project Organization - 
@@ -21,53 +21,54 @@ We followed the SCRUM methodology for this project development.We have several s
 
 ## Sprint - 1 - 
 ### The main objective of this sprint is write the protocol document.
- |ID|Task Name|Hours Spend|Remarks|
- |---------------|--------------|-------------|----------|
- |#1|Understand the full requirements of this project|5||
- |#2|Study about the Blockchain working|5||
-|#3|Study about the peer to peer networking|5||
-|#4|Define the types of messages that are transmitted in the peer to peer network|||
-|#5|Design the structure of messages that are transmitted in the peer to peer network|||
-|#6|Write the protocol document according to the message types defined with format of each message|||
+ |ID|Task Name|
+ |---------------|--------------|
+ |#1|Understand the full requirements of this project|
+ |#2|Study about the Blockchain working|
+ |#3|Study about the peer to peer networking|
+ |#4|Define the types of messages that are transmitted in the peer to peer network|
+ |#5|Design the structure of messages that are transmitted in the peer to peer network|
+ |#6|Write the protocol document according to the message types defined with format of each message|
 
 ## Sprint - 2 - 
 ### The main objective of this sprint is develop a working blockchain without networking.
- |ID|Task Name|Hours Spend|Remarks|
- |---------------|--------------|-------------|----------|
- |#7|Design the structure of the Blockchain|||
- |#8|Design the modules required for the creating the working BlockChain||||#3|Design the module for the Asymmetric Cryptography which include the public and private key generation ,Message Encryption and Decryption|||
-|#9|Create the modules to make transactions,transaction ledger|||
-|#10|Create a module to make the block as per the structure designed|5||
-|#11|Create a module to calculate  the Merkel Root of all transactions in the ledger|5||
-|#12|Create a module to Mine the created Block as per difficulty target and calculate the nonce|||
-|#13|Create a module to calculate the Genesis Block(First block in the block chain)|||
-|#14|Complete the testing of the above modules and make sure that all are working as per the requirement |||
+ |ID|Task Name|
+ |---------------|--------------|
+ |#7|Design the structure of the Blockchain|
+ |#8|Design the modules required for the creating the working BlockChain|
+ |#9|Create the modules to make transactions,transaction ledger|
+ |#10|Create a module to make the block as per the structure designed|
+ |#11|Create a module to calculate  the Merkel Root of all transactions in the ledger|
+ |#12|Create a module to Mine the created Block as per difficulty target and calculate the nonce|
+ |#13|Create a module to calculate the Genesis Block(First block in the block chain)|
+ |#14|Complete the testing of the above modules and make sure that all are working as per the requirement|
 
 ## Sprint - 3 - 
 ### The main objective of this sprint is to develop the networking aspects and test the blockchain.
- |ID|Task Name|Hours Spend|Remarks|
- |---------------|--------------|-------------|----------|
- |#15|Learn about the socket programming and do the required test|||
- |#16|Create modules to structure the message required for the sending and receiving in the network as per the protocol document|||
-|#17|Design the database and identifying the table required|||
-|#18|Create modules to do the CRUD operations for each tables in the database|||
-|#19|Create module for receiving and sending message in the peer to peer network using the socket programming|||
-|#20|Create the Tracker server as per design|||
-|#21|Integrate all modules in the main program|||
-|#22|So the required testing and make sure every thing is working fine|||
+ |ID|Task Name|
+ |---------------|--------------|
+ |#15|Learn about the socket programming and do the required test|
+ |#16|Create modules to structure the message required for the sending and receiving in the network as per the protocol document|
+ |#17|Design the database and identifying the table required|
+ |#18|Create modules to do the CRUD operations for each tables in the database|
+ |#19|Create module for receiving and sending message in the peer to peer network using the socket programming|
+ |#20|Create the Tracker server as per design|
+ |#21|Integrate all modules in the main program|
+ |#22|So the required testing and make sure every thing is working fine|
 
 ## Sprint - 4 - 
 ### The main objective of this sprint is to add the additional functionalities like message queue system and automatic liveliness test of peers by tracker.
- |ID|Task Name|Hours Spend|Remarks|
- |---------------|--------------|-------------|----------|
-|#23|Add the message queue system in the block chain to store the mined Blocks|||
-|#24|Add the message queue system in the tracker to store the new peer details|||
-|#25|Add the liveliness test of peers by tracker|||
-|#26|Do the testing and make sure the system is working fine|||
-|#27|Create the user interface for the blockchain|||
-|#28|Do the testing of user interface|||
+ |ID|Task Name|
+ |---------------|--------------|
+ |#23|Add the message queue system in the block chain to store the mined Blocks|
+ |#24|Add the message queue system in the tracker to store the new peer details|
+ |#25|Add the liveliness test of peers by tracker|
+ |#26|Do the testing and make sure the system is working fine|
+ |#27|Create the user interface for the blockchain|
+ |#28|Do the testing of user interface|
 
 # Difficulties we faced during the implementation of this application - 
+
 |ID|Difficulties|
 |---------|-----------|
 |1|Designing the Asymmetric cryptography is the first difficulty we faced while implementing the block chain.We tested many modules and final found one that is "rsa",During the initial testing the module was working perfectly.But there was a problem in that module that is we can't able to double encrypt the message for achieving both Authentication and confidentiality.We already lost lot of time for testing this module.We didn't plan to change te module,instead of that we give digital signature for the authentication and encrypt the message for confidentiality(Already explain in details about our design of Asymmetric cryptography in ProjectDescription.md file)  |
@@ -78,6 +79,7 @@ We followed the SCRUM methodology for this project development.We have several s
 |6|We did the project in mainly two different phase one is BlockChain and other is the Networking.We need to change a lot while doing in the networking part from Blockchain logic.This is occurred due to the improper planning about the whole implementation of the project and start the BlockChain programming without planning the network part |
 
 # Lessons learned from the implementation - 
+
 |ID|lessons learned|
 |-------------|--------------|
 |1|Learned the concept about blockchain and knows it importance|
