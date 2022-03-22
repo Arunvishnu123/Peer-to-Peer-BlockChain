@@ -21,7 +21,7 @@
 
 **Difficulty Target** - Difficulty is a measure of how difficult it is to mine a block in a blockchain for a particular blockchain. A high difficulty target means it takes additional computing power to verify transactions entered on a blockchain. Useful for the proof of work.<br />
 
-**Nonce** -It is a number added to an encrypted block in a blockchain. When it is rehashed, it meets the difficulty level restrictions. Blockchain miners are solving this number to receive cryptocurrency.
+**Nonce** -It is a number added in an encrypted block in a blockchain.This is calculated by a trial and error methods by checking the hash of the block to meet the difficulty target(leading zeros).
 
 
 # Blockchain 
