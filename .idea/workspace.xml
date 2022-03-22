@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/Database/MessageQueue.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Database/MessageQueue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/Network/RequestType/BroadcastMultiple.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/RequestType/BroadcastMultiple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CreateDB-Tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/CreateDB-Tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/BlockChain.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BlockChain.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Strucutre of the Block.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Strucutre of the Block.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
