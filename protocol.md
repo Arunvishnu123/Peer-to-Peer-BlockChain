@@ -7,7 +7,7 @@ Every peer is identified by:
   - A public key (if encryption added).
 - **IP address and Port Number**.
 
-Every peer in the network is equal. A peer acts both as a TCP server - as it accepts other peers' connections - and as a client since it connects to the tracker for peer discovery and to other peers for broadcasting the data.
+Every peers in the network are equal. A peer acts both as a TCP server - as it accepts other peers' connections - and as a client since it connects to the tracker for peer discovery and to other peers for broadcasting the data.
 
 Peers can:
 - **Interact with other peers**.
