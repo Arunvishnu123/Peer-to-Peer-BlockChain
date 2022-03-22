@@ -4,7 +4,7 @@
 * Implement the blockchain, without networking, without currency transactions (the data can be any message with no particular semantic).
 * Implement the mining aspects of the block and it in the chain.
 * Testing of creating a peer to peer network with much logic (for sending some random messages)
-* Create the protocol document for the BlockChain.By considering the needs of the blockchain working
+* Create the protocol document for the BlockChain.py considering the needs of the blockchain working
 * Create the tracker server for Blockchain application which help add the new node the network
 * Develop socket programming for sending and receiving messages from other peers and also trackers
 * Create the message format as per the protocol document  for identifying the message type when sending and receiving
@@ -44,8 +44,7 @@ We have multiple team  meetings to define the use cases of the blockchain system
 * Then decrypt the message and at the same time do the validation of the transaction and add the transaction to it local database table which contain all the individual transaction details
 * If the validation is successful then, the receiver  broadcast the transaction to all other connected peers 
 * Each peer will receive this message and add it the ledger table in the database 
-* When any peer can give  command for mining and creating the block and add to the chain
-* At first, peer will create the block as per structure defined earlier using the transactions in the ledger 
+* When any peer can give  command for mining and creating the block and add to the chain. At first, peer will create the block as per structure defined earlier using the transactions in the ledger 
 * Then do the Proof of Work as per the difficulty target and calculate the nonce 
 * When the Mining is complete then the peer will check  any "MiningComplete" status from other peer in the local db which shows the minus status of other peer in the network
 * If there is no "MiningComplete" status then send the block to other peers 
@@ -63,10 +62,10 @@ constantly the peer try to send the message in the database one by one
 * After liveliness test the tracker get two list , one is unconnected peer and connected peers
 * Tracker compare the connected peer list found from the liveliness test and the live connected peer table, if it any new peer found then, add that element to the live connected peer table and send the same to the other connected peer to update in there local database
 * Similarly, the tracker check the same with the unconnected peers and the live connected peer table,if any member in the live connected peer table is in the unconnected list then it should be removed and send the details to all connected peers
-* Tracker there is one message queue system - Working is that when the tracker broadcast the new node details according the peer list in there local database to other peer, then any failed case occur when try to connect to ta peer then the message and the connection information of that peer will log into another table in the database
+* In tracker there is message queue system - Working is that when the tracker broadcast the new node details according the peer list in there local database to other peer, then any failed case occur when try to connect to peer then the message and the connection information of that peer will log into another table in the database
 * Constantly the tracker will send the message in the queue according the connections
 * Tracker will check the communication status of each peer in the network according to the peer list in the tracker 
-* If the tracker find out any peer is offline then the tracker send this peer details(it can be one or many ) to other connected peers 
+* If the tracker find out any peer is offline then the tracker send this peer details(it can be one or many) to other connected peers
 * Peers will receive this information and delete the connection details of the offline peers from the database
 
 # What Works on the Tracker and what not
