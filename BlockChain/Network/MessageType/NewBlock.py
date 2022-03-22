@@ -47,7 +47,13 @@ class BlockDataExtraction:
                              dict["Block"]["TransactionCounter"], str(dict["Block"]["TransactionList"]))
         return extractedData
 
-    def genesisBlockExtraction
+    def genesisBlockExtraction(self,message):
+        dict = message
+        data = (dict["hash"], dict["Block"]["Header"]["Version"], dict["Block"]["Header"]["PreviousHash"],
+                             str(dict["Block"]["Header"]["MerkleRoot"]), dict["Block"]["Header"]["Timestamp"],
+                             dict["Block"]["Header"]["DifficultyTarget"], dict["Block"]["Header"]["Nonce"],
+                             dict["Block"]["TransactionCounter"], str(dict["Block"]["TransactionList"]))
+        return  data
 
 
 

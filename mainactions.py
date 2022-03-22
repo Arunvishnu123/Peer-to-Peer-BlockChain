@@ -61,11 +61,14 @@ if __name__ == "__main__":
         port = input("Enter the port to run the peer:")
         name = input("Enter your Name:")
         # storing this data to the user
-        createPeer.addPeerData((name,port,ipAddress))
+        createPeer.addPeerData((name,int(port),ipAddress))
         # peer data converted to dictionary for sending
     #message creation(convert the below data to a dictionary)
-    peerDetails = createPeer.retrivePeerData()
-    peerDetails = PeerDetails(peerDetails[0][3], peerDetails[0][2], hostPublicKey, peerDetails[0][1])
+    currentPeerDetails = createPeer.retrivePeerData()
+    print("Peer Details :",currentPeerDetails)
+    print("type of peer details",type(currentPeerDetails[0][1]))
+    peerDetails = PeerDetails(currentPeerDetails[0][3], currentPeerDetails[0][2], hostPublicKey, currentPeerDetails[0][1])
+    print("PeerName:",currentPeerDetails[0][1])
     ###############################################################################################################################################
 
 
@@ -102,7 +105,7 @@ if __name__ == "__main__":
             print("message and amount to be send", data)
             ######################################################################################################
             # Encryption of the message
-            oencryption = encryption(hostPrivateKey,hostPublicKey, data, peerDetails[0][1])
+            oencryption = encryption(hostPrivateKey,hostPublicKey, data, currentPeerDetails[0][1])
             digtalSignature = oencryption.digitalSignature()
             print("vcfg", digtalSignature)
             encryptedData = oencryption.encryptedMessage()
@@ -112,7 +115,7 @@ if __name__ == "__main__":
             print("EncryptedData", finalMessage)
             ####################################################################################################
             # Creating the transaction details
-            transactureStructure = Transactions(name, receiverName, finalMessage)
+            transactureStructure = Transactions(currentPeerDetails[0][1], receiverName, finalMessage)
             transactionFullMessage = transactureStructure.createTransaction()
             print("TransactionMessage", transactionFullMessage)
             ######################################################################################################
@@ -147,7 +150,7 @@ if __name__ == "__main__":
             merkleRoot = createdMerkalRoot
             difficultyTarget = "4"
             nonce = 0
-            blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData,peerDetails[0][1])
+            blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData,currentPeerDetails[0][1])
             createdBloc = blockCreation.createBlocks()
             print(createdBloc)
             #mining logic

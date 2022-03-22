@@ -59,10 +59,10 @@ while True:
              genesisBlockMessageFormat = genesisBlockRequestCreation.final()
              print(genesisBlockMessageFormat)
              connectedPeersList2 = peerDataTable.retrivePeerDetailsGensis(peerData[0][1])
-             print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",connectedPeersList2)
+             print("connected peer list",connectedPeersList2)
              blockExtraction1 = BlockDataExtraction(receivedMessage)
-             print(blockExtraction1.finalDataExtraction())
-             blockchainTable.addBlocks(blockExtraction1.finalDataExtraction())
+             print(blockExtraction1.genesisBlockExtraction(genesisBlock))
+             blockchainTable.addBlocks(blockExtraction1.genesisBlockExtraction(genesisBlock))
              broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList2, genesisBlockMessageFormat)
              broadCastMineCompleteMessage.mPeer()
 
