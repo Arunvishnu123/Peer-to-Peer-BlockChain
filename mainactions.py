@@ -69,6 +69,8 @@ if __name__ == "__main__":
     print("type of peer details",type(currentPeerDetails[0][1]))
     peerDetails = PeerDetails(currentPeerDetails[0][3], currentPeerDetails[0][2], hostPublicKey, currentPeerDetails[0][1])
     print("PeerName:",currentPeerDetails[0][1])
+    print("Peer ID Address: ", currentPeerDetails[0][3])
+    print("Peer Running at: ", currentPeerDetails[0][2])
     ###############################################################################################################################################
 
 

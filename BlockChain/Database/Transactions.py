@@ -12,8 +12,8 @@ class TransactionsDT:
             DateAndTime TEXT (20) NOT NULL,
             TransactionID TEXT (20) NOT NULL,
             SenderName TEXT (20) NOT NULL,
-            Amount TEXT (20) NOT NULL,
-            Message TEXT (20) NOT NULL );''')
+            AmountMessage TEXT (20) NOT NULL,
+            DigitalSignature TEXT (20) NOT NULL );''')
             print('table created successfully')
         except:
             print('error in operation')
@@ -22,7 +22,7 @@ class TransactionsDT:
 
     def addElements(self,data):
         db = sqlite3.connect('./Database/BlockChain.db')
-        qry = "insert into Transactions (DateAndTime, TransactionID,SenderName,Amount,Message) values(?,?,?,?,?);"
+        qry = "insert into Transactions (DateAndTime, TransactionID,SenderName,AmountMessage,DigitalSignature) values(?,?,?,?,?);"
         try:
             cur = db.cursor()
             cur.execute(qry, data)
