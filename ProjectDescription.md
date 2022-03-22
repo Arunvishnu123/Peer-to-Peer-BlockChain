@@ -19,7 +19,7 @@
 
 **Timestamp** - It is nothing but a date and time in which the event is happening. In our system, it is to determine at which moment the block has been mined and validated by the blockchain network.<br />
 
-**Difficulty Target** - Difficulty is a measure of how difficult it is to mine a block in a blockchain for a particular blockchain. A high difficulty target means it takes additional computing power to verify transactions entered on a blockchain.<br />
+**Difficulty Target** - Difficulty is a measure of how difficult it is to mine a block in a blockchain for a particular blockchain. A high difficulty target means it takes additional computing power to verify transactions entered on a blockchain.Useful for the proof of work<br />
 
 **Nonce** -The nonce is the short form for Number Only Used Once is a number added to an encrypted block in a blockchain.  A cryptographic nonce can be combined with data to produce different hash digests per nonce: hash (data + nonce) = digest.
 
