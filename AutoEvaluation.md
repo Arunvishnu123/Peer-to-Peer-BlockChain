@@ -107,7 +107,6 @@ constantly the corresponding peer try to send the message in the database one by
 
 
 # Time Spent for each member and their contribution
-
 |Member Name|Part which each member worked|Time spend in hours|
 |---------------|--------------|-------------|
 |Arun Raveendran Nair Sheela|Block Chain creation,Designing,Network Programming,Tracker,Testing,Research,Documentation|~80 hours|
@@ -121,6 +120,3 @@ constantly the corresponding peer try to send the message in the database one by
 |   About the code    |  - Program is written in python programming language.<br /> - Used Pycharm as IDE for development.<br /> - Used module based development for improved readability and code Manageability. Also helps for the collaboration.<br /> - Code are written in English and gave proper comments and also followed the standard approach for creating variables(camel case used).|
 |  About git  |   - Frequently committed the code and pushed to the github.<br /> - Tried to give to meaningful commit messages. <br /> -All commit messages are given in english. <br /> |
 | Testing | - Only followed the manual testing. <br /> - The software is tested in all possible conditions manually|
-
-
-    

@@ -107,5 +107,5 @@ We followed the SCRUM methodology for this project development.We have several s
 |4|Create a wallet for the users outside the networking.So that they can also use the full benefits and also give a user authentication system |
 |5|Do the Automated testing of the application|
 |6|Write the unit test to know  the bugs and stability of the system in all conditions|
-|7|BlockChain validation part should be improved further like frequently calculate the hash of the each block in the chain and make sure that the data is unchanged|
-
+|7|BlockChain validation part should be improved further like frequently calculate the hash of the each block in the chain and make sure that the data is unchanged by validating the lead zeros in each hash|
+|8|Give different ports for different message for receiving  to reduce the traffic(complex programming required| 
