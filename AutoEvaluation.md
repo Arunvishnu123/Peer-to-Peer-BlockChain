@@ -27,7 +27,7 @@ We have multiple team  meetings to define the use cases of the blockchain system
 |Develop modules for creating the message structure for sending side and also, for destructuring the message at the receiving side as per the protocol document|
 |Create the module for sending and receiving messages from other peers|
 |Design the Tracker logic in the system |
-|Study about the Message Queueing System and Design the logic to implement it in the project|
+|Create the Message Queueing System and Design the logic to implement it in the project|
 
 # Sequence of Operation - 
 
