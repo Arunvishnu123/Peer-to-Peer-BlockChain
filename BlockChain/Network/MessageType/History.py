@@ -1,7 +1,33 @@
 # This is always a get request type
 # request side
-class RequestCreation:
-    def __init__(self, message):
+class HistoryRequestCreation:
+    def __init__(self,message):
+        self.message=message
+
+
+    def requestType(self):
+        str = "[]"
+        rType = str[:1] + "G" + str[1:]
+        return rType
+
+    def messageType(self):
+        str = "[]"
+        mType = str[:1] + "H" + str[1:]
+        return mType
+
+    def data(self):
+        data = self.message
+        return str(data)
+
+    def final(self):
+        final = self.requestType() + self.messageType() + self.data()
+        finalMessage = final.encode('utf-8')
+        return finalMessage
+
+#response
+
+class HistoryResponse:
+    def __init__(self,message):
         self.message = message
 
     def requestType(self):
@@ -11,40 +37,21 @@ class RequestCreation:
 
     def messageType(self):
         str = "[]"
-        mType = str[:1] + "T" + str[1:]
+        mType = str[:1] + "X" + str[1:]
         return mType
 
+
     def final(self):
-        pass
+        final = self.requestType() + self.messageType() + str(self.message)
+        return final
+
 
 # request side
-class DataExtraction:
-    def __init__(self):
-        pass
+class HistoryDataExtraction:
+    def __init__(self,message):
+        self.message = message
 
     def finalDataExtraction(self):
         pass
 
-# response side
-
-class ResponseCreation:
-    def __init__(self, message):
-        self.message = message
-
-    def requestCode(self):
-        pass
-
-    def data(self):
-        pass
-
-    def final(self):
-        pass
-
-# Extracted data from the response
-class ResponseExtraction:
-    def __init__(self):
-        pass
-
-    def extractedData(self):
-        pass
 

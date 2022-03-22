@@ -11,7 +11,7 @@ class BlockValidation:
         blockChain = BlockChainDT()
         blockChainValidation = BlockChainValidation()
         while True:
-            time.sleep(10)
+            time.sleep(60)
             print("sequence number and corresponding hash", blockChain.retrieveBlockVaidation())
             blockDetails = blockChain.retrieveBlockVaidation()
             for block in blockDetails:

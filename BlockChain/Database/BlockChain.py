@@ -39,6 +39,20 @@ class BlockChainDT:
            #db.rollback()
         db.close()
 
+    def addMultiple(self,datas):
+        db = sqlite3.connect('./Database/BlockChain.db')
+        qry = "insert into peerData (Hash,Version,PreviousHash,MerkelRoot,TimeStamp,DifficultyTarget,Nonce,TransactionCounter,Transactions) values(?,?,?,?,?,?,?,?,?);"
+        try:
+            for data in datas:
+              cur = db.cursor()
+              cur.execute(qry,data)
+              db.commit()
+              print("new peer details added to the database successfully")
+        except:
+            print("error in operation")
+            db.rollback()
+        db.close()
+
     def retriveBlock(self):
         db = sqlite3.connect('./Database/BlockChain.db')
         qry = """select * FROM BlockChain """

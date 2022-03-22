@@ -19,6 +19,9 @@ from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
 from BlockChain.Database.MessageQueue import MessageQueue
 from BlockChain.MessageQueue.MessageQueuing import MessageQueueLogic
 from BlockChain.CheeseCoin.BlockChain.BlockValidation import BlockValidation
+from BlockChain.Network.MessageType.History import HistoryResponse
+from BlockChain.Network.RequestType.BroadcastSelected import BroadCastSelected
+from BlockChain.Network.MessageType.History import HistoryDataExtraction
 import socket
 import time
 
@@ -46,7 +49,7 @@ messageQueueing.start()
 ##############################################################################
 #BlockChain Validation
 blockValidation = BlockValidation()
-blockValid = Thread(target=blockValidation.blockValidation())
+blockValid = Thread(target=blockValidation.blockValidation)
 blockValid.start()
 
 if __name__ == "__main__":
@@ -127,3 +130,19 @@ if __name__ == "__main__":
                 print("unconnected", unconnected)
                 print(unconnected[0])
                 peerDataTable.deletePeerData(unconnected[0])
+
+        #request history
+        if (receivedMessage[4] == "H"):
+            print("History Request Received")
+            connectionDe = eval(receivedMessage[6:])
+            print(blockchainTable.retriveBlock())
+            history = HistoryResponse(blockchainTable.retriveBlock())
+            print(history.final())
+            print(type(connectionDe))
+            broadCastBlockChainCopy = BroadCastSelected(connectionDe,history.final())
+
+        #receive history
+        if(receivedMessage[4] == "X"):
+            print(receivedMessage)
+            historyDataExtraction = HistoryDataExtraction(receivedMessage)
+            blockChainCopy = historyDataExtraction.finalDataExtraction()

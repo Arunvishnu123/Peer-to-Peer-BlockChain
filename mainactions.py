@@ -21,6 +21,7 @@ from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
 from BlockChain.Database.BlockChain import BlockChainDT
 from BlockChain.Database.CurrentPeerData import PeerData
 from BlockChain.Network.MessageType.RequestConnected import RequestConnected
+from BlockChain.Network.MessageType.History import HistoryRequestCreation
 
 import time
 import socket
@@ -78,7 +79,7 @@ if __name__ == "__main__":
     while True:
         # select the operation need to do by the system
         print("################################################################################################################################################")
-        print("Enter C or c to connect to the peer at the first time(means connect to the tracker)\nEnter R or r to request the connected peers form Tracker\nEnter T or t to send messrage and make transaction to the peers\nEnter M or m for mining the current transaction and create Block")
+        print("Enter C or c to connect to the peer at the first time(means connect to the tracker)\nEnter R or r to request the connected peers form Tracker\nEnter T or t to send messrage and make transaction to the peers\nEnter M or m for mining the current transaction and create Block\nEnter B or b for request the complete blockchain")
         operation = input("Select the operation need to do:")
 
 #####################################################################################################################################################
@@ -188,7 +189,16 @@ if __name__ == "__main__":
 
        #for sending the blockchain copy to newly joined peers
         if operation == "B" or operation == "b":
-            pass
+            print("Connected Peers Name", connectedPeers.retreievePeerName())
+            blockName = input("Select the peer name:")
+            selectedPeer = connectedPeers.retrieveAllSelected(blockName)
+            print(selectedPeer[2],selectedPeer[3])
+            history = HistoryRequestCreation((selectedPeer[2],selectedPeer[3]))
+            print(history.final())
+            requestHistory = BroadCastSelected((selectedPeer[2],selectedPeer[3]),history.final())
+            requestHistory.sPeer()
+
+
 
         #requesting all connected network details
         if operation == "R" or operation == "r":
