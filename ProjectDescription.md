@@ -21,8 +21,11 @@
 
 **Difficulty Target** - Difficulty is a measure of how difficult it is to mine a block in a blockchain for a particular blockchain. A high difficulty target means it takes additional computing power to verify transactions entered on a blockchain. Useful for the proof of work.<br />
 
-**Nonce** -It is a number added in an encrypted block in a blockchain.This is calculated by a trial and error methods by checking the hash of the block to meet the difficulty target(leading zeros).
+**Nonce** -It is a number added in an encrypted block in a blockchain.This is calculated by a trial and error methods by checking the hash of the block to meet the difficulty target(leading zeros).<br />
 
+**Transition Counter** - It counts the number of transactions in particular cheese.<br />
+
+**Transaction Data** - It is a message stored in cheese. It contains sender name, receiver name, timestamp, amount. This module send this message to encryption.<br />
 
 # Blockchain 
 * Blockchain is “a distributed datastructure that contains transactional records across many computers and it continuously stored those transactions in the form of Blocks. These blocks are linked using cryptography. Every block contains blockheader, transition counter and transaction data. It is considered very secure by it's design. 
