@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="827bbdbf-7ae5-4729-b052-ef97902808d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/CheeseCoin/BlockChain/BlockValidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/CheeseCoin/BlockChain/BlockValidation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/Database/BlockChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Database/BlockChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChain/Network/MessageType/History.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChain/Network/MessageType/History.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoEvaluation.md" beforeDir="false" afterPath="$PROJECT_DIR$/AutoEvaluation.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/BlockChain.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BlockChain.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainactions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainresponses.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainresponses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Retrospective.md" beforeDir="false" afterPath="$PROJECT_DIR$/Retrospective.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/protocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/protocol.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

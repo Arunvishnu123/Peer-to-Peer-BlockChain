@@ -70,8 +70,8 @@ M | MineComplete |Post |Send the Mining complete status to the other peers | JSO
 N | NewBlock | Post|A peer will broadcast this message when discovering a new valid cheese | JSON String representation which is encode to bytes|
 P | Ping | Post |Sent from one peer to another Peer to make sure that it is online before trying to establish a TCP connection | Random nonce |
 H | History | Get|Get the history of blocks in the individual nodes.This should be useful when new node is connected to the network | JSON String representation which is encode to bytes |
-S | SendConnected | Post| Found the connected peer using the "KeepAlive" test and found any registered peers(after the unconnected state of that peer). Send this information to all peers | JSON String representation which is encode to bytes |
-
+S | SendConnected | Post| Found the connected peer Automatically using the "KeepAlive" test and found any registered peers(after the unconnected state of that peer). Send this information to all peers | JSON String representation which is encode to bytes |
+R | RequestConnected | Get| Request the list of connected peers from the tracker by a newly connected peer | JSON String representation which is encode to bytes |
 * payload information and  explanation of  all types of  request and corresponding response will discuss in details in the coming section.
 
 # 3. [Data/Arguments] - The data/argument is the content which need to be send or receive by the nodes.Here the message is of simple json format.Here Data or argument which deppends on the type of request method([get or post]).
@@ -148,9 +148,15 @@ When the peers get this message then they will return the response as per the de
 if the Tracker doesn't get any reply from any peer which is in the database of the Tracker, and it will be removed the tracker's database also send the unconnected peer list to the all other connected peers ,also then the peers will remove the same from their database too
 
 # 7.[P][U][Message]  -  Unconnected Peers List
+- Tracker will found the unconnected peers during liveliness test and Tracker will send these peers list  to all connected peer and connected peers receives this message and delete the peer from the database 
 
-# 8.[P][H][Message]  -  BlockChain(CheeseCoin)  - History
+# 8.[G][H][Message]  -  BlockChain(CheeseCoin)  - History
+- The newly connected peers can request the copy of the blockchain existing in the system.Peer receives this blockchain copy to save in the local database of that particular peer 
 
-# 9.[P][P][Message]  - Ping between the peers 
+# 9.[P][P][Message]  - Ping between the peers
 
 # 10.[P][S][Message] - Send Connected
+- The tracker will do liveliness test to all the registered peers.So to due to some reason if one peer will disconnected and again connected.This peer details will automatically detect from liveliness test and send this peer details to other connected peer to update the local database at the peer side 
+
+# 11.[G][R][Message] - Request for the list of connected peer from the tracker by a individual peer
+Each peer can request a total list of connected peers from the tracker by this request

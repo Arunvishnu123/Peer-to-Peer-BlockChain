@@ -51,9 +51,10 @@ We have multiple team  meetings to define the use cases of the blockchain system
 * If there is any "Mining Complete Status in the database then terminate the mining process"
 * Other peers receives this block and add it to the blockchain
 * Also, here Genesis Block also called "RacletteCheese" will created by the first peer connected to the network
-* Also there is message queue system in the block,The working is when a  peer try to send the created block to other peers, at this time, any failure instance occur then that message and connection information will be logged into a database
-constantly the peer try to send the message in the database one by one 
+* Also there is message queue system for handly the create block request,The working is when a  peer try to send the created block to other peers, at this time, any failure instance occur then that message and connection information will be logged into a database
+constantly the corresponding peer try to send the message in the database one by one (queue).Currently each peer has the separate message queue system.
 * Also, new peer can request the blockchain history
+* Also,All peer can request the list of connected peers from the tracker
 
 # Tracker
 * Tracker will accept the new peer details and distribute it to all other peers
@@ -66,7 +67,7 @@ constantly the peer try to send the message in the database one by one
 * Constantly the tracker will send the message in the queue according the connections
 * Tracker will check the communication status of each peer in the network according to the peer list in the tracker 
 * If the tracker find out any peer is offline then the tracker send this peer details(it can be one or many) to other connected peers
-* Peers will receive this information and delete the connection details of the offline peers from the database
+* Peers will receive this information and delete the connection details of the offline peers from the database.
 
 # What Works on the Tracker and what not
 
@@ -78,8 +79,10 @@ constantly the peer try to send the message in the database one by one
  |Automatic Liveliness check for every 30 seconds using the local database |Online|To check the current connected peers in the network|
 |Message queueing system - While sending the new peer details to the connected peer, but due to some reasons when the peer didn't get connected to some peers,then that message and connection details put it in the queue and one by one the messages in the queue will try to send to their corresponding receiver|Online| |
 |Send the failed peer details found using the liveliness test of the tracker to all connected peers|online|To remove the unconnected peers from the local database of the peers|
-|send the new found peers to all other peers. For example, a peer is registered but due to some reasons it was disconnected. So during the liveliness test the tracker found this and remove that corresponding peer and send this information to all other peers. After that when the tracker found this in liveliness test, then again send to the peer details which is online|offline|So using this no need to registered twice for already registered peers|
+|send the new found peers to all other peers. For example, a peer is registered but due to some reasons it was disconnected. So during the liveliness test the tracker found this and remove that corresponding peer and send this information to all other peers. After that when the tracker found this in liveliness test, then again send to the peer details which is online|Online|So using this no need to registered twice for already registered peers|
 |Multi-Threading - Tracker can handle multiple messages at the same time|Online|It improves the responsiveness of a system|
+|Tracker will send the list of total connected peer when request came from a particular peer |Online|It improves the responsiveness of a system|
+
 
 
 # What Works on the Peers
@@ -92,12 +95,16 @@ constantly the peer try to send the message in the database one by one
  |Give the digital signature for every transactions for the validation|Online|For Authentication|
  |Send individual transaction to all connected peers for making the ledger|Online||
  |Digital signature given for every transactions for the validation using the public key of the sender|Online||
- |Decrypt the received messages using private key of the receiver |Online|For Confidentiality|
+ |Decrypt the received messages using private key of the receiver |Offline|For Confidentiality|
  |Create the block as per the structure and mine it as per the difficulty target |Online|for Proof of Work|
  |Send the first mined block as per the required difficulty target to all other peers|Online|Proof of Work|
  |Reset the ledger of every peers after every block creation|Online||
  |Delete the unconnected peers found from the liveliness test of the Tracker from the connected peer database|online||
  |Multi-Treading - Peers can handle multiple messages at the same time|Online|To improves the responsiveness of a system|
+|Peer can request copy of blockchain from the selected peer|Online||
+|BlockChain Validation depends on the sequence number and difficulty target |Online||
+|Message Queue System for handling the created block request |Online||
+
 
 # Time Spent for each member and their contribution
 
