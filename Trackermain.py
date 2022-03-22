@@ -6,6 +6,7 @@ from Tracker.Database.Creation import CreateDatabase
 from Tracker.Database.PeerDetails import PeerDetailsTable
 from Tracker.Database.RegisteredPeers import RegisteredPeerTable
 from Tracker.MessageFormat.SendUnconnected import RequestCreation
+from Tracker.MessageFormat.RequestConnected import ConnectedRequest
 import time
 import socket
 #########################################################################################################
@@ -64,4 +65,16 @@ if __name__ == "__main__":
             createdRegisteredPeers.addRegisteredElements(extractReceivedData)
             connectionDetails = peerDataTable.retrieveElements()
             tracker.sendNewNode(connectionDetails, receivedMessage)
+
+        #send the connected peers
+        if receivedMessage[4] == "R":
+           connectedPeerList =  peerDataTable.retrieveAllSelected()
+           print(connectedPeerList)
+           connectedMessageRequest = ConnectedRequest(connectedPeerList)
+           print(connectedMessageRequest.final())
+
+
+
+
+
 

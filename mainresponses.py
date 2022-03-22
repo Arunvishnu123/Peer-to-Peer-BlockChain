@@ -17,108 +17,105 @@ from BlockChain.Database.CurrentPeerData import PeerData
 from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
 from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
 from BlockChain.Database.MessageQueue import MessageQueue
-from BlockChain.Network.RequestType.BroadMessageQueue import BroadMessageQueue
 from BlockChain.MessageQueue.MessageQueuing import MessageQueueLogic
 import socket
 import time
 
 ###################################################################################################
-#create table object for retrieving and adding
+# create table object for retrieving and adding
 peerDataTable = PeerDetailsTable()
-transactionDataTable  = TransactionsDT()
+transactionDataTable = TransactionsDT()
 ledgerDataTable = TransactionsLedgerDT()
-blockchainTable  =  BlockChainDT()
-peerData  = PeerData()
+blockchainTable = BlockChainDT()
+peerData = PeerData()
 messageQueue = MessageQueue()
 
-
-
-#ServerIP
+# ServerIP
 ipaddress = socket.gethostbyname(socket.gethostname())
-reciever = Receiver((ipaddress,4001))
-peerList = [ ]
+reciever = Receiver((ipaddress, 4001))
+peerList = []
 
-
-
-#message queueing
-#object creation to do the message queuing
+# message queueing
+# object creation to do the message queuing
 messageQueingLogic = MessageQueueLogic()
-messageQueueing = Thread(target=messageQueingLogic.messageQueuing())
-messageQueueing .start()
+messageQueueing = Thread(target=messageQueingLogic.messageQueuing)
+messageQueueing.start()
 
+if __name__ == "__main__":
+    while True:
+        # receive new Node details
+        ####################################################################################
+        print("receivingMessages")
+        recieveNewNodeQueue = Queue()
+        recieveNewNode = Thread(target=reciever.receiveMessagePost, args=(recieveNewNodeQueue,))
+        recieveNewNode.start()
+        recieveNewNode.join()
+        receivedMessage = recieveNewNodeQueue.dequeue()
+        print(type(receivedMessage))
+        print(receivedMessage)
 
-while True:
-    # receive new Node details
-    recieveNewNodeQueue =Queue()
-    recieveNewNode = Thread(target = reciever.receiveMessagePost,args=(recieveNewNodeQueue ,))
-    recieveNewNode.start()
-    recieveNewNode.join()
-    receivedMessage = recieveNewNodeQueue.dequeue()
-    print(type(receivedMessage))
-    print(receivedMessage)
+        # peer details receives
+        if (receivedMessage[4] == "J"):
+            extractedData = joinNewPeerDetails(receivedMessage, peerList)
+            print("Data Extracted from the recieved message:", extractedData.finalDataExtraction())
+            peerDataTable.addElements(extractedData.finalDataExtraction())
+            # create the genesis block in the blockchain
+            try:
+                print("lasthash", blockchainTable.retriveLastHash()[0])
+            except:
+                peerData = peerData.retrivePeerData()
+                print("current peer data:", peerData)
+                genesisBlockCreation = genesisBlock(peerData[0][1])
+                print("Genesis Block", genesisBlockCreation.mining())
+                genesisBlock = genesisBlockCreation.mining()
+                genesisBlockRequestCreation = BlockRequestCreation(genesisBlock)
+                genesisBlockMessageFormat = genesisBlockRequestCreation.final()
+                print(genesisBlockMessageFormat)
+                connectedPeersList2 = peerDataTable.retrivePeerDetailsGensis(peerData[0][1])
+                print("connected peer list", connectedPeersList2)
+                blockExtraction1 = BlockDataExtraction(receivedMessage)
+                print(blockExtraction1.genesisBlockExtraction(genesisBlock))
+                blockchainTable.addBlocks(blockExtraction1.genesisBlockExtraction(genesisBlock))
+                broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList2, genesisBlockMessageFormat)
+                broadCastMineCompleteMessage.mPeer()
 
-    #peer details receives
-    if(receivedMessage[4] == "J"):
-         extractedData = joinNewPeerDetails(receivedMessage,peerList)
-         print("Data Extracted from the recieved message:",extractedData.finalDataExtraction())
-         peerDataTable.addElements(extractedData.finalDataExtraction())
-         # create the genesis block in the blockchain
-         try:
-             print("lasthash", blockchainTable.retriveLastHash()[0])
-         except:
-             peerData = peerData.retrivePeerData()
-             print("current peer data:",peerData)
-             genesisBlockCreation = genesisBlock(peerData[0][1])
-             print("Genesis Block", genesisBlockCreation.mining())
-             genesisBlock = genesisBlockCreation.mining()
-             genesisBlockRequestCreation = BlockRequestCreation(genesisBlock)
-             genesisBlockMessageFormat = genesisBlockRequestCreation.final()
-             print(genesisBlockMessageFormat)
-             connectedPeersList2 = peerDataTable.retrivePeerDetailsGensis(peerData[0][1])
-             print("connected peer list",connectedPeersList2)
-             blockExtraction1 = BlockDataExtraction(receivedMessage)
-             print(blockExtraction1.genesisBlockExtraction(genesisBlock))
-             blockchainTable.addBlocks(blockExtraction1.genesisBlockExtraction(genesisBlock))
-             broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList2, genesisBlockMessageFormat)
-             broadCastMineCompleteMessage.mPeer()
+        # transaction message receiving logic
+        if (receivedMessage[4] == "T"):
+            extractedTransactionData = TransactionMessageExtraction(receivedMessage)
+            print("Extracted Message of Transaction:", extractedTransactionData.finalDataExtraction())
+            transactionDataTable.addElements(extractedTransactionData.finalDataExtraction())
 
-    #transaction message receiving logic
-    if(receivedMessage[4] == "T"):
-        extractedTransactionData = TransactionMessageExtraction(receivedMessage)
-        print("Extracted Message of Transaction:",extractedTransactionData.finalDataExtraction())
-        transactionDataTable.addElements(extractedTransactionData.finalDataExtraction())
+        # transaction ledger creation
+        if (receivedMessage[4] == "L"):
+            extractedLedgerData = LedgerDataExtraction(receivedMessage)
+            print("Extracted Message of Transactions(for ledger creation:", extractedLedgerData.finalDataExtraction())
+            ledgerDataTable.addLedgerElements(extractedLedgerData.finalDataExtraction())
 
-    #transaction ledger creation
-    if(receivedMessage[4] == "L"):
-        extractedLedgerData = LedgerDataExtraction(receivedMessage)
-        print("Extracted Message of Transactions(for ledger creation:",extractedLedgerData.finalDataExtraction())
-        ledgerDataTable.addLedgerElements(extractedLedgerData.finalDataExtraction())
+        # Mine Complete Request
+        if (receivedMessage[4] == "M"):
+            mineCompleteDataExtraction = MineCompleteDataExtraction(receivedMessage)
+            statusMine = mineCompleteDataExtraction.finalDataExtraction()
+            print("status", statusMine)
+            print(type(statusMine))
+            miningCompleteStatus = MiningCompleteStatusDT()
+            print((statusMine, 1))
+            miningCompleteStatus.addMiningStatus((statusMine, 1))
 
-    #Mine Complete Request
-    if(receivedMessage[4] == "M"):
-        mineCompleteDataExtraction = MineCompleteDataExtraction(receivedMessage)
-        statusMine = mineCompleteDataExtraction.finalDataExtraction()
-        print("status",statusMine)
-        print(type(statusMine))
-        miningCompleteStatus = MiningCompleteStatusDT()
-        print((statusMine,1))
-        miningCompleteStatus.addMiningStatus((statusMine,1))
+        # newBlockCreated
+        if (receivedMessage[4] == "N"):
+            print("last hash", blockchainTable.retriveLastHash())
+            blockExtraction = BlockDataExtraction(receivedMessage)
+            print(blockExtraction.finalDataExtraction())
+            blockchainTable.addBlocks(blockExtraction.finalDataExtraction())
 
-    #newBlockCreated
-    if(receivedMessage[4] == "N"):
-        print("last hash", blockchainTable.retriveLastHash())
-        blockExtraction =  BlockDataExtraction(receivedMessage)
-        print(blockExtraction.finalDataExtraction())
-        blockchainTable.addBlocks(blockExtraction.finalDataExtraction())
-
-    #sendUnconnected
-    if(receivedMessage[4]=="U"):
-        print("Unconnected Received")
-        unconnectedDataExtraction = UnconnectedDataExtraction(receivedMessage)
-        unConnectedPeers = unconnectedDataExtraction.finalDataExtraction()
-        print(unconnectedDataExtraction.finalDataExtraction()[0][1])
-        print(type(unconnectedDataExtraction.finalDataExtraction()[0]))
-        for unconnected in unConnectedPeers:
-            print("unconnected",unconnected)
-            print(unconnected[0])
-            peerDataTable.deletePeerData(unconnected[0])
+        # sendUnconnected
+        if (receivedMessage[4] == "U"):
+            print("Unconnected Received")
+            unconnectedDataExtraction = UnconnectedDataExtraction(receivedMessage)
+            unConnectedPeers = unconnectedDataExtraction.finalDataExtraction()
+            print(unconnectedDataExtraction.finalDataExtraction()[0][1])
+            print(type(unconnectedDataExtraction.finalDataExtraction()[0]))
+            for unconnected in unConnectedPeers:
+                print("unconnected", unconnected)
+                print(unconnected[0])
+                peerDataTable.deletePeerData(unconnected[0])

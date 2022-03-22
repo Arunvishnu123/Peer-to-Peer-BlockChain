@@ -9,7 +9,8 @@ class RegisteredPeerTable:
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
         try:
             cur = db.cursor()
-            cur.execute('''CREATE TABLE RegisteredPeers (        
+            cur.execute('''CREATE TABLE RegisteredPeers (  
+            Name TEXT (20) NOT NULL,      
             peerIPAddress TEXT (20) NOT NULL,
             peerPort INTEGER,
             peerPublicKey TEXT (20) NOT NULL);''')
@@ -21,7 +22,7 @@ class RegisteredPeerTable:
 
     def addRegisteredElements(self,data):
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
-        qry = "insert into RegisteredPeers (peerIPAddress,peerPort,peerPublicKey) values(?,?,?);"
+        qry = "insert into RegisteredPeers (name,peerIPAddress,peerPort,peerPublicKey) values(?,?,?,?);"
         try:
             cur = db.cursor()
             cur.execute(qry, data)
@@ -58,13 +59,13 @@ class RegisteredPeerTable:
             print("error in operation")
 
 
-    def retrieveRegisteredAllSelected(self,name):
+    def retrieveRegisteredAllSelected(self):
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
-        qry = """select * FROM RegisteredPeers where peerName = ? """
+        qry = """select * FROM RegisteredPeers """
         try:
             cur = db.cursor()
-            cur.execute(qry,(name,))
-            result = cur.fetchone()
+            cur.execute(qry)
+            result = cur.fetchall()
             db.close()
             return result
         except:

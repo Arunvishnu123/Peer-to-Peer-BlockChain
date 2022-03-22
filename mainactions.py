@@ -20,6 +20,7 @@ from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
 from BlockChain.Database.BlockChain import BlockChainDT
 from BlockChain.Database.CurrentPeerData import PeerData
+from BlockChain.Network.MessageType.RequestConnected import RequestConnected
 
 import time
 import socket
@@ -77,8 +78,9 @@ if __name__ == "__main__":
     while True:
         # select the operation need to do by the system
         print("################################################################################################################################################")
-        print("Enter C or c to connect to the peer at the first time(means connect to the tracker)\nEnter T or t to send message and make transaction to the peers\nEnter M or m for mining the current transaction and create Block")
+        print("Enter C or c to connect to the peer at the first time(means connect to the tracker)\nEnter R or r to request the connected peers form Tracker\nEnter T or t to send messrage and make transaction to the peers\nEnter M or m for mining the current transaction and create Block")
         operation = input("Select the operation need to do:")
+
 #####################################################################################################################################################
         #Select C or c to connect the new peer to the newtwork
         if operation == "C" or operation == "c":
@@ -91,6 +93,7 @@ if __name__ == "__main__":
             #send the final message to the tracker
             trackerClient = TrackerClient(trackerTriple,finalMessageStructure)
             trackerClient.trackerClient()
+
 #############################################################################################################################################
         #Select t or T to do individual transactions
         if operation == "T" or operation == "t":
@@ -186,4 +189,13 @@ if __name__ == "__main__":
        #for sending the blockchain copy to newly joined peers
         if operation == "B" or operation == "b":
             pass
+
+        #requesting all connected network details
+        if operation == "R" or operation == "r":
+            requestConnectedMessageCreation = RequestConnected()
+            requestConnectedMessageCreation.final()
+            print(requestConnectedMessageCreation.final())
+            # send the final message to the tracker
+            trackerClient = TrackerClient(trackerTriple, requestConnectedMessageCreation.final())
+            trackerClient.trackerClient()
 

@@ -2,6 +2,7 @@
 import json
 import socket
 from Tracker.Database.PeerDetails import PeerDetailsTable
+from Tracker.MessageFormat.RequestConnected import ConnectedRequest
 
 class Tracker:
     def __init__(self, connectionDetails):
@@ -18,7 +19,16 @@ class Tracker:
         client, address = self.server.accept()
         self.recievedMessage = client.recv(1024).decode('utf-8')
         print(self.recievedMessage)
-        client.send("Succeed".encode('utf-8'))
+        # send the connected peers
+        if self.recievedMessage[4] == "R":
+            peerDataTable = PeerDetailsTable()
+            connectedPeerList = peerDataTable.retrieveAllSelected()
+            print(connectedPeerList)
+            connectedMessageRequest = ConnectedRequest(connectedPeerList)
+            print(connectedMessageRequest.final())
+            client.send(connectedMessageRequest.final().encode('utf-8'))
+        else:
+            client.send("Succeed".encode('utf-8'))
         queue.enque(self.recievedMessage)
         return self.recievedMessage
 
@@ -27,7 +37,7 @@ class Tracker:
         print("Port is ", extracted['port'])
         print("IP address is ", extracted['ipaddress'])
         print("Public Key is ", extracted['publickey'])
-        connectionDetails = (extracted['ipaddress'], int(extracted['port']) ,extracted['publickey'])
+        connectionDetails = (extracted['name'],extracted['ipaddress'], int(extracted['port']) ,extracted['publickey'])
         print(connectionDetails)
         return connectionDetails
 

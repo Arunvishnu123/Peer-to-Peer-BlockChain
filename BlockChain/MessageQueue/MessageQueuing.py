@@ -10,7 +10,7 @@ class MessageQueueLogic:
     def messageQueuing(self):
         while True:
             print("Message Queue Wait")
-            time.sleep(1)
+            time.sleep(30)
             print("Message Queue Started")
             messageQueue = MessageQueue()
             messages = messageQueue.retriveMessageQueue("192.168.0.13")

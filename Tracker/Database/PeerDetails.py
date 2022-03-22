@@ -9,7 +9,8 @@ class PeerDetailsTable:
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
         try:
             cur = db.cursor()
-            cur.execute('''CREATE TABLE peerData (        
+            cur.execute('''CREATE TABLE peerData (
+            Name TEXT (20) NOT NULL,     
             peerIPAddress TEXT (20) NOT NULL,
             peerPort INTEGER,
             peerPublicKey TEXT (20) NOT NULL);''')
@@ -21,7 +22,7 @@ class PeerDetailsTable:
 
     def addElements(self,data):
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
-        qry = "insert into peerData (peerIPAddress,peerPort,peerPublicKey) values(?,?,?);"
+        qry = "insert into peerData (Name,peerIPAddress,peerPort,peerPublicKey) values(?,?,?,?);"
         try:
             cur = db.cursor()
             cur.execute(qry, data)
@@ -45,6 +46,9 @@ class PeerDetailsTable:
         except:
             print("error in operation")
 
+        # retrive all ipaddress and port number
+
+
     def retreievePeerName(self):
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
         qry = """select peerName FROM peerData """
@@ -58,13 +62,13 @@ class PeerDetailsTable:
             print("error in operation")
 
 
-    def retrieveAllSelected(self,name):
+    def retrieveAllSelected(self):
         db = sqlite3.connect('./Tracker/DatabaseSource/Tracker.db')
-        qry = """select * FROM peerData where peerName = ? """
+        qry = """select * FROM peerData"""
         try:
             cur = db.cursor()
-            cur.execute(qry,(name,))
-            result = cur.fetchone()
+            cur.execute(qry)
+            result = cur.fetchall()
             db.close()
             return result
         except:

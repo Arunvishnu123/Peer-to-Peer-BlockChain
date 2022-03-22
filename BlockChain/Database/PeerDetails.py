@@ -32,6 +32,20 @@ class PeerDetailsTable:
             db.rollback()
         db.close()
 
+    def addMultiple(self,datas):
+        db = sqlite3.connect('./Database/BlockChain.db')
+        qry = "insert into peerData (peerName,peerIPAddress,peerPort, peerPublicKey) values(?,?,?,?);"
+        try:
+            for data in datas:
+              cur = db.cursor()
+              cur.execute(qry,data)
+              db.commit()
+              print("new peer details added to the database successfully")
+        except:
+            print("error in operation")
+            db.rollback()
+        db.close()
+
     #retrive all ipaddress and port number
     def retrieveElements(self):
         db = sqlite3.connect('./Database/BlockChain.db')
