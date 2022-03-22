@@ -5,7 +5,7 @@
 
 ![title](Images/Strucutre%20of%20the%20Block.png)
 
-**Header** - It is one of the part in block used to identify a particular block on an entire blockchain. It is hashed repeatedly to create proof of work for mining rewards. It contains all the metadata suchas Sequence Number, version of the block, a cryptographic hash of the previous block, a timestamp, merkle root and the nonce.
+**Header** - It is one of the part in block used to identify a particular block on an entire blockchain. It is hashed repeatedly to create proof of work for mining rewards. It contains all the metadata suchas Sequence Number, version of the block, a cryptographic hash of the previous block, a timestamp, merkle root and the nonce.<br />
 **Sequence Number** - It indicates the number of the block in the entire blockchain. System generates this number for a particular block by checking the previous block number.
 **Hash** -  It is done by passing some data through a formula that gives a result, called a hash. The hash of a transaction makes it easy to keep track of transactions on the blockchain. The parent hash of particular block links to the previous block and to its parent block, effectively securing the blockchain.
 **Version** -  It is useful in keeping track of changes and updates throughout the protocol.
