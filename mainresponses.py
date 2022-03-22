@@ -12,13 +12,19 @@ from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Network.MessageType.NewBlock import BlockDataExtraction
 from BlockChain.Database.BlockChain import BlockChainDT
 from BlockChain.Network.MessageType.UnconnectedPeer import UnconnectedDataExtraction
+from BlockChain.CheeseCoin.BlockChain.GenesisBlock import genesisBlock
+from BlockChain.Database.CurrentPeerData import PeerData
+from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
+from BlockChain.Network.RequestType.BroadcastMultiple import BroadCastMulitple
 import socket
+
 ###################################################################################################
 #create datables object
 peerDataTable = PeerDetailsTable()
 transactionDataTable  = TransactionsDT()
 ledgerDataTable = TransactionsLedgerDT()
 blockchainTable  =  BlockChainDT()
+peerData  = PeerData()
 
 #ServerIP
 ipaddress = socket.gethostbyname(socket.gethostname())
@@ -40,6 +46,25 @@ while True:
          extractedData = joinNewPeerDetails(receivedMessage,peerList)
          print("Data Extracted from the recieved message:",extractedData.finalDataExtraction())
          peerDataTable.addElements(extractedData.finalDataExtraction())
+         # create the genesis block in the blockchain
+         try:
+             print("lasthash", blockchainTable.retriveLastHash()[0])
+         except:
+             peerData = peerData.retrivePeerData()
+             print("current peer data:",peerData)
+             genesisBlockCreation = genesisBlock(peerData[0][1])
+             print("Genesis Block", genesisBlockCreation.mining())
+             genesisBlock = genesisBlockCreation.mining()
+             genesisBlockRequestCreation = BlockRequestCreation(genesisBlock)
+             genesisBlockMessageFormat = genesisBlockRequestCreation.final()
+             print(genesisBlockMessageFormat)
+             connectedPeersList2 = peerDataTable.retrivePeerDetailsGensis(peerData[0][1])
+             print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",connectedPeersList2)
+             blockExtraction1 = BlockDataExtraction(receivedMessage)
+             print(blockExtraction1.finalDataExtraction())
+             blockchainTable.addBlocks(blockExtraction1.finalDataExtraction())
+             broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList2, genesisBlockMessageFormat)
+             broadCastMineCompleteMessage.mPeer()
 
     #transaction message receiving logic
     if(receivedMessage[4] == "T"):

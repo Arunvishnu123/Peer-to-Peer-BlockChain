@@ -47,5 +47,7 @@ class BlockDataExtraction:
                              dict["Block"]["TransactionCounter"], str(dict["Block"]["TransactionList"]))
         return extractedData
 
+    def genesisBlockExtraction
+
 
 

@@ -57,6 +57,17 @@ class PeerDetailsTable:
         except:
             print("error in operation")
 
+    def retrivePeerDetailsGensis(self,name):
+        db = sqlite3.connect('./Database/BlockChain.db')
+        qry = """select peerName FROM peerData where peerName!= ?"""
+        try:
+            cur = db.cursor()
+            cur.execute(qry,(name,))
+            result = cur.fetchall()
+            cur.close()
+            return result
+        except:
+            print("error in operation")
 
     def retrieveAllSelected(self,name):
         db = sqlite3.connect('./Database/BlockChain.db')

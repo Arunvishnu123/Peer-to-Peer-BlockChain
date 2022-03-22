@@ -5,6 +5,7 @@ from BlockChain.Database.Ledger import TransactionsLedgerDT
 from pathlib import Path
 from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Database.BlockChain import BlockChainDT
+from BlockChain.Database.CurrentPeerData import PeerData
 
 if Path('./Database/BlockChain.db').is_file():
     print ("DataBaseAlreadyCreated")
@@ -31,6 +32,9 @@ miningCompleteDataTable.createTable()
 #create blockchain table
 createBlockChainTable =  BlockChainDT()
 createBlockChainTable.createBlockChainTable()
+#create currentpeerdata
+createPeerTable = PeerData()
+createPeerTable.createPeerDataTable()
 
 
 

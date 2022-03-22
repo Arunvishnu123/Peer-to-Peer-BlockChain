@@ -19,16 +19,23 @@ from BlockChain.Network.MessageType.MineComplete import RequestCreation
 from BlockChain.Database.MineComplete import MiningCompleteStatusDT
 from BlockChain.Network.MessageType.NewBlock import BlockRequestCreation
 from BlockChain.Database.BlockChain import BlockChainDT
-from BlockChain.CheeseCoin.BlockChain.GenesisBlock import genesisBlock
+from BlockChain.Database.CurrentPeerData import PeerData
+
 import time
 import socket
 
 ################################################################################################################
 #database for the connected peer details
 connectedPeers  = PeerDetailsTable()
+#database for the ledger
 ledgerDataTable  = TransactionsLedgerDT()
+#database for the getting miningstatus
 miningCompleteStatusTable = MiningCompleteStatusDT()
+#database for the blockchain
 blockchainTable  =  BlockChainDT()
+#create table for storing the self peer data
+createPeer = PeerData()
+
 ################################################################################################################
 if __name__ == "__main__":
     ############################################################################################################
@@ -45,26 +52,22 @@ if __name__ == "__main__":
     trackerIP = socket.gethostbyname(socket.gethostname())
     trackerPort = 7070
     trackerTriple = (trackerIP,trackerPort)
-    # new peer details
-    ipAddress = socket.gethostbyname(socket.gethostname())
-    port = input("Enter the port to run the peer:")
-    name = input("Enter your Name:")
-    # peer data converted to dictionary for sending
-    peerDetails = PeerDetails(ipAddress, port, hostPublicKey,name)
-    ###############################################################################################################################################
-    #create the genesis block in the blockchain
     try:
-      print("lasthash",blockchainTable.retriveLastHash()[0])
+      peerData = createPeer.retrivePeerData()
+      print(peerData[0])
     except:
-      genesisBlockCreation = genesisBlock(name)
-      print("Genesis Block",genesisBlockCreation.mining())
-      genesisBlock = genesisBlockCreation.mining()
-      genesisBlockRequestCreation = BlockRequestCreation(genesisBlock)
-      genesisBlockMessageFormat  = genesisBlockRequestCreation.final()
-      print(genesisBlockMessageFormat)
-      connectedPeersList2 = connectedPeers.retrieveElements()
-      broadCastMineCompleteMessage = BroadCastMulitple(connectedPeersList2, genesisBlockMessageFormat)
-      broadCastMineCompleteMessage.mPeer()
+        # new peer details
+        ipAddress = socket.gethostbyname(socket.gethostname())
+        port = input("Enter the port to run the peer:")
+        name = input("Enter your Name:")
+        # storing this data to the user
+        createPeer.addPeerData((name,port,ipAddress))
+        # peer data converted to dictionary for sending
+    #message creation(convert the below data to a dictionary)
+    peerDetails = createPeer.retrivePeerData()
+    peerDetails = PeerDetails(peerDetails[0][3], peerDetails[0][2], hostPublicKey, peerDetails[0][1])
+    ###############################################################################################################################################
+
 
     while True:
         # select the operation need to do by the system
@@ -99,7 +102,7 @@ if __name__ == "__main__":
             print("message and amount to be send", data)
             ######################################################################################################
             # Encryption of the message
-            oencryption = encryption(hostPrivateKey,hostPublicKey, data, name)
+            oencryption = encryption(hostPrivateKey,hostPublicKey, data, peerDetails[0][1])
             digtalSignature = oencryption.digitalSignature()
             print("vcfg", digtalSignature)
             encryptedData = oencryption.encryptedMessage()
@@ -144,7 +147,7 @@ if __name__ == "__main__":
             merkleRoot = createdMerkalRoot
             difficultyTarget = "4"
             nonce = 0
-            blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData,name)
+            blockCreation = Block(version,previousHash,merkleRoot,difficultyTarget,nonce,ledgerData,peerDetails[0][1])
             createdBloc = blockCreation.createBlocks()
             print(createdBloc)
             #mining logic
@@ -175,7 +178,7 @@ if __name__ == "__main__":
             miningCompleteStatusTable.deleteMiningStatus()
             ledgerDataTable.deleteLedgerElement()
 
-
+       #for sending the blockchain copy to newly joined peers
         if operation == "B" or operation == "b":
             pass
 
